@@ -1,0 +1,25 @@
+{
+	"nombre": "",
+	"contrasena": "",
+	"talla": "",
+	"peso": "",
+	"edad": "",
+	"imagen": "",
+	"objetivos": [
+		{
+			"descripcion": ""
+		},
+		{
+			"descripcion": ""
+		}
+	],
+	"observaciones": [
+		{
+			"descripcion": ""
+		},
+		{
+			"descripcion": ""
+		}
+	]
+	
+}
