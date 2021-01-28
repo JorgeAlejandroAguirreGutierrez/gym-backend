@@ -11,8 +11,6 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-
 @Entity
 @Table(name = "dia_entrenamiento")
 public class DiaEntrenamiento {
@@ -23,24 +21,37 @@ public class DiaEntrenamiento {
 	
 	@NotNull
     @NotEmpty
-    @JsonProperty("numero")
     @Column(name = "numero")
 	private long numero;
 	
 	@ManyToOne
-    @JsonProperty("ejercicio")
     @JoinColumn(name = "ejercicio_id", nullable = true)
     private Ejercicio ejercicio;
 	
 	@NotNull
     @NotEmpty
-    @JsonProperty("repeticion")
     @Column(name = "repeticion")
 	private long repeticion;
 	
 	@NotNull
     @NotEmpty
-    @JsonProperty("veces")
     @Column(name = "veces")
 	private long veces;
+	
+	public long getId() {
+		return id;
+	}
+	
+	public long getNumero() {
+		return numero;
+	}
+	public Ejercicio getEjercicio() {
+		return ejercicio;
+	}
+	public long getRepeticion() {
+		return repeticion;
+	}
+	public long getVeces() {
+		return veces;
+	}
 }

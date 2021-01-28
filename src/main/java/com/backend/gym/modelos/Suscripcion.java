@@ -9,10 +9,8 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-
 @Entity
-@Table(name = "objetivo")
+@Table(name = "suscripcion")
 public class Suscripcion {
 	
 	@Id
@@ -21,7 +19,23 @@ public class Suscripcion {
 	
 	@NotNull
     @NotEmpty
-    @JsonProperty("descripcion")
     @Column(name = "descripcion")
 	private String descripcion;
+	
+	@NotNull
+    @NotEmpty
+    @Column(name = "fecha")
+	private String fecha;
+	
+	public long getId() {
+		return id;
+	}
+	
+	public String getDescripcion() {
+		return descripcion;
+	}
+	
+	public String getFecha() {
+		return fecha;
+	}
 }

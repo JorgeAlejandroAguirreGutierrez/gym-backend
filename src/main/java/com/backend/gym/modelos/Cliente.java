@@ -15,8 +15,6 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-
 @Entity
 @Table(name = "cliente")
 public class Cliente {
@@ -26,59 +24,48 @@ public class Cliente {
 	 
 	@NotNull
     @NotEmpty
-    @JsonProperty("nombre")
     @Column(name = "nombre")
     private String nombre;
 	
 	@NotNull
     @NotEmpty
-    @JsonProperty("identificacion")
     @Column(name = "identificacion")
     private String identificacion;
 	
-    @JsonProperty("contrasena")
     @Column(name = "contrasena")
 	private String contrasena;
 	
 	@NotNull
     @NotEmpty
-    @JsonProperty("talla")
     @Column(name = "talla")
 	private String talla;
 	
 	@NotNull
     @NotEmpty
-    @JsonProperty("peso")
     @Column(name = "peso")
 	private String peso;
 	
 	@NotNull
     @NotEmpty
-    @JsonProperty("edad")
     @Column(name = "edad")
 	private String edad;
 	
-    @JsonProperty("imagen")
     @Column(name = "imagen")
 	private String imagen;
     
     @OneToMany(cascade ={CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.MERGE}, fetch = FetchType.LAZY)
-    @JsonProperty("suscripciones")
     @JoinColumn(name = "cliente_id")
     private List<Suscripcion> suscripciones;
 	
 	@OneToMany(cascade ={CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.MERGE}, fetch = FetchType.LAZY)
-    @JsonProperty("objetivos")
     @JoinColumn(name = "cliente_id")
     private List<Objetivo> objetivos;
 	
 	@OneToMany(cascade ={CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.MERGE}, fetch = FetchType.LAZY)
-    @JsonProperty("observaciones")
     @JoinColumn(name = "cliente_id")
     private List<Observacion> observaciones;
 	
 	@OneToMany(cascade ={CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.MERGE}, fetch = FetchType.LAZY)
-    @JsonProperty("planEntrenamiento")
     @JoinColumn(name = "cliente_id")
     private List<DiaEntrenamiento> planEntrenamiento;
 	
@@ -106,6 +93,10 @@ public class Cliente {
 		return nombre;
 	}
 	
+	public String getIdentificacion() {
+		return identificacion;
+	}
+	
 	public String getContrasena() {
 		return contrasena;
 	}
@@ -131,5 +122,9 @@ public class Cliente {
 	
 	public List<DiaEntrenamiento> getPlanEntrenamiento() {
 		return planEntrenamiento;
+	}
+	
+	public List<Suscripcion> getSuscripciones() {
+		return suscripciones;
 	}
 }

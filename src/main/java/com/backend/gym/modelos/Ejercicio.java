@@ -9,7 +9,6 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 
 @Entity
 @Table(name = "ejercicio")
@@ -21,25 +20,21 @@ public class Ejercicio {
 	
 	@NotNull
     @NotEmpty
-    @JsonProperty("codigo")
     @Column(name = "codigo")
 	private String codigo;
 	
 	@NotNull
     @NotEmpty
-    @JsonProperty("descripcion")
     @Column(name = "descripcion")
 	private String descripcion;
 	
 	@NotNull
     @NotEmpty
-    @JsonProperty("tipo")
     @Column(name = "tipo")
 	private String tipo;
 	
 	@NotNull
     @NotEmpty
-    @JsonProperty("imagen")
     @Column(name = "imagen")
 	private String imagen;
 	
@@ -53,6 +48,14 @@ public class Ejercicio {
 	
 	public String getDescripcion() {
 		return descripcion;
+	}
+	
+	public String getTipo() {
+		return tipo;
+	}
+	
+	public String getImagen() {
+		return imagen;
 	}
 	
 }
