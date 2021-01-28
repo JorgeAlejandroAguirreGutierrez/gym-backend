@@ -17,7 +17,6 @@ import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-
 @Entity
 @Table(name = "cliente")
 public class Cliente {
@@ -30,6 +29,12 @@ public class Cliente {
     @JsonProperty("nombre")
     @Column(name = "nombre")
     private String nombre;
+	
+	@NotNull
+    @NotEmpty
+    @JsonProperty("identificacion")
+    @Column(name = "identificacion")
+    private String identificacion;
 	
     @JsonProperty("contrasena")
     @Column(name = "contrasena")
@@ -73,17 +78,24 @@ public class Cliente {
     private List<Observacion> observaciones;
 	
 	@OneToMany(cascade ={CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.MERGE}, fetch = FetchType.LAZY)
-    @JsonProperty("plan_entrenamiento")
+    @JsonProperty("planEntrenamiento")
     @JoinColumn(name = "cliente_id")
     private List<DiaEntrenamiento> planEntrenamiento;
 	
-	public Cliente(long id, String nombre, String contrasena, String talla, String peso, String edad ) {
+	public Cliente() {
+		
+	}
+	
+	public Cliente(long id, String nombre, String contrasena, String talla, String peso, String edad, List<Observacion> observaciones, List<Objetivo> objetivos, List<Suscripcion>suscripciones ) {
 		this.id=id;
 		this.nombre=nombre;
 		this.contrasena=contrasena;
 		this.talla=talla;
 		this.peso=peso;
 		this.edad=edad;
+		this.observaciones=observaciones;
+		this.objetivos=objetivos;
+		this.suscripciones=suscripciones;
 	}
 	
 	public long getId() {
@@ -115,5 +127,9 @@ public class Cliente {
 	}
 	public List<Observacion> getObservaciones() {
 		return observaciones;
+	}
+	
+	public List<DiaEntrenamiento> getPlanEntrenamiento() {
+		return planEntrenamiento;
 	}
 }
