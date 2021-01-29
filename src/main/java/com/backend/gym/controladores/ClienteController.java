@@ -72,4 +72,11 @@ public class ClienteController {
         servicio.eliminar(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
+    
+    @PostMapping(value="/buscar",produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<?> buscar(@RequestBody Cliente _cliente) {
+    	logger.info(LOGMETHOD+Thread.currentThread().getStackTrace()[1].getMethodName()+LOGCLASS+this.getClass().getSimpleName());
+        List<Cliente> clientes=servicio.buscar(_cliente);
+        return new ResponseEntity<>(clientes, HttpStatus.OK);
+    }
 }
