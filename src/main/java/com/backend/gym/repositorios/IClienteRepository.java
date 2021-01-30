@@ -10,7 +10,7 @@ import com.backend.gym.modelos.Cliente;
 
 @Repository
 public interface IClienteRepository extends JpaRepository<Cliente, Long>, JpaSpecificationExecutor<Cliente> {
-	@Query(value="select c from cliente c "  
+	@Query(value="select c from Cliente c "  
 			+" WHERE c.identificacion=:identificacion AND c.contrasena=:contrasena")
 	public Optional<Cliente> buscarNombreContrasena(String identificacion, String contrasena);
 }
