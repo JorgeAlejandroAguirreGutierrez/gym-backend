@@ -36,7 +36,7 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
 	
 	@ExceptionHandler(ModeloNoExistenteException.class)
 	public final ResponseEntity<RestExceptionMessage> handleModeloNoExistenteException(
-	    ModeloExistenteException ex, WebRequest req) {
+	    ModeloNoExistenteException ex, WebRequest req) {
 		RestExceptionMessage exceptionResponse = new RestExceptionMessage(
 	        ex.getMessage(),
 	        null
