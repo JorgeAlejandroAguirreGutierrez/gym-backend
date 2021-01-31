@@ -10,7 +10,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import com.backend.gym.Constantes;
+import com.backend.gym.exception.ModeloNoExistenteException;
 import com.backend.gym.modelos.Ejercicio;
 import com.backend.gym.repositorios.IEjercicioRepository;
 
@@ -66,5 +69,17 @@ public class EjercicioService {
     public void eliminar(long id) {
     	logger.info(LOGMETHOD+Thread.currentThread().getStackTrace()[1].getMethodName()+LOGCLASS+this.getClass().getSimpleName());
     	ejercicioRepository.deleteById(id);
+    }
+    
+    public boolean imagen(MultipartFile archivo, long id) throws Exception {
+    	Optional<Ejercicio>ejercicio=ejercicioRepository.findById(id);
+    	String ruta=Constantes.guardarArchivo(archivo, id);
+    	if(ejercicio.isPresent()) {
+    		Ejercicio getEjercicio=ejercicio.get();
+    		getEjercicio.setImagen(ruta);
+    		ejercicioRepository.save(getEjercicio);
+    		return true;
+    	}
+    	throw new ModeloNoExistenteException();	
     }
 }

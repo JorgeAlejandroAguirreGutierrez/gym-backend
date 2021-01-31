@@ -10,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
@@ -53,6 +54,14 @@ public class Cliente {
     @Column(name = "imagen")
 	private String imagen;
     
+    @ManyToOne
+    @JoinColumn(name = "perfil_id", nullable = true)
+    private Perfil perfil;
+    
+    @OneToMany
+    @JoinColumn(name = "cliente_id")
+    private List<Sesion> sesiones;
+    
     @OneToMany(cascade ={CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.MERGE}, fetch = FetchType.LAZY)
     @JoinColumn(name = "cliente_id")
     private List<Suscripcion> suscripciones;
@@ -73,13 +82,19 @@ public class Cliente {
 		
 	}
 	
-	public Cliente(long id, String nombre, String contrasena, String talla, String peso, String edad, List<Observacion> observaciones, List<Objetivo> objetivos, List<Suscripcion>suscripciones ) {
-		this.id=id;
+	public Cliente(String nombre, String identificacion, String contrasena, 
+			String talla, String peso, String edad, String imagen, 
+			Perfil perfil, List<Sesion> sesiones, List<Observacion> observaciones,
+			List<Objetivo> objetivos, List<Suscripcion>suscripciones ) {
 		this.nombre=nombre;
+		this.identificacion=identificacion;
 		this.contrasena=contrasena;
 		this.talla=talla;
 		this.peso=peso;
 		this.edad=edad;
+		this.imagen=imagen;
+		this.perfil=perfil;
+		this.sesiones=sesiones;
 		this.observaciones=observaciones;
 		this.objetivos=objetivos;
 		this.suscripciones=suscripciones;
@@ -111,6 +126,10 @@ public class Cliente {
 	
 	public String getEdad() {
 		return edad;
+	}
+	
+	public Perfil getPerfil() {
+		return perfil;
 	}
 	
 	public List<Objetivo> getObjetivos() {

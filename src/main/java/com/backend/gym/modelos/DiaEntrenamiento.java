@@ -38,6 +38,11 @@ public class DiaEntrenamiento {
     @Column(name = "veces")
 	private long veces;
 	
+	@NotNull
+    @NotEmpty
+    @Column(name = "pesaje")
+	private String pesaje;
+	
 	public long getId() {
 		return id;
 	}

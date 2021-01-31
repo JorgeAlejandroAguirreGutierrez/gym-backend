@@ -1,6 +1,6 @@
 package com.backend.gym.controladores;
 
-import static com.backend.gym.Constantes.USUARIOCONTROLLER;
+import static com.backend.gym.Constantes.PERFILCONTROLLER;
 import static com.backend.gym.Constantes.LOGCLASS;
 import static com.backend.gym.Constantes.LOGMETHOD;
 
@@ -25,45 +25,45 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.backend.gym.modelos.Usuario;
-import com.backend.gym.servicios.UsuarioService;
+import com.backend.gym.modelos.Perfil;
+import com.backend.gym.servicios.PerfilService;
 
 @RestController
-@RequestMapping(USUARIOCONTROLLER)
+@RequestMapping(PERFILCONTROLLER)
 @Validated
-public class UsuarioController {
+public class PerfilController {
 	
-private static final Logger logger = LoggerFactory.getLogger(UsuarioController.class);
+private static final Logger logger = LoggerFactory.getLogger(PerfilController.class);
 	
     @Autowired
-    private UsuarioService servicio;
+    private PerfilService servicio;
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> consultar() {
     	logger.info(LOGMETHOD+Thread.currentThread().getStackTrace()[1].getMethodName()+LOGCLASS+this.getClass().getSimpleName());
-        List<Usuario> usuarios=servicio.consultar();
-        return new ResponseEntity<>(usuarios, HttpStatus.OK);
+        List<Perfil> perfiles=servicio.consultar();
+        return new ResponseEntity<>(perfiles, HttpStatus.OK);
     }
 
     @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> obtener(@PathVariable("id") long id) {
     	logger.info(LOGMETHOD+Thread.currentThread().getStackTrace()[1].getMethodName()+LOGCLASS+this.getClass().getSimpleName());
-        Optional<Usuario> usuario=servicio.obtener(id);
-        return new ResponseEntity<>(usuario, HttpStatus.OK);
+        Optional<Perfil> perfil=servicio.obtener(id);
+        return new ResponseEntity<>(perfil, HttpStatus.OK);
     }
 
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> crear(@RequestBody @Valid Usuario _usuario) {
+    public ResponseEntity<?> crear(@RequestBody @Valid Perfil _perfil) {
     	logger.info(LOGMETHOD+Thread.currentThread().getStackTrace()[1].getMethodName()+LOGCLASS+this.getClass().getSimpleName());
-        Optional<Usuario> usuario=servicio.crear(_usuario);
-        return new ResponseEntity<>(usuario, HttpStatus.OK);
+        Optional<Perfil> perfil=servicio.crear(_perfil);
+        return new ResponseEntity<>(perfil, HttpStatus.OK);
     }
 
     @PutMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> actualizar(@RequestBody @Valid Usuario _usuario) {
+    public ResponseEntity<?> actualizar(@RequestBody @Valid Perfil _perfil) {
     	logger.info(LOGMETHOD+Thread.currentThread().getStackTrace()[1].getMethodName()+LOGCLASS+this.getClass().getSimpleName());
-        Optional<Usuario> usuario=servicio.actualizar(_usuario);
-        return new ResponseEntity<>(usuario, HttpStatus.OK);
+        Optional<Perfil> perfil=servicio.actualizar(_perfil);
+        return new ResponseEntity<>(perfil, HttpStatus.OK);
     }
 
     @DeleteMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)

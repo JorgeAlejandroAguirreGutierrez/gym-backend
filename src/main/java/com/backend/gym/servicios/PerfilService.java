@@ -11,60 +11,61 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.backend.gym.modelos.Usuario;
-import com.backend.gym.repositorios.IUsuarioRepository;
+import com.backend.gym.modelos.Perfil;
+import com.backend.gym.repositorios.IPerfilRepository;
 
 @Service
-public class UsuarioService {
-	private static final Logger logger = LoggerFactory.getLogger(UsuarioService.class);
+public class PerfilService {
+	
+	private static final Logger logger = LoggerFactory.getLogger(PerfilService.class);
 
     @Autowired
-    private IUsuarioRepository usuarioRepository;
+    private IPerfilRepository perfilRepository;
 
     /**
-     * Consulta el usuario por id
+     * Consulta el perfil por id
      * @param id
-     * @return Usuario
+     * @return Perfil
      */
-    public Optional<Usuario> obtener(long id) {
+    public Optional<Perfil> obtener(long id) {
     	logger.info(LOGMETHOD+Thread.currentThread().getStackTrace()[1].getMethodName()+LOGCLASS+this.getClass().getSimpleName());
-        final Optional<Usuario> cliente=usuarioRepository.findById(id);
-        return cliente;
+        final Optional<Perfil> perfil=perfilRepository.findById(id);
+        return perfil;
     }
     /**
-     * Consulta todos los usuarios
-     * @return List<Usuario>
+     * Consulta todos los perfiles
+     * @return List<Perfil>
      */
-    public List<Usuario> consultar() {
+    public List<Perfil> consultar() {
     	logger.info(LOGMETHOD+Thread.currentThread().getStackTrace()[1].getMethodName()+LOGCLASS+this.getClass().getSimpleName());
-        final List<Usuario> usuarios = usuarioRepository.findAll();
-        return usuarios;
+        final List<Perfil> perfiles = perfilRepository.findAll();
+        return perfiles;
     }
     /**
-     * Crea un nuevo usuario
-     * @param Usuario
-     * @return Usuario 
+     * Crea un nuevo perfil
+     * @param Perfil
+     * @return Perfil 
      */
-    public Optional<Usuario> crear(Usuario usuario) {
+    public Optional<Perfil> crear(Perfil usuario) {
     	logger.info(LOGMETHOD+Thread.currentThread().getStackTrace()[1].getMethodName()+LOGCLASS+this.getClass().getSimpleName());
-    	return Optional.of(usuarioRepository.save(usuario));
+    	return Optional.of(perfilRepository.save(usuario));
     }
     /**
-     * Actualiza un usuario
-     * @param Usuario
-     * @return Usuario
+     * Actualiza un perfil
+     * @param Perfil
+     * @return Perfil
      */
-    public Optional<Usuario> actualizar(Usuario usuario) {
+    public Optional<Perfil> actualizar(Perfil usuario) {
     	logger.info(LOGMETHOD+Thread.currentThread().getStackTrace()[1].getMethodName()+LOGCLASS+this.getClass().getSimpleName());
-    	return Optional.of(usuarioRepository.save(usuario));
+    	return Optional.of(perfilRepository.save(usuario));
     }
     
     /**
-     * Elimina un ejercicio
+     * Elimina un perfil
      * @param id
      */
     public void eliminar(long id) {
     	logger.info(LOGMETHOD+Thread.currentThread().getStackTrace()[1].getMethodName()+LOGCLASS+this.getClass().getSimpleName());
-    	usuarioRepository.deleteById(id);
+    	perfilRepository.deleteById(id);
     }
 }

@@ -20,11 +20,6 @@ public class Ejercicio {
 	
 	@NotNull
     @NotEmpty
-    @Column(name = "codigo")
-	private String codigo;
-	
-	@NotNull
-    @NotEmpty
     @Column(name = "descripcion")
 	private String descripcion;
 	
@@ -33,17 +28,11 @@ public class Ejercicio {
     @Column(name = "tipo")
 	private String tipo;
 	
-	@NotNull
-    @NotEmpty
     @Column(name = "imagen")
 	private String imagen;
 	
 	public long getId() {
 		return id;
-	}
-	
-	public String getCodigo() {
-		return codigo;
 	}
 	
 	public String getDescripcion() {
@@ -56,6 +45,10 @@ public class Ejercicio {
 	
 	public String getImagen() {
 		return imagen;
+	}
+	
+	public void setImagen(String imagen) {
+		this.imagen = imagen;
 	}
 	
 }
