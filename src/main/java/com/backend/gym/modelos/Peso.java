@@ -1,5 +1,7 @@
 package com.backend.gym.modelos;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,8 +12,8 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 @Entity
-@Table(name = "suscripcion")
-public class Suscripcion {
+@Table(name = "peso")
+public class Peso {
 	
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,26 +21,19 @@ public class Suscripcion {
 	
 	@NotNull
     @NotEmpty
-    @Column(name = "descripcion")
-	private String descripcion;
+    @Column(name = "fecha")
+	private Date fecha;
 	
 	@NotNull
     @NotEmpty
-    @Column(name = "fecha")
-	private String fecha;
-	
-	@Column(name = "valor")
+    @Column(name = "valor")
 	private double valor;
 	
 	public long getId() {
 		return id;
 	}
 	
-	public String getDescripcion() {
-		return descripcion;
-	}
-	
-	public String getFecha() {
+	public Date getFecha() {
 		return fecha;
 	}
 }

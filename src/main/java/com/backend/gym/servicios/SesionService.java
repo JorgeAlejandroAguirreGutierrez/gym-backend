@@ -6,9 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.backend.gym.exception.ModeloNoExistenteException;
-import com.backend.gym.modelos.Cliente;
+import com.backend.gym.modelos.Usuario;
 import com.backend.gym.modelos.Sesion;
-import com.backend.gym.repositorios.IClienteRepository;
+import com.backend.gym.repositorios.IUsuarioRepository;
 import com.backend.gym.repositorios.ISesionRepository;
 
 import static com.backend.gym.Constantes.LOGCLASS;
@@ -26,7 +26,7 @@ public class SesionService {
     private ISesionRepository sesionRepository;
     
     @Autowired
-    private IClienteRepository clienteRepository;
+    private IUsuarioRepository clienteRepository;
 
     /**
      * Consulta la sesion por id
@@ -54,7 +54,7 @@ public class SesionService {
      */
     public Optional<Sesion> crear(Sesion sesion) {
     	logger.info(LOGMETHOD+Thread.currentThread().getStackTrace()[1].getMethodName()+LOGCLASS+this.getClass().getSimpleName());
-    	Optional<Cliente> cliente=clienteRepository.buscarNombreContrasena(sesion.getCliente().getIdentificacion(), sesion.getCliente().getContrasena());
+    	Optional<Usuario> cliente=clienteRepository.buscarNombreContrasena(sesion.getCliente().getIdentificacion(), sesion.getCliente().getContrasena());
     	if(cliente.isPresent()) {
     		sesion.setCliente(cliente.get());
     		return Optional.of(sesionRepository.save(sesion));

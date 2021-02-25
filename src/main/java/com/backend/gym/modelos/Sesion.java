@@ -32,7 +32,7 @@ public class Sesion {
     
     @ManyToOne
     @JoinColumn(name = "cliente_id", nullable = true)
-    private Cliente cliente;
+    private Usuario cliente;
 	
     public long getId() {
 		return id;
@@ -50,11 +50,11 @@ public class Sesion {
 		return fechaCierre;
 	}
     
-    public Cliente getCliente() {
+    public Usuario getCliente() {
 		return cliente;
 	}
     
-    public void setCliente(Cliente cliente) {
+    public void setCliente(Usuario cliente) {
 		this.cliente = cliente;
 	}
 }

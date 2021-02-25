@@ -18,7 +18,7 @@ import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "cliente")
-public class Cliente {
+public class Usuario {
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
@@ -40,11 +40,6 @@ public class Cliente {
     @NotEmpty
     @Column(name = "talla")
 	private String talla;
-	
-	@NotNull
-    @NotEmpty
-    @Column(name = "peso")
-	private String peso;
 	
 	@NotNull
     @NotEmpty
@@ -76,13 +71,17 @@ public class Cliente {
 	
 	@OneToMany(cascade ={CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.MERGE}, fetch = FetchType.LAZY)
     @JoinColumn(name = "cliente_id")
+    private List<Peso> pesos;
+	
+	@OneToMany(cascade ={CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.MERGE}, fetch = FetchType.LAZY)
+    @JoinColumn(name = "cliente_id")
     private List<DiaEntrenamiento> planEntrenamiento;
 	
-	public Cliente() {
+	public Usuario() {
 		
 	}
 	
-	public Cliente(String nombre, String identificacion, String contrasena, 
+	public Usuario(String nombre, String identificacion, String contrasena, 
 			String talla, String peso, String edad, String imagen, 
 			Perfil perfil, List<Sesion> sesiones, List<Observacion> observaciones,
 			List<Objetivo> objetivos, List<Suscripcion>suscripciones ) {

@@ -14,15 +14,15 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.backend.gym.modelos.Cliente;
-import com.backend.gym.servicios.ClienteService;
-
-import static com.backend.gym.Constantes.CLIENTECONTROLLER;
+import com.backend.gym.modelos.Parametro;
+import com.backend.gym.servicios.ParametroService;
 
 import static com.backend.gym.Constantes.LOGCLASS;
 import static com.backend.gym.Constantes.LOGMETHOD;
+import static com.backend.gym.Constantes.PARAMETROCONTROLLER;
 
 import java.util.List;
 import java.util.Optional;
@@ -30,40 +30,40 @@ import java.util.Optional;
 import javax.validation.Valid;
 
 @RestController
-@RequestMapping(CLIENTECONTROLLER)
+@RequestMapping(PARAMETROCONTROLLER)
 @Validated
-public class ClienteController {
-	private static final Logger logger = LoggerFactory.getLogger(ClienteController.class);
+public class ParametroController {
+	private static final Logger logger = LoggerFactory.getLogger(ParametroController.class);
 	
     @Autowired
-    private ClienteService servicio;
+    private ParametroService servicio;
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> consultar() {
     	logger.info(LOGMETHOD+Thread.currentThread().getStackTrace()[1].getMethodName()+LOGCLASS+this.getClass().getSimpleName());
-        List<Cliente> clientes=servicio.consultar();
-        return new ResponseEntity<>(clientes, HttpStatus.OK);
+        List<Parametro> parametros=servicio.consultar();
+        return new ResponseEntity<>(parametros, HttpStatus.OK);
     }
 
     @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> obtener(@PathVariable("id") long id) {
     	logger.info(LOGMETHOD+Thread.currentThread().getStackTrace()[1].getMethodName()+LOGCLASS+this.getClass().getSimpleName());
-        Optional<Cliente> cliente=servicio.obtener(id);
-        return new ResponseEntity<>(cliente, HttpStatus.OK);
+        Optional<Parametro> parametro=servicio.obtener(id);
+        return new ResponseEntity<>(parametro, HttpStatus.OK);
     }
 
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> crear(@RequestBody Cliente _cliente) {
+    public ResponseEntity<?> crear(@RequestBody @Valid Parametro _parametro) {
     	logger.info(LOGMETHOD+Thread.currentThread().getStackTrace()[1].getMethodName()+LOGCLASS+this.getClass().getSimpleName());
-        Optional<Cliente> cliente=servicio.crear(_cliente);
-        return new ResponseEntity<>(cliente, HttpStatus.OK);
+        Optional<Parametro> producto=servicio.crear(_parametro);
+        return new ResponseEntity<>(producto, HttpStatus.OK);
     }
 
     @PutMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> actualizar(@RequestBody Cliente _cliente) {
+    public ResponseEntity<?> actualizar(@RequestBody @Valid Parametro _parametro) {
     	logger.info(LOGMETHOD+Thread.currentThread().getStackTrace()[1].getMethodName()+LOGCLASS+this.getClass().getSimpleName());
-        Optional<Cliente> cliente=servicio.actualizar(_cliente);
-        return new ResponseEntity<>(cliente, HttpStatus.OK);
+        Optional<Parametro> parametro=servicio.actualizar(_parametro);
+        return new ResponseEntity<>(parametro, HttpStatus.OK);
     }
 
     @DeleteMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -73,10 +73,17 @@ public class ClienteController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
     
-    @PostMapping(value="/buscar",produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> buscar(@RequestBody Cliente _cliente) {
+    @GetMapping(value = "/consultarPorTipo", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<?> consultarPorTipo(@RequestParam("tipo") String tipo) {
     	logger.info(LOGMETHOD+Thread.currentThread().getStackTrace()[1].getMethodName()+LOGCLASS+this.getClass().getSimpleName());
-        List<Cliente> clientes=servicio.buscar(_cliente);
-        return new ResponseEntity<>(clientes, HttpStatus.OK);
+        List<Parametro> parametros=servicio.consultarPorTipo(tipo);
+        return new ResponseEntity<>(parametros, HttpStatus.OK);
+    }
+    
+    @GetMapping(value = "/consultarPorTituloTipo", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<?> consultarPorTituloTipo(@RequestParam("titulo") String titulo, @RequestParam("tipo") String tipo) {
+    	logger.info(LOGMETHOD+Thread.currentThread().getStackTrace()[1].getMethodName()+LOGCLASS+this.getClass().getSimpleName());
+        List<Parametro> parametros=servicio.consultarPorTituloTipo(titulo, tipo);
+        return new ResponseEntity<>(parametros, HttpStatus.OK);
     }
 }

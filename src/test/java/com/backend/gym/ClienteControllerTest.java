@@ -5,8 +5,8 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-import com.backend.gym.modelos.Cliente;
-import com.backend.gym.repositorios.IClienteRepository;
+import com.backend.gym.modelos.Usuario;
+import com.backend.gym.repositorios.IUsuarioRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
 import com.google.gson.stream.JsonReader;
@@ -46,12 +46,12 @@ public class ClienteControllerTest {
     private MockMvc mockMvc;
 
     
-    private static Cliente crearCliente;
+    private static Usuario crearCliente;
     
-    private static IClienteRepository clienteRepository;
+    private static IUsuarioRepository clienteRepository;
     
     @Autowired
-    public void setTypeRemittanceRepository (IClienteRepository c) {
+    public void setTypeRemittanceRepository (IUsuarioRepository c) {
     	clienteRepository= c;
     }
 
@@ -62,20 +62,20 @@ public class ClienteControllerTest {
     	String filename = ClienteControllerTest.class.getResource("/testdata/Cliente.json").getPath();
     	Gson gson = new Gson();
     	JsonReader reader = new JsonReader(new FileReader(filename));
-    	Cliente cliente= gson.fromJson(reader, Cliente.class);
+    	Usuario cliente= gson.fromJson(reader, Usuario.class);
     	MvcResult result=this.mockMvc.perform(post("/gym/cliente").contentType(MediaType.APPLICATION_JSON).header("Authorization", "Bearer " + token)
                 .content(asJsonString(cliente)))
                 .andExpect(status().isOk())
                 .andReturn();
         String json = result.getResponse().getContentAsString();
-    	crearCliente= new ObjectMapper().readValue(json, Cliente.class);
+    	crearCliente= new ObjectMapper().readValue(json, Usuario.class);
     }
     @Test
     public void test2WhenCreateCustomerFailure() throws Exception {
     	String filename = ClienteControllerTest.class.getResource("/testdata/ClienteInvalido.json").getPath();
     	Gson gson = new Gson();
     	JsonReader reader = new JsonReader(new FileReader(filename));
-    	Cliente cliente= gson.fromJson(reader, Cliente.class);
+    	Usuario cliente= gson.fromJson(reader, Usuario.class);
         this.mockMvc.perform(post("/gym/cliente").contentType(MediaType.APPLICATION_JSON).header("Authorization", "Bearer " + token)
                 .content(asJsonString(cliente)))
                 .andExpect(status().isBadRequest());
