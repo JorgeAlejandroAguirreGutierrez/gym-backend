@@ -11,9 +11,7 @@ import org.springframework.context.annotation.Profile;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
-import com.backend.gym.modelos.Parametro;
 import com.backend.gym.modelos.TipoMusculo;
-import com.backend.gym.repositorios.IParametroRepository;
 import com.backend.gym.repositorios.ITipoMusculoRepository;
 
 @Component

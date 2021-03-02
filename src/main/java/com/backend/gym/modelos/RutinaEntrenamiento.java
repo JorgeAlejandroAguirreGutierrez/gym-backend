@@ -20,17 +20,10 @@ public class RutinaEntrenamiento {
     private long id;
 	
 	@NotNull
-    @NotEmpty
-    @Column(name = "numero")
-	private long numero;
-	
-	@NotNull
-    @NotEmpty
     @Column(name = "repeticiones")
 	private long repeticiones;
 	
 	@NotNull
-    @NotEmpty
     @Column(name = "veces")
 	private long veces;
 	
@@ -46,10 +39,6 @@ public class RutinaEntrenamiento {
 	public long getId() {
 		return id;
 	}
-	
-	public long getNumero() {
-		return numero;
-	}
 	public Ejercicio getEjercicio() {
 		return ejercicio;
 	}
@@ -58,5 +47,8 @@ public class RutinaEntrenamiento {
 	}
 	public long getVeces() {
 		return veces;
+	}
+	public String getPesaje() {
+		return pesaje;
 	}
 }

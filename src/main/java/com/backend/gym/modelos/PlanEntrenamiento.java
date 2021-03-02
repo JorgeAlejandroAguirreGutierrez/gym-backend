@@ -24,11 +24,10 @@ public class PlanEntrenamiento {
     private long id;
 	
 	@NotNull
-    @NotEmpty
     @Column(name = "numero")
 	private long numero;
 	
-	@OneToMany(cascade ={CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.MERGE}, fetch = FetchType.LAZY)
+	@OneToMany(cascade ={CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.MERGE}, orphanRemoval = true, fetch = FetchType.LAZY)
     @JoinColumn(name = "cliente_id")
     private List<RutinaEntrenamiento> rutinasEntrenamiento;
 	
