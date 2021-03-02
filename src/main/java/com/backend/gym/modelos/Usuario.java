@@ -17,7 +17,7 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 @Entity
-@Table(name = "cliente")
+@Table(name = "usuario")
 public class Usuario {
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -59,6 +59,10 @@ public class Usuario {
     
     @OneToMany(cascade ={CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.MERGE}, fetch = FetchType.LAZY)
     @JoinColumn(name = "cliente_id")
+    private List<Peso> pesos;
+    
+    @OneToMany(cascade ={CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.MERGE}, fetch = FetchType.LAZY)
+    @JoinColumn(name = "cliente_id")
     private List<Suscripcion> suscripciones;
 	
 	@OneToMany(cascade ={CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.MERGE}, fetch = FetchType.LAZY)
@@ -71,11 +75,7 @@ public class Usuario {
 	
 	@OneToMany(cascade ={CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.MERGE}, fetch = FetchType.LAZY)
     @JoinColumn(name = "cliente_id")
-    private List<Peso> pesos;
-	
-	@OneToMany(cascade ={CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.MERGE}, fetch = FetchType.LAZY)
-    @JoinColumn(name = "cliente_id")
-    private List<DiaEntrenamiento> planEntrenamiento;
+    private List<PlanEntrenamiento> planesEntrenamiento;
 	
 	public Usuario() {
 		
@@ -83,17 +83,17 @@ public class Usuario {
 	
 	public Usuario(String nombre, String identificacion, String contrasena, 
 			String talla, String peso, String edad, String imagen, 
-			Perfil perfil, List<Sesion> sesiones, List<Observacion> observaciones,
+			Perfil perfil, List<Sesion> sesiones, List<Peso> pesos, List<Observacion> observaciones,
 			List<Objetivo> objetivos, List<Suscripcion>suscripciones ) {
 		this.nombre=nombre;
 		this.identificacion=identificacion;
 		this.contrasena=contrasena;
 		this.talla=talla;
-		this.peso=peso;
 		this.edad=edad;
 		this.imagen=imagen;
 		this.perfil=perfil;
 		this.sesiones=sesiones;
+		this.pesos=pesos;
 		this.observaciones=observaciones;
 		this.objetivos=objetivos;
 		this.suscripciones=suscripciones;
@@ -119,16 +119,16 @@ public class Usuario {
 		return talla;
 	}
 	
-	public String getPeso() {
-		return peso;
-	}
-	
 	public String getEdad() {
 		return edad;
 	}
 	
 	public Perfil getPerfil() {
 		return perfil;
+	}
+	
+	public List<Peso> getPesos() {
+		return pesos;
 	}
 	
 	public List<Objetivo> getObjetivos() {
@@ -138,11 +138,15 @@ public class Usuario {
 		return observaciones;
 	}
 	
-	public List<DiaEntrenamiento> getPlanEntrenamiento() {
-		return planEntrenamiento;
+	public List<PlanEntrenamiento> getPlanesEntrenamiento() {
+		return planesEntrenamiento;
 	}
 	
 	public List<Suscripcion> getSuscripciones() {
 		return suscripciones;
+	}
+	
+	public void setPerfil(Perfil perfil) {
+		this.perfil = perfil;
 	}
 }

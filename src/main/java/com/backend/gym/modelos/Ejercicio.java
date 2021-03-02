@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
@@ -23,13 +25,22 @@ public class Ejercicio {
     @Column(name = "descripcion")
 	private String descripcion;
 	
-	@NotNull
-    @NotEmpty
-    @Column(name = "tipo")
-	private String tipo;
+	@ManyToOne
+    @JoinColumn(name = "tipo_musculo_id", nullable = true)
+    private TipoMusculo tipoMusculo;
 	
     @Column(name = "imagen")
 	private String imagen;
+    
+    public Ejercicio() {
+    	
+    }
+    
+    public Ejercicio(String descripcion, String imagen, TipoMusculo tipoMusculo) {
+    	this.descripcion=descripcion;
+    	this.imagen=imagen;
+    	this.tipoMusculo=tipoMusculo;
+    }
 	
 	public long getId() {
 		return id;
@@ -39,8 +50,8 @@ public class Ejercicio {
 		return descripcion;
 	}
 	
-	public String getTipo() {
-		return tipo;
+	public TipoMusculo getTipoMusculo() {
+		return tipoMusculo;
 	}
 	
 	public String getImagen() {

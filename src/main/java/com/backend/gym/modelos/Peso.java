@@ -8,7 +8,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 @Entity
@@ -20,12 +19,10 @@ public class Peso {
     private long id;
 	
 	@NotNull
-    @NotEmpty
     @Column(name = "fecha")
 	private Date fecha;
 	
 	@NotNull
-    @NotEmpty
     @Column(name = "valor")
 	private double valor;
 	
@@ -35,5 +32,9 @@ public class Peso {
 	
 	public Date getFecha() {
 		return fecha;
+	}
+	
+	public double getValor() {
+		return valor;
 	}
 }

@@ -15,6 +15,7 @@ import com.backend.gym.modelos.Usuario;
 import com.backend.gym.modelos.Objetivo;
 import com.backend.gym.modelos.Observacion;
 import com.backend.gym.modelos.Perfil;
+import com.backend.gym.modelos.Peso;
 import com.backend.gym.modelos.Sesion;
 import com.backend.gym.modelos.Suscripcion;
 import com.backend.gym.repositorios.IUsuarioRepository;
@@ -30,15 +31,15 @@ public class UsuarioDatos implements ApplicationRunner {
     public void run(ApplicationArguments args) throws Exception {
         Optional<Usuario> ant=rep.findById((long) 1);
         if (!ant.isPresent()) {
-            List<Usuario> clientes = new ArrayList<>();
+            List<Usuario> usuarios = new ArrayList<>();
          
-            clientes.add(new Usuario("DIEGO ARCILA", "1053847608", "admin123",
-            		"TALLA1","PESO1", "EDAD1", "", new Perfil(1), new ArrayList<Sesion>(),
+            usuarios.add(new Usuario("DIEGO ARCILA", "1053847608", "admin123",
+            		"TALLA1","PESO1", "EDAD1", "", new Perfil(1), new ArrayList<Sesion>(), new ArrayList<Peso>(),
             		new ArrayList<Observacion>(), new ArrayList<Objetivo>(), new ArrayList<Suscripcion>()));
-            clientes.add(new Usuario("JORGE ALEJANDRO AGUIRRRE GUTIERREZ", "1053847607", "cliente123",
-            		"32","75KG", "25", "", new Perfil(2), new ArrayList<Sesion>(),
+            usuarios.add(new Usuario("JORGE ALEJANDRO AGUIRRRE GUTIERREZ", "1053847607", "cliente123",
+            		"32","75KG", "25", "", new Perfil(2), new ArrayList<Sesion>(), new ArrayList<Peso>(),
             		new ArrayList<Observacion>(), new ArrayList<Objetivo>(), new ArrayList<Suscripcion>()));
-            rep.saveAll(clientes);
+            rep.saveAll(usuarios);
         }
     }
 }

@@ -12,6 +12,7 @@ public class Constantes {
 	public static final String PERFILCONTROLLER = "/gym/perfil";
 	public static final String SESIONCONTROLLER = "/gym/sesion";
 	public static final String PARAMETROCONTROLLER = "/gym/parametro";
+	public static final String TIPOMUSCULOCONTROLLER = "/gym/tipomusculo";
 	
 	public static final String LOGMETHOD = "Ingresa al método: ";
 	public static final String LOGCLASS = " de la clase: ";

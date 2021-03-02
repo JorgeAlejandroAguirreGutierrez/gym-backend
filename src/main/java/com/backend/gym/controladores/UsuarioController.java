@@ -86,10 +86,32 @@ public class UsuarioController {
         List<Usuario> clientes=servicio.consultarClientes();
         return new ResponseEntity<>(clientes, HttpStatus.OK);
     }
+    
     @GetMapping(value="/consultarAdminis", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> consultarAdministradores() {
     	logger.info(LOGMETHOD+Thread.currentThread().getStackTrace()[1].getMethodName()+LOGCLASS+this.getClass().getSimpleName());
         List<Usuario> usuarios=servicio.consultarAdmins();
         return new ResponseEntity<>(usuarios, HttpStatus.OK);
+    }
+    
+    @GetMapping(value="/obtenerPorIdentificacion/{identificacion}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<?> obtenerPorIdentificacion(@PathVariable("identificacion") String identificacion) {
+    	logger.info(LOGMETHOD+Thread.currentThread().getStackTrace()[1].getMethodName()+LOGCLASS+this.getClass().getSimpleName());
+        Optional<Usuario> clientes=servicio.obtenerPorIdentificacion(identificacion);
+        return new ResponseEntity<>(clientes, HttpStatus.OK);
+    }
+    
+    @PostMapping(value="/crearCliente", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<?> crearCliente(@RequestBody Usuario _usuario) {
+    	logger.info(LOGMETHOD+Thread.currentThread().getStackTrace()[1].getMethodName()+LOGCLASS+this.getClass().getSimpleName());
+        Optional<Usuario> usuario=servicio.crearCliente(_usuario);
+        return new ResponseEntity<>(usuario, HttpStatus.OK);
+    }
+    
+    @PostMapping(value="/crearAdmin", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<?> crearAdmin(@RequestBody Usuario _usuario) {
+    	logger.info(LOGMETHOD+Thread.currentThread().getStackTrace()[1].getMethodName()+LOGCLASS+this.getClass().getSimpleName());
+        Optional<Usuario> usuario=servicio.crearAdmin(_usuario);
+        return new ResponseEntity<>(usuario, HttpStatus.OK);
     }
 }

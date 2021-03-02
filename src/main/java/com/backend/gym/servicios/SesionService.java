@@ -26,7 +26,7 @@ public class SesionService {
     private ISesionRepository sesionRepository;
     
     @Autowired
-    private IUsuarioRepository clienteRepository;
+    private IUsuarioRepository usuarioRepository;
 
     /**
      * Consulta la sesion por id
@@ -54,9 +54,9 @@ public class SesionService {
      */
     public Optional<Sesion> crear(Sesion sesion) {
     	logger.info(LOGMETHOD+Thread.currentThread().getStackTrace()[1].getMethodName()+LOGCLASS+this.getClass().getSimpleName());
-    	Optional<Usuario> cliente=clienteRepository.buscarNombreContrasena(sesion.getCliente().getIdentificacion(), sesion.getCliente().getContrasena());
-    	if(cliente.isPresent()) {
-    		sesion.setCliente(cliente.get());
+    	Optional<Usuario> usuario=usuarioRepository.buscarNombreContrasena(sesion.getUsuario().getIdentificacion(), sesion.getUsuario().getContrasena());
+    	if(usuario.isPresent()) {
+    		sesion.setUsuario(usuario.get());
     		return Optional.of(sesionRepository.save(sesion));
     	}
     	throw new ModeloNoExistenteException();

@@ -7,8 +7,14 @@ import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import com.backend.gym.Constantes;
+import com.backend.gym.exception.ModeloNoExistenteException;
+import com.backend.gym.modelos.Perfil;
 import com.backend.gym.modelos.Usuario;
+import com.backend.gym.repositorios.IPerfilRepository;
 import com.backend.gym.repositorios.IUsuarioRepository;
+
+import static com.backend.gym.Constantes.PERFILCLIENTE;
+import static com.backend.gym.Constantes.PERFILADMIN;
 
 import static com.backend.gym.Constantes.LOGCLASS;
 import static com.backend.gym.Constantes.LOGMETHOD;
@@ -28,6 +34,9 @@ public class UsuarioService {
 
     @Autowired
     private IUsuarioRepository usuarioRepository;
+    
+    @Autowired
+    private IPerfilRepository perfilRepository;
 
     /**
      * Consulta el cliente por id
@@ -127,5 +136,53 @@ public class UsuarioService {
                 return criteriaBuilder.and(predicates.toArray(new Predicate[predicates.size()]));
             }
         });
+    }
+    
+    /**
+     * Obtiene el  usuario por la identificacion
+     * @return Optional<Usuario>
+     */
+    public Optional<Usuario> obtenerPorIdentificacion(String identificacion) {
+    	logger.info(LOGMETHOD+Thread.currentThread().getStackTrace()[1].getMethodName()+LOGCLASS+this.getClass().getSimpleName());
+    	return  usuarioRepository.findOne(new Specification<Usuario>() {
+            @Override
+            public Predicate toPredicate(Root<Usuario> root, CriteriaQuery<?> criteriaQuery, CriteriaBuilder criteriaBuilder) {
+                List<Predicate> predicates = new ArrayList<>();
+                if (identificacion!=null) {
+                    predicates.add(criteriaBuilder.and(criteriaBuilder.equal(root.get("identificacion"), identificacion)));
+                }
+                return criteriaBuilder.and(predicates.toArray(new Predicate[predicates.size()]));
+            }
+        });
+    }
+    
+    /**
+     * Crea un nuevo cliente
+     * @param Usuario
+     * @return Usuario 
+     */
+    public Optional<Usuario> crearCliente(Usuario usuario) {
+    	logger.info(LOGMETHOD+Thread.currentThread().getStackTrace()[1].getMethodName()+LOGCLASS+this.getClass().getSimpleName());
+    	Optional<Perfil> perfil= perfilRepository.obtenerPorDescripcion(PERFILCLIENTE);
+    	if(perfil.isPresent()) {
+    		usuario.setPerfil(perfil.get());
+        	return Optional.of(usuarioRepository.save(usuario));
+    	}
+    	throw new ModeloNoExistenteException();
+    }
+    
+    /**
+     * Crea un nuevo Admin
+     * @param Usuario
+     * @return Usuario 
+     */
+    public Optional<Usuario> crearAdmin(Usuario usuario) {
+    	logger.info(LOGMETHOD+Thread.currentThread().getStackTrace()[1].getMethodName()+LOGCLASS+this.getClass().getSimpleName());
+    	Optional<Perfil> perfil= perfilRepository.obtenerPorDescripcion(PERFILADMIN);
+    	if(perfil.isPresent()) {
+    		usuario.setPerfil(perfil.get());
+        	return Optional.of(usuarioRepository.save(usuario));
+    	}
+    	throw new ModeloNoExistenteException();
     }
 }
