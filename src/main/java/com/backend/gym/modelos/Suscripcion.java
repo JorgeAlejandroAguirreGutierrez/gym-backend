@@ -19,11 +19,6 @@ public class Suscripcion {
 	
 	@NotNull
     @NotEmpty
-    @Column(name = "descripcion")
-	private String descripcion;
-	
-	@NotNull
-    @NotEmpty
     @Column(name = "fecha")
 	private String fecha;
 	
@@ -34,11 +29,11 @@ public class Suscripcion {
 		return id;
 	}
 	
-	public String getDescripcion() {
-		return descripcion;
-	}
-	
 	public String getFecha() {
 		return fecha;
+	}
+	
+	public double getValor() {
+		return valor;
 	}
 }
