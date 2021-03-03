@@ -12,7 +12,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 @Entity
@@ -26,6 +25,9 @@ public class PlanEntrenamiento {
 	@NotNull
     @Column(name = "numero")
 	private long numero;
+	
+    @Column(name = "dia")
+	private String dia;
 	
 	@OneToMany(cascade ={CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.MERGE}, orphanRemoval = true, fetch = FetchType.LAZY)
     @JoinColumn(name = "cliente_id")
@@ -41,5 +43,9 @@ public class PlanEntrenamiento {
 	
 	public List<RutinaEntrenamiento> getRutinasEntrenamiento() {
 		return rutinasEntrenamiento;
+	}
+	
+	public String getDia() {
+		return dia;
 	}
 }
