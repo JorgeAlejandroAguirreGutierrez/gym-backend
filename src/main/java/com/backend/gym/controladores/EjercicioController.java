@@ -14,11 +14,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.backend.gym.modelos.Ejercicio;
+import com.backend.gym.modelos.Parametro;
 import com.backend.gym.servicios.EjercicioService;
 
 import static com.backend.gym.Constantes.EJERCICIOCONTROLLER;
@@ -51,6 +53,13 @@ public class EjercicioController {
     	logger.info(LOGMETHOD+Thread.currentThread().getStackTrace()[1].getMethodName()+LOGCLASS+this.getClass().getSimpleName());
         Optional<Ejercicio> ejercicio=servicio.obtener(id);
         return new ResponseEntity<>(ejercicio, HttpStatus.OK);
+    }
+    
+    @GetMapping(value = "/consultarPorDescripcion", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<?> consultarPorTipo(@RequestParam("descripcion") String descripcion) {
+    	logger.info(LOGMETHOD+Thread.currentThread().getStackTrace()[1].getMethodName()+LOGCLASS+this.getClass().getSimpleName());
+        List<Ejercicio> ejercicios=servicio.consultarPorDescripcion(descripcion);
+        return new ResponseEntity<>(ejercicios, HttpStatus.OK);
     }
 
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)

@@ -25,12 +25,13 @@ public class Ejercicio {
     @Column(name = "descripcion")
 	private String descripcion;
 	
+	@Column(name = "imagen")
+	private String imagen;
+	
 	@ManyToOne
     @JoinColumn(name = "tipo_musculo_id", nullable = true)
     private TipoMusculo tipoMusculo;
 	
-    @Column(name = "imagen")
-	private String imagen;
     
     public Ejercicio() {
     	

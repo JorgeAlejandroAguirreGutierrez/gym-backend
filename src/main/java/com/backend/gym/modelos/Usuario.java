@@ -54,27 +54,27 @@ public class Usuario {
     private Perfil perfil;
     
     @OneToMany
-    @JoinColumn(name = "cliente_id")
+    @JoinColumn(name = "usuario_id")
     private List<Sesion> sesiones;
     
     @OneToMany(cascade ={CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.MERGE}, fetch = FetchType.LAZY)
-    @JoinColumn(name = "cliente_id")
+    @JoinColumn(name = "usuario_id")
     private List<Peso> pesos;
     
     @OneToMany(cascade ={CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.MERGE}, fetch = FetchType.LAZY)
-    @JoinColumn(name = "cliente_id")
+    @JoinColumn(name = "usuario_id")
     private List<Suscripcion> suscripciones;
 	
 	@OneToMany(cascade ={CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.MERGE}, fetch = FetchType.LAZY)
-    @JoinColumn(name = "cliente_id")
+    @JoinColumn(name = "usuario_id")
     private List<Objetivo> objetivos;
 	
 	@OneToMany(cascade ={CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.MERGE}, fetch = FetchType.LAZY)
-    @JoinColumn(name = "cliente_id")
+    @JoinColumn(name = "usuario_id")
     private List<Observacion> observaciones;
 	
 	@OneToMany(cascade ={CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.MERGE}, orphanRemoval = true, fetch = FetchType.LAZY)
-    @JoinColumn(name = "cliente_id")
+    @JoinColumn(name = "usuario_id")
     private List<PlanEntrenamiento> planesEntrenamiento;
 	
 	public Usuario() {

@@ -14,8 +14,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.backend.gym.modelos.Parametro;
 import com.backend.gym.modelos.Usuario;
 import com.backend.gym.servicios.UsuarioService;
 
@@ -73,11 +75,11 @@ public class UsuarioController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
     
-    @PostMapping(value="/buscar",produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> buscar(@RequestBody Usuario _cliente) {
+    @GetMapping(value = "/consultarPorNombreIdentificacion", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<?> consultarPorTipo(@RequestParam("nombre") String nombre, @RequestParam("identificacion") String identificacion) {
     	logger.info(LOGMETHOD+Thread.currentThread().getStackTrace()[1].getMethodName()+LOGCLASS+this.getClass().getSimpleName());
-        List<Usuario> clientes=servicio.buscar(_cliente);
-        return new ResponseEntity<>(clientes, HttpStatus.OK);
+        List<Usuario> usuarios=servicio.consultarPorNombreIdentificacion(nombre, identificacion);
+        return new ResponseEntity<>(usuarios, HttpStatus.OK);
     }
     
     @GetMapping(value="/consultarClientes", produces = MediaType.APPLICATION_JSON_VALUE)

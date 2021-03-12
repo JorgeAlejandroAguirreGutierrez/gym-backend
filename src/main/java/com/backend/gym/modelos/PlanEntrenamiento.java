@@ -30,7 +30,7 @@ public class PlanEntrenamiento {
 	private String dia;
 	
 	@OneToMany(cascade ={CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.MERGE}, orphanRemoval = true, fetch = FetchType.LAZY)
-    @JoinColumn(name = "cliente_id")
+    @JoinColumn(name = "plan_entrenamiento_id")
     private List<RutinaEntrenamiento> rutinasEntrenamiento;
 	
 	public long getId() {

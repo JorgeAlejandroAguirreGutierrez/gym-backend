@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.backend.gym.Constantes;
 import com.backend.gym.exception.ModeloNoExistenteException;
+import com.backend.gym.modelos.Ejercicio;
 import com.backend.gym.modelos.Perfil;
 import com.backend.gym.modelos.Usuario;
 import com.backend.gym.repositorios.IPerfilRepository;
@@ -86,20 +87,20 @@ public class UsuarioService {
     }
     
     /**
-     * Consulta los usuarios por nombre e identificacion
+     * Consulta los usuarios por nombre o deintificacion
      * @return List<Usuario>
      */
-    public List<Usuario> buscar(Usuario usuario) {
+    public List<Usuario> consultarPorNombreIdentificacion(String nombre, String identificacion) {
     	logger.info(LOGMETHOD+Thread.currentThread().getStackTrace()[1].getMethodName()+LOGCLASS+this.getClass().getSimpleName());
     	return  usuarioRepository.findAll(new Specification<Usuario>() {
-            @Override
+			@Override
             public Predicate toPredicate(Root<Usuario> root, CriteriaQuery<?> criteriaQuery, CriteriaBuilder criteriaBuilder) {
                 List<Predicate> predicates = new ArrayList<>();
-                if (usuario.getNombre()!=null) {
-                    predicates.add(criteriaBuilder.and(criteriaBuilder.like(root.get("nombre"), "%"+usuario.getNombre()+"%")));
+                if (nombre!=null && !nombre.equals("")) {
+                    predicates.add(criteriaBuilder.and(criteriaBuilder.like(root.get("nombre"), "%"+nombre+"%")));
                 }
-                if (usuario.getIdentificacion()!=null) {
-                    predicates.add(criteriaBuilder.and(criteriaBuilder.like(root.get("identificacion"), "%"+usuario.getIdentificacion()+"%")));
+                if (identificacion!=null && !identificacion.equals("")) {
+                    predicates.add(criteriaBuilder.and(criteriaBuilder.like(root.get("identificacion"), "%"+identificacion+"%")));
                 }
                 return criteriaBuilder.and(predicates.toArray(new Predicate[predicates.size()]));
             }

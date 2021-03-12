@@ -63,7 +63,7 @@ public class EjercicioDatos implements ApplicationRunner {
             ejercicios.add(new Ejercicio("PECK DECK", "PECK_DECK.png", new TipoMusculo(4))); //PECHO
             ejercicios.add(new Ejercicio("PRESS CON MANCUERNAS PECHO PLANO", "PRESS_CON_MANCUERNAS_PECHO_PLANO.jpg", new TipoMusculo(4))); //PECHO
             ejercicios.add(new Ejercicio("PRESS CON MANCUERNAS PECHO INCLINADO", "PRESS_CON_MANCUERNAS_PECHO_INCLINADO.png", new TipoMusculo(4))); //PECHO
-            ejercicios.add(new Ejercicio("PRESS CON MANCUERNAS PECHO DECLINADO", "PRESS_CON_MANCUERNAS_PECHO_DECLINADO.png", new TipoMusculo(4))); //PECHO
+            ejercicios.add(new Ejercicio("PRESS CON MANCUERNAS PECHO DECLINADO", "PRESS_CON_MANCUERNAS_PECHO_DECLINADO.jpg", new TipoMusculo(4))); //PECHO
             ejercicios.add(new Ejercicio("PULL OVER CON MANCUERNA", "PULL_OVER_MANCUERNA.jpg", new TipoMusculo(4))); //PECHO
             
             

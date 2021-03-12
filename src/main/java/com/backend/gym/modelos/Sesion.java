@@ -31,7 +31,7 @@ public class Sesion {
     private Date fechaCierre;
     
     @ManyToOne
-    @JoinColumn(name = "cliente_id", nullable = true)
+    @JoinColumn(name = "usuario_id", nullable = true)
     private Usuario usuario;
 	
     public long getId() {
