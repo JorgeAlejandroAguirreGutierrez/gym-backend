@@ -29,8 +29,13 @@ public class RutinaEntrenamiento {
 	
 	@NotNull
     @NotEmpty
-    @Column(name = "pesaje")
-	private String pesaje;
+    @Column(name = "valor_peso")
+	private String valorPeso;
+	
+	@NotNull
+    @NotEmpty
+    @Column(name = "medida_peso")
+	private String medidaPeso;
 	
 	@ManyToOne
     @JoinColumn(name = "ejercicio_id", nullable = true)
@@ -48,7 +53,10 @@ public class RutinaEntrenamiento {
 	public long getVeces() {
 		return veces;
 	}
-	public String getPesaje() {
-		return pesaje;
+	public String getValorPeso() {
+		return valorPeso;
+	}
+	public String getMedidaPeso() {
+		return medidaPeso;
 	}
 }

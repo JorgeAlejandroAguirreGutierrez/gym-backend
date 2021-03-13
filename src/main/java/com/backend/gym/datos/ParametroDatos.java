@@ -23,5 +23,12 @@ public class ParametroDatos implements ApplicationRunner {
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
+    	Optional<Parametro> ant=rep.findById((long) 1);
+        if (!ant.isPresent()) {
+            List<Parametro> parametros= new ArrayList<>();
+            parametros.add(new Parametro("KILOGRAMOS", "KG", "MEDIDAPESO", true));
+            parametros.add(new Parametro("LIBRAS", "LB", "MEDIDAPESO", true));
+            rep.saveAll(parametros);
+        }
     }
 }

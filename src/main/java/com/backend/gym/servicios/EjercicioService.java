@@ -18,11 +18,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
-
-import com.backend.gym.Constantes;
+import com.backend.gym.Util;
 import com.backend.gym.exception.ModeloNoExistenteException;
 import com.backend.gym.modelos.Ejercicio;
-import com.backend.gym.modelos.Parametro;
 import com.backend.gym.repositorios.IEjercicioRepository;
 
 @Service
@@ -100,7 +98,7 @@ public class EjercicioService {
     
     public boolean imagen(MultipartFile archivo, long id) throws Exception {
     	Optional<Ejercicio>ejercicio=ejercicioRepository.findById(id);
-    	String ruta=Constantes.guardarArchivo(archivo, id);
+    	String ruta=Util.guardarArchivo(archivo, id);
     	if(ejercicio.isPresent()) {
     		Ejercicio getEjercicio=ejercicio.get();
     		getEjercicio.setImagen(ruta);

@@ -20,17 +20,10 @@ public class Constantes {
 	public static final String PERFILADMIN = "ADMIN";
 	public static final String PERFILCLIENTE = "CLIENTE";
 	
-	public static String guardarArchivo(MultipartFile archivo, long consecutivo ) throws Exception 
-    {
-		try {
-			String ruta=consecutivo+archivo.getOriginalFilename();
-	        File archivoConvertir = new File("src/main/storage", ruta );
-	        FileOutputStream archivoSalida = new FileOutputStream( archivoConvertir );
-	        archivoSalida.write( archivo.getBytes() );
-	        archivoSalida.close();
-	        return ruta;
-		}catch(IOException e) {
-			throw new Exception();
-		}
-    }
+	public static final String GIMNASIOOLIMPIA = "GIMNASIOOLIMPIA";
+	
+	public static final String FORMATOFECHA = "yyyy-MM-dd";
+	
+	
+	
 }

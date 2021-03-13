@@ -1,5 +1,7 @@
 package com.backend.gym.modelos;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -18,22 +20,14 @@ public class Suscripcion {
     private long id;
 	
 	@NotNull
-    @NotEmpty
     @Column(name = "fecha")
-	private String fecha;
-	
-	@Column(name = "valor")
-	private double valor;
+	private Date fecha;
 	
 	public long getId() {
 		return id;
 	}
 	
-	public String getFecha() {
+	public Date getFecha() {
 		return fecha;
-	}
-	
-	public double getValor() {
-		return valor;
 	}
 }

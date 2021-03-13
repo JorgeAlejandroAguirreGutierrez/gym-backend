@@ -75,10 +75,10 @@ public class UsuarioController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
     
-    @GetMapping(value = "/consultarPorNombreIdentificacion", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/consultarClientesPorNombreIdentificacion", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> consultarPorTipo(@RequestParam("nombre") String nombre, @RequestParam("identificacion") String identificacion) {
     	logger.info(LOGMETHOD+Thread.currentThread().getStackTrace()[1].getMethodName()+LOGCLASS+this.getClass().getSimpleName());
-        List<Usuario> usuarios=servicio.consultarPorNombreIdentificacion(nombre, identificacion);
+        List<Usuario> usuarios=servicio.consultarClientesPorNombreIdentificacion(nombre, identificacion);
         return new ResponseEntity<>(usuarios, HttpStatus.OK);
     }
     

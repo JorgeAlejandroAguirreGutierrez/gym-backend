@@ -7,8 +7,8 @@ import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import com.backend.gym.Constantes;
+import com.backend.gym.Util;
 import com.backend.gym.exception.ModeloNoExistenteException;
-import com.backend.gym.modelos.Ejercicio;
 import com.backend.gym.modelos.Perfil;
 import com.backend.gym.modelos.Usuario;
 import com.backend.gym.repositorios.IPerfilRepository;
@@ -90,7 +90,7 @@ public class UsuarioService {
      * Consulta los usuarios por nombre o deintificacion
      * @return List<Usuario>
      */
-    public List<Usuario> consultarPorNombreIdentificacion(String nombre, String identificacion) {
+    public List<Usuario> consultarClientesPorNombreIdentificacion(String nombre, String identificacion) {
     	logger.info(LOGMETHOD+Thread.currentThread().getStackTrace()[1].getMethodName()+LOGCLASS+this.getClass().getSimpleName());
     	return  usuarioRepository.findAll(new Specification<Usuario>() {
 			@Override
@@ -102,6 +102,7 @@ public class UsuarioService {
                 if (identificacion!=null && !identificacion.equals("")) {
                     predicates.add(criteriaBuilder.and(criteriaBuilder.like(root.get("identificacion"), "%"+identificacion+"%")));
                 }
+                predicates.add(criteriaBuilder.and(criteriaBuilder.equal(root.get("perfil").get("descripcion"), Constantes.PERFILCLIENTE)));
                 return criteriaBuilder.and(predicates.toArray(new Predicate[predicates.size()]));
             }
         });
@@ -167,7 +168,10 @@ public class UsuarioService {
     	Optional<Perfil> perfil= perfilRepository.obtenerPorDescripcion(PERFILCLIENTE);
     	if(perfil.isPresent()) {
     		usuario.setPerfil(perfil.get());
-        	return Optional.of(usuarioRepository.save(usuario));
+    		long conteo=usuarioRepository.count();
+        	String contrasena=Util.generarContrasena(conteo);
+        	usuario.setContrasena(contrasena);
+    		return Optional.of(usuarioRepository.save(usuario));
     	}
     	throw new ModeloNoExistenteException();
     }
@@ -182,7 +186,10 @@ public class UsuarioService {
     	Optional<Perfil> perfil= perfilRepository.obtenerPorDescripcion(PERFILADMIN);
     	if(perfil.isPresent()) {
     		usuario.setPerfil(perfil.get());
-        	return Optional.of(usuarioRepository.save(usuario));
+    		long conteo=usuarioRepository.count();
+        	String contrasena=Util.generarContrasena(conteo);
+        	usuario.setContrasena(contrasena);
+    		return Optional.of(usuarioRepository.save(usuario));
     	}
     	throw new ModeloNoExistenteException();
     }
