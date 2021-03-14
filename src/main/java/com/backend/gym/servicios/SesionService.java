@@ -54,7 +54,7 @@ public class SesionService {
      */
     public Optional<Sesion> crear(Sesion sesion) {
     	logger.info(LOGMETHOD+Thread.currentThread().getStackTrace()[1].getMethodName()+LOGCLASS+this.getClass().getSimpleName());
-    	Optional<Usuario> usuario=usuarioRepository.buscarNombreContrasena(sesion.getUsuario().getIdentificacion(), sesion.getUsuario().getContrasena());
+    	Optional<Usuario> usuario=usuarioRepository.buscarIdentificacionContrasena(sesion.getUsuario().getIdentificacion(), sesion.getUsuario().getContrasena());
     	if(usuario.isPresent()) {
     		sesion.setUsuario(usuario.get());
     		return Optional.of(sesionRepository.save(sesion));
