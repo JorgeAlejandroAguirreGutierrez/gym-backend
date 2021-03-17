@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.backend.gym.modelos.Parametro;
 import com.backend.gym.modelos.Usuario;
 import com.backend.gym.servicios.UsuarioService;
 
@@ -43,29 +42,29 @@ public class UsuarioController {
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> consultar() {
     	logger.info(LOGMETHOD+Thread.currentThread().getStackTrace()[1].getMethodName()+LOGCLASS+this.getClass().getSimpleName());
-        List<Usuario> clientes=servicio.consultar();
-        return new ResponseEntity<>(clientes, HttpStatus.OK);
+        List<Usuario> usuarios=servicio.consultar();
+        return new ResponseEntity<>(usuarios, HttpStatus.OK);
     }
 
     @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> obtener(@PathVariable("id") long id) {
     	logger.info(LOGMETHOD+Thread.currentThread().getStackTrace()[1].getMethodName()+LOGCLASS+this.getClass().getSimpleName());
-        Optional<Usuario> cliente=servicio.obtener(id);
-        return new ResponseEntity<>(cliente, HttpStatus.OK);
+        Optional<Usuario> usuario=servicio.obtener(id);
+        return new ResponseEntity<>(usuario, HttpStatus.OK);
     }
 
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> crear(@RequestBody Usuario _cliente) {
     	logger.info(LOGMETHOD+Thread.currentThread().getStackTrace()[1].getMethodName()+LOGCLASS+this.getClass().getSimpleName());
-        Optional<Usuario> cliente=servicio.crear(_cliente);
-        return new ResponseEntity<>(cliente, HttpStatus.OK);
+        Optional<Usuario> usuario=servicio.crear(_cliente);
+        return new ResponseEntity<>(usuario, HttpStatus.OK);
     }
 
     @PutMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> actualizar(@RequestBody Usuario _cliente) {
     	logger.info(LOGMETHOD+Thread.currentThread().getStackTrace()[1].getMethodName()+LOGCLASS+this.getClass().getSimpleName());
-        Optional<Usuario> cliente=servicio.actualizar(_cliente);
-        return new ResponseEntity<>(cliente, HttpStatus.OK);
+        Optional<Usuario> usuario=servicio.actualizar(_cliente);
+        return new ResponseEntity<>(usuario, HttpStatus.OK);
     }
 
     @DeleteMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)

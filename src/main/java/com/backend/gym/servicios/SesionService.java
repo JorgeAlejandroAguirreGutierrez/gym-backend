@@ -5,15 +5,22 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.backend.gym.Constantes;
 import com.backend.gym.exception.ModeloNoExistenteException;
+import com.backend.gym.exception.SesionInvalidaException;
+import com.backend.gym.exception.SuscripcionInvalidaException;
 import com.backend.gym.modelos.Usuario;
 import com.backend.gym.modelos.Sesion;
+import com.backend.gym.modelos.Suscripcion;
 import com.backend.gym.repositorios.IUsuarioRepository;
 import com.backend.gym.repositorios.ISesionRepository;
+import com.backend.gym.repositorios.ISuscripcionRepository;
 
 import static com.backend.gym.Constantes.LOGCLASS;
 import static com.backend.gym.Constantes.LOGMETHOD;
 
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -27,6 +34,9 @@ public class SesionService {
     
     @Autowired
     private IUsuarioRepository usuarioRepository;
+    
+    @Autowired
+    private ISuscripcionRepository suscripcionRepository;
 
     /**
      * Consulta la sesion por id
@@ -55,9 +65,24 @@ public class SesionService {
     public Optional<Sesion> crear(Sesion sesion) {
     	logger.info(LOGMETHOD+Thread.currentThread().getStackTrace()[1].getMethodName()+LOGCLASS+this.getClass().getSimpleName());
     	Optional<Usuario> usuario=usuarioRepository.buscarIdentificacionContrasena(sesion.getUsuario().getIdentificacion(), sesion.getUsuario().getContrasena());
-    	if(usuario.isPresent()) {
+    	if (usuario.isPresent() && usuario.get().getPerfil().getDescripcion().equals(Constantes.PERFILADMIN)) {
     		sesion.setUsuario(usuario.get());
     		return Optional.of(sesionRepository.save(sesion));
+    	}
+    	Optional<Suscripcion> suscripcion=suscripcionRepository.obtenerUltimaSuscripcionPorUsuario(sesion.getUsuario().getIdentificacion());
+    	if(usuario.isPresent()) {
+    		if (suscripcion.isPresent()) {
+    			long startTime = suscripcion.get().getFecha().getTime();
+    			long endTime = new Date().getTime();
+    			long diffTime = endTime - startTime;
+    			long diffDays = diffTime / (1000 * 60 * 60 * 24);
+    			if(diffDays<30) {
+    				sesion.setUsuario(usuario.get());
+    	    		return Optional.of(sesionRepository.save(sesion));
+    			}
+    			throw new SuscripcionInvalidaException();
+    		}    		
+    		throw new SuscripcionInvalidaException();
     	}
     	throw new ModeloNoExistenteException();
     }
@@ -79,5 +104,25 @@ public class SesionService {
     	logger.info(LOGMETHOD+Thread.currentThread().getStackTrace()[1].getMethodName()+LOGCLASS+this.getClass().getSimpleName());
     	sesionRepository.deleteById(id);
     }
-	
+    
+    /**
+     * Valida la sesion del usuario por id
+     * @param id
+     * @return Sesion
+     */
+    public Optional<Sesion> validar(long id) {
+    	logger.info(LOGMETHOD+Thread.currentThread().getStackTrace()[1].getMethodName()+LOGCLASS+this.getClass().getSimpleName());
+        final Optional<Sesion> sesion= sesionRepository.findById(id);
+        if (sesion.isPresent()) {
+        	long startTime = sesion.get().getFechaApertura().getTime();
+			long endTime = new Date().getTime();
+			long diffTime = endTime - startTime;
+			long diffDays = diffTime / (1000 * 60 * 60 * 24);
+			if(diffDays<1) {
+				return sesion;
+			}
+			throw new SesionInvalidaException();
+        }
+        throw new ModeloNoExistenteException();
+    }
 }

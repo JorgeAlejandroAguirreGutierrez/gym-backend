@@ -36,8 +36,4 @@ public class Util {
 			throw new Exception();
 		}
     }
-    
-    public static String vacio="";
-    public static String error_registro_existente="REGISTRO EXISTENTE";
-    public static String error_registro_no_existente="REGISTRO NO EXISTENTE";
 }

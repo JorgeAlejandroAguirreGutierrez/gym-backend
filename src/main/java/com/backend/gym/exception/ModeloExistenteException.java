@@ -1,6 +1,6 @@
 package com.backend.gym.exception;
 
-import com.backend.gym.Util;
+import com.backend.gym.Constantes;
 
 public class ModeloExistenteException extends RuntimeException  {
 	
@@ -10,6 +10,6 @@ public class ModeloExistenteException extends RuntimeException  {
 	private static final long serialVersionUID = 1L;
 
 	public ModeloExistenteException() {
-        super(Util.error_registro_existente);
+        super(Constantes.error_codigo_modelo_existente);
     }
 }

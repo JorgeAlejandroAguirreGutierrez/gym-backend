@@ -43,4 +43,24 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
 	    );
 	    return new ResponseEntity<>(exceptionResponse, HttpStatus.INTERNAL_SERVER_ERROR);
 	}
+	
+	@ExceptionHandler(SuscripcionInvalidaException.class)
+	public final ResponseEntity<RestExceptionMessage> handleSuscripcionInvalidaException(
+			SuscripcionInvalidaException ex, WebRequest req) {
+		RestExceptionMessage exceptionResponse = new RestExceptionMessage(
+	        ex.getMessage(),
+	        null
+	    );
+	    return new ResponseEntity<>(exceptionResponse, HttpStatus.INTERNAL_SERVER_ERROR);
+	}
+	
+	@ExceptionHandler(SesionInvalidaException.class)
+	public final ResponseEntity<RestExceptionMessage> handleSesionInvalidaException(
+			SesionInvalidaException ex, WebRequest req) {
+		RestExceptionMessage exceptionResponse = new RestExceptionMessage(
+	        ex.getMessage(),
+	        null
+	    );
+	    return new ResponseEntity<>(exceptionResponse, HttpStatus.INTERNAL_SERVER_ERROR);
+	}
 }

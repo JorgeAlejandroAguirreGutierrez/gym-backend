@@ -24,6 +24,12 @@ public class Constantes {
 	
 	public static final String FORMATOFECHA = "yyyy-MM-dd";
 	
+	public static String vacio="";
+    public static String error_codigo_modelo_existente="4001";
+    public static String error_codigo_modelo_no_existente="4002";
+    public static String error_codigo_suscripcion_invalida="4003";
+    public static String error_codigo_sesion_invalida="4004";
+	
 	
 	
 }

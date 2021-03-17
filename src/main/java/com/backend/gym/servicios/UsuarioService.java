@@ -171,6 +171,7 @@ public class UsuarioService {
     		long conteo=usuarioRepository.count();
         	String contrasena=Util.generarContrasena(conteo);
         	usuario.setContrasena(contrasena);
+        	usuario.setActivo(false);
     		return Optional.of(usuarioRepository.save(usuario));
     	}
     	throw new ModeloNoExistenteException();
@@ -189,6 +190,7 @@ public class UsuarioService {
     		long conteo=usuarioRepository.count();
         	String contrasena=Util.generarContrasena(conteo);
         	usuario.setContrasena(contrasena);
+        	usuario.setActivo(true);
     		return Optional.of(usuarioRepository.save(usuario));
     	}
     	throw new ModeloNoExistenteException();

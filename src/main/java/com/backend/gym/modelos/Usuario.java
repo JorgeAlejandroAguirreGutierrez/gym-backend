@@ -49,6 +49,9 @@ public class Usuario {
     @Column(name = "imagen")
 	private String imagen;
     
+    @Column(name="activo")
+    private boolean activo;
+    
     @ManyToOne
     @JoinColumn(name = "perfil_id", nullable = true)
     private Perfil perfil;
@@ -152,5 +155,13 @@ public class Usuario {
 	
 	public void setContrasena(String contrasena) {
 		this.contrasena = contrasena;
+	}
+	
+	public boolean isActivo() {
+		return activo;
+	}
+	
+	public void setActivo(boolean activo) {
+		this.activo = activo;
 	}
 }
