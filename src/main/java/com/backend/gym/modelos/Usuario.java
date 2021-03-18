@@ -37,14 +37,12 @@ public class Usuario {
 	private String contrasena;
 	
 	@NotNull
-    @NotEmpty
     @Column(name = "talla")
-	private String talla;
+	private double talla;
 	
 	@NotNull
-    @NotEmpty
     @Column(name = "edad")
-	private String edad;
+	private long edad;
 	
     @Column(name = "imagen")
 	private String imagen;
@@ -85,7 +83,7 @@ public class Usuario {
 	}
 	
 	public Usuario(String nombre, String identificacion, String contrasena, 
-			String talla, String peso, String edad, String imagen, 
+			long talla, long edad, String imagen, 
 			Perfil perfil, List<Sesion> sesiones, List<Peso> pesos, List<Observacion> observaciones,
 			List<Objetivo> objetivos, List<Suscripcion>suscripciones ) {
 		this.nombre=nombre;
@@ -118,11 +116,11 @@ public class Usuario {
 		return contrasena;
 	}
 	
-	public String getTalla() {
+	public double getTalla() {
 		return talla;
 	}
 	
-	public String getEdad() {
+	public long getEdad() {
 		return edad;
 	}
 	

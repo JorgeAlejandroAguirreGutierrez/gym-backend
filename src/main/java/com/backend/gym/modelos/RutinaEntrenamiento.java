@@ -30,7 +30,7 @@ public class RutinaEntrenamiento {
 	@NotNull
     @NotEmpty
     @Column(name = "valor_peso")
-	private String valorPeso;
+	private double valorPeso;
 	
 	@NotNull
     @NotEmpty
@@ -53,7 +53,7 @@ public class RutinaEntrenamiento {
 	public long getVeces() {
 		return veces;
 	}
-	public String getValorPeso() {
+	public double getValorPeso() {
 		return valorPeso;
 	}
 	public String getMedidaPeso() {

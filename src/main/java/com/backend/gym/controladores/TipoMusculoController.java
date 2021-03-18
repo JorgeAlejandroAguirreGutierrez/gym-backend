@@ -59,7 +59,7 @@ public class TipoMusculoController {
     }
 
     @PutMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> actualizar(@RequestBody TipoMusculo _tipoMusculo) {
+    public ResponseEntity<?> actualizar(@RequestBody @Valid TipoMusculo _tipoMusculo) {
     	logger.info(LOGMETHOD+Thread.currentThread().getStackTrace()[1].getMethodName()+LOGCLASS+this.getClass().getSimpleName());
         Optional<TipoMusculo> tipoMusculo=servicio.actualizar(_tipoMusculo);
         return new ResponseEntity<>(tipoMusculo, HttpStatus.OK);

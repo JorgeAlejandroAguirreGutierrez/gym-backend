@@ -32,7 +32,6 @@ import javax.validation.Valid;
 
 @RestController
 @RequestMapping(USUARIOCONTROLLER)
-@Validated
 public class UsuarioController {
 	private static final Logger logger = LoggerFactory.getLogger(UsuarioController.class);
 	
@@ -54,16 +53,16 @@ public class UsuarioController {
     }
 
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> crear(@RequestBody Usuario _cliente) {
+    public ResponseEntity<?> crear(@RequestBody @Valid Usuario _usuario) {
     	logger.info(LOGMETHOD+Thread.currentThread().getStackTrace()[1].getMethodName()+LOGCLASS+this.getClass().getSimpleName());
-        Optional<Usuario> usuario=servicio.crear(_cliente);
+        Optional<Usuario> usuario=servicio.crear(_usuario);
         return new ResponseEntity<>(usuario, HttpStatus.OK);
     }
 
     @PutMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> actualizar(@RequestBody Usuario _cliente) {
+    public ResponseEntity<?> actualizar(@RequestBody @Valid Usuario _usuario) {
     	logger.info(LOGMETHOD+Thread.currentThread().getStackTrace()[1].getMethodName()+LOGCLASS+this.getClass().getSimpleName());
-        Optional<Usuario> usuario=servicio.actualizar(_cliente);
+        Optional<Usuario> usuario=servicio.actualizar(_usuario);
         return new ResponseEntity<>(usuario, HttpStatus.OK);
     }
 
@@ -98,19 +97,19 @@ public class UsuarioController {
     @GetMapping(value="/obtenerPorIdentificacion/{identificacion}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> obtenerPorIdentificacion(@PathVariable("identificacion") String identificacion) {
     	logger.info(LOGMETHOD+Thread.currentThread().getStackTrace()[1].getMethodName()+LOGCLASS+this.getClass().getSimpleName());
-        Optional<Usuario> clientes=servicio.obtenerPorIdentificacion(identificacion);
-        return new ResponseEntity<>(clientes, HttpStatus.OK);
+        Optional<Usuario> usuario=servicio.obtenerPorIdentificacion(identificacion);
+        return new ResponseEntity<>(usuario, HttpStatus.OK);
     }
     
     @PostMapping(value="/crearCliente", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> crearCliente(@RequestBody Usuario _usuario) {
+    public ResponseEntity<?> crearCliente(@RequestBody @Valid Usuario _usuario) {
     	logger.info(LOGMETHOD+Thread.currentThread().getStackTrace()[1].getMethodName()+LOGCLASS+this.getClass().getSimpleName());
         Optional<Usuario> usuario=servicio.crearCliente(_usuario);
         return new ResponseEntity<>(usuario, HttpStatus.OK);
     }
     
     @PostMapping(value="/crearAdmin", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> crearAdmin(@RequestBody Usuario _usuario) {
+    public ResponseEntity<?> crearAdmin(@RequestBody @Valid Usuario _usuario) {
     	logger.info(LOGMETHOD+Thread.currentThread().getStackTrace()[1].getMethodName()+LOGCLASS+this.getClass().getSimpleName());
         Optional<Usuario> usuario=servicio.crearAdmin(_usuario);
         return new ResponseEntity<>(usuario, HttpStatus.OK);

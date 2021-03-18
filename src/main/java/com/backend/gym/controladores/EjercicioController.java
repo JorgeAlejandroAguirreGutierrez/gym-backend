@@ -70,7 +70,7 @@ public class EjercicioController {
     }
 
     @PutMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> actualizar(@RequestBody Ejercicio _ejercicio) {
+    public ResponseEntity<?> actualizar(@RequestBody @Valid Ejercicio _ejercicio) {
     	logger.info(LOGMETHOD+Thread.currentThread().getStackTrace()[1].getMethodName()+LOGCLASS+this.getClass().getSimpleName());
         Optional<Ejercicio> ejercicio=servicio.actualizar(_ejercicio);
         return new ResponseEntity<>(ejercicio, HttpStatus.OK);
