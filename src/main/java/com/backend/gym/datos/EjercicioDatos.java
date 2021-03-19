@@ -52,6 +52,7 @@ public class EjercicioDatos implements ApplicationRunner {
             ejercicios.add(new Ejercicio("REMO AL PISO", "REMO_AL_PISO.png", new TipoMusculo(3))); //ESPALDA
             ejercicios.add(new Ejercicio("REMO CON BARRA", "REMO_CON_BARRA.png", new TipoMusculo(3))); //ESPALDA
             ejercicios.add(new Ejercicio("JALONES ADELANTE", "JALONES_ADELANTE.png", new TipoMusculo(3))); //ESPALDA            
+            
             //PECHO 13
             ejercicios.add(new Ejercicio("PECHO PLANO", "PECHO_PLANO.png", new TipoMusculo(4))); //PECHO
             ejercicios.add(new Ejercicio("PECHO INCLINADO", "PECHO_INCLINADO.png", new TipoMusculo(4))); //PECHO
@@ -75,8 +76,25 @@ public class EjercicioDatos implements ApplicationRunner {
             ejercicios.add(new Ejercicio("PRENSA PIERNAS INCLINADO", "PRENSA_PIERNAS_INCLINADO.png", new TipoMusculo(5))); //PIERNA
             ejercicios.add(new Ejercicio("PRENSA PIERNAS PLANO", "PRENSA_PIERNAS_PLANO.png", new TipoMusculo(5))); //PIERNA
             
-            //TOTAL 39
+            //ABDOMEN
             
+            ejercicios.add(new Ejercicio("ABDOMINALES EN MAQUINA", "ABDOMINALES_EN_MAQUINA.png", new TipoMusculo(6))); 
+            ejercicios.add(new Ejercicio("ABDOMINALES EN BANCA INCLINADA", "ABDOMINALES_BANCA_INCLINADA.jpg", new TipoMusculo(6))); 
+            ejercicios.add(new Ejercicio("ABDOMINALES CON ELEVACION DE PIERNAS", "ABDOMINALES_CON_ELEVACION_PIERNAS.png", new TipoMusculo(6))); 
+            ejercicios.add(new Ejercicio("ABDOMINALES CON RUEDA", "ABDOMINALES_CON_RUEDA.png", new TipoMusculo(6))); 
+            ejercicios.add(new Ejercicio("ABDOMINALES EN TRX", "ABDOMINALES_EN_TRX.png", new TipoMusculo(6))); 
+            ejercicios.add(new Ejercicio("ABDOMINALES CON PIERNA CRUZADA", "ABDOMINALES_CON_PIERNA_CRUZADA.png", new TipoMusculo(6)));
+            ejercicios.add(new Ejercicio("FLEXION Y EXTENSION DE PIERNAS", "FLEXION_EXTENSION_DE_PIERNAS.png", new TipoMusculo(6)));
+            ejercicios.add(new Ejercicio("CRUNCH CON BALON MEDICINAL", "CRUNCH_CON_BALON_MEDICINAL.png", new TipoMusculo(6)));
+            ejercicios.add(new Ejercicio("CRUNCHES", "CRUNCHES.png", new TipoMusculo(6)));
+            ejercicios.add(new Ejercicio("DOBLE CRUNCH", "DOBLE_CRUNCH.png", new TipoMusculo(6)));
+            ejercicios.add(new Ejercicio("ABDOMINALES CON ELEVACION DE RODILLAS EN BARRA DE DOMINADAS", "ABDOMINALES_CON_ELEVACION_DE_RODILLAS_EN_BARRA_DE_DOMINADAS.png", new TipoMusculo(6)));
+            ejercicios.add(new Ejercicio("GIROS RUSOS", "GIROS_RUSOS.png", new TipoMusculo(6)));
+            ejercicios.add(new Ejercicio("FLEXION LATERAL DE TORSO CON MANCUERNAS", "FLEXION_LATERAL_DE_TORSO_CON_MANCUERNAS.jpg", new TipoMusculo(6)));
+            ejercicios.add(new Ejercicio("FLEXION LATERAL DE TORSO", "FLEXION_LATERAL_DE_TORSO.jpg", new TipoMusculo(6)));
+            ejercicios.add(new Ejercicio("CRUNCH LATERAL", "CRUNCH_LATERAL.jpg", new TipoMusculo(6)));
+            
+            //TOTAL 39
             rep.saveAll(ejercicios);
         }
     }

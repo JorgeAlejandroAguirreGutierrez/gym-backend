@@ -78,7 +78,6 @@
 			<properties>
 				<activatedProperties>prod</activatedProperties>
 			</properties>
-			
 		</profile>
 	</profiles>
 
