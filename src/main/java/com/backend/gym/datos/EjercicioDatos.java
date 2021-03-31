@@ -94,6 +94,17 @@ public class EjercicioDatos implements ApplicationRunner {
             ejercicios.add(new Ejercicio("FLEXION LATERAL DE TORSO", "FLEXION_LATERAL_DE_TORSO.jpg", new TipoMusculo(6)));
             ejercicios.add(new Ejercicio("CRUNCH LATERAL", "CRUNCH_LATERAL.jpg", new TipoMusculo(6)));
             
+            //HOMBRO
+            ejercicios.add(new Ejercicio("PRESS MILITAR CON BARRA", "PRESS_MILITAR_CON_BARRA.jpg", new TipoMusculo(7)));
+            ejercicios.add(new Ejercicio("PRESS MILITAR CON MANCUERNA", "PRESS_MILITAR_CON_MANCUERNA.png", new TipoMusculo(7)));
+            ejercicios.add(new Ejercicio("PRESS EN MAQUINA HAMMER", "PRESS_EN_MAQUINA_HAMMER.png", new TipoMusculo(7)));
+            ejercicios.add(new Ejercicio("ELEVACION LATERAL CON MANCUERNAS", "ELEVACION_LATERAL_CON_MANCUERNAS.png", new TipoMusculo(7)));
+            ejercicios.add(new Ejercicio("ELEVACIONES FRONTALES", "ELEVACIONES_FRONTALES.png", new TipoMusculo(7)));
+            ejercicios.add(new Ejercicio("ELEVACIONES LATERALES TUMBADO", "ELEVACIONES_LATERALES_TUMBADO.jpg", new TipoMusculo(7)));
+            ejercicios.add(new Ejercicio("PRESS ARNOLD", "PRESS_ARNOLD.png", new TipoMusculo(7)));
+            ejercicios.add(new Ejercicio("ELEVACIONES LATERALES A UNA MANO", "ELEVACIONES_LATERALES_A_UNA_MANO.png", new TipoMusculo(7)));
+            ejercicios.add(new Ejercicio("REMO PARADO", "REMO_PARADO.jpg", new TipoMusculo(7)));
+            
             //TOTAL 39
             rep.saveAll(ejercicios);
         }

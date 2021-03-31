@@ -44,16 +44,7 @@ public class EjercicioControllerTest {
 	
 	@Autowired
     private MockMvc mockMvc;
-
-    
     private static Ejercicio crearEjercicio;
-    
-    private static IEjercicioRepository ejercicioRepository;
-    
-    @Autowired
-    public void setEjercicioRepository (IEjercicioRepository c) {
-    	ejercicioRepository= c;
-    }
 
     private String token;
 
