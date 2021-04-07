@@ -26,15 +26,19 @@ public class TipoMusculoDatos implements ApplicationRunner {
         Optional<TipoMusculo> ant=rep.findById((long) 1);
         if (!ant.isPresent()) {
             List<TipoMusculo> tiposMusculo= new ArrayList<>();
-            tiposMusculo.add(new TipoMusculo("BICEPS"));
-            tiposMusculo.add(new TipoMusculo("TRICEPS"));
-            tiposMusculo.add(new TipoMusculo("ESPALDA"));
-            tiposMusculo.add(new TipoMusculo("PECHO"));
-            tiposMusculo.add(new TipoMusculo("PIERNA"));
-            tiposMusculo.add(new TipoMusculo("ABDOMEN"));
-            tiposMusculo.add(new TipoMusculo("HOMBRO"));
-            tiposMusculo.add(new TipoMusculo("PANTORRILLA"));
-            tiposMusculo.add(new TipoMusculo("ANTEBRAZO"));
+            tiposMusculo.add(new TipoMusculo("BICEPS"));//1
+            tiposMusculo.add(new TipoMusculo("TRICEPS")); //2
+            tiposMusculo.add(new TipoMusculo("ESPALDA")); //3
+            tiposMusculo.add(new TipoMusculo("PECHO")); //4
+            tiposMusculo.add(new TipoMusculo("PIERNA")); //5
+            tiposMusculo.add(new TipoMusculo("ABDOMEN")); //6
+            tiposMusculo.add(new TipoMusculo("HOMBRO")); //7
+            tiposMusculo.add(new TipoMusculo("ANTEBRAZO")); //8
+            tiposMusculo.add(new TipoMusculo("ADUCTORES")); //9
+            tiposMusculo.add(new TipoMusculo("ABDUCTORES")); //10
+            tiposMusculo.add(new TipoMusculo("GLUTEO")); //11
+            tiposMusculo.add(new TipoMusculo("PANTORRILLAS")); //12
+            tiposMusculo.add(new TipoMusculo("FUNCIONAL")); //13
             
             
             rep.saveAll(tiposMusculo);

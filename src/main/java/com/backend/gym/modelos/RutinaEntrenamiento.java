@@ -27,12 +27,16 @@ public class RutinaEntrenamiento {
     @Column(name = "veces")
 	private long veces;
 	
-	@NotNull
+    @Column(name = "valor_tiempo")
+	private long valorTiempo;
+	
+    @Column(name = "medida_tiempo")
+	private long medidaTiempo;
+	
     @NotEmpty
     @Column(name = "valor_peso")
 	private double valorPeso;
 	
-	@NotNull
     @NotEmpty
     @Column(name = "medida_peso")
 	private String medidaPeso;

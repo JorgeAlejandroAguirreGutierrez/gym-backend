@@ -29,55 +29,67 @@ public class EjercicioDatos implements ApplicationRunner {
             List<Ejercicio> ejercicios= new ArrayList<>();
             //MUSCULO 
             
-            //BICEPS 7 
-            ejercicios.add(new Ejercicio("CURL MARTILLO", "CURL_MARTILLO.png", new TipoMusculo(1))); //BICEPS
-            ejercicios.add(new Ejercicio("CURL BARRA", "CURL_BARRA.png", new TipoMusculo(1))); //BICEPS
-            ejercicios.add(new Ejercicio("CURL MANCUERNA", "CURL_MANCUERNA.jpg", new TipoMusculo(1))); //BICEPS
-            ejercicios.add(new Ejercicio("CURL SCOTT", "CURL_SCOTT.jpg", new TipoMusculo(1))); //BICEPS
-            ejercicios.add(new Ejercicio("CURL POLEA", "CURL_POLEA.png", new TipoMusculo(1))); //BICEPS
-            ejercicios.add(new Ejercicio("CURL MANCUERNA INCLINADO", "CURL_MANCUERNA_INCLINADO.jpg", new TipoMusculo(1))); //BICEPS
-            ejercicios.add(new Ejercicio("CURL CONCENTRADO", "CURL_CONCENTRADO.png", new TipoMusculo(1))); //BICEPS
+            //BICEPS
+            ejercicios.add(new Ejercicio("CURL MARTILLO", "CURL_MARTILLO.png", new TipoMusculo(1)));
+            ejercicios.add(new Ejercicio("CURL BARRA", "CURL_BARRA.png", new TipoMusculo(1)));
+            ejercicios.add(new Ejercicio("CURL MANCUERNA", "CURL_MANCUERNA.jpg", new TipoMusculo(1)));
+            ejercicios.add(new Ejercicio("CURL SCOTT", "CURL_SCOTT.jpg", new TipoMusculo(1)));
+            ejercicios.add(new Ejercicio("CURL POLEA", "CURL_POLEA.png", new TipoMusculo(1)));
+            ejercicios.add(new Ejercicio("CURL MANCUERNA INCLINADO", "CURL_MANCUERNA_INCLINADO.jpg", new TipoMusculo(1)));
+            ejercicios.add(new Ejercicio("CURL CONCENTRADO", "CURL_CONCENTRADO.png", new TipoMusculo(1)));
+            ejercicios.add(new Ejercicio("CURL DE BICEPS EN TRX", "CURL_DE_BICEPS_EN_TRX.jpg", new TipoMusculo(1)));
             
-            //TRICEPS 4
-            ejercicios.add(new Ejercicio("EXTENSION DE POLEA", "EXTENSION_POLEA.jpg", new TipoMusculo(2))); //TRICEPS
-            ejercicios.add(new Ejercicio("FONDOS", "FONDOS.png", new TipoMusculo(2))); //TRICEPS
-            ejercicios.add(new Ejercicio("PUSH DOWN", "PUSH_DOWN.png", new TipoMusculo(2))); //TRICEPS
-            ejercicios.add(new Ejercicio("SUPINO", "SUPINO.jpg", new TipoMusculo(2))); //TRICEPS
+            //TRICEPS
+            ejercicios.add(new Ejercicio("EXTENSION DE POLEA", "EXTENSION_POLEA.jpg", new TipoMusculo(2))); 
+            ejercicios.add(new Ejercicio("FONDOS", "FONDOS.png", new TipoMusculo(2))); 
+            ejercicios.add(new Ejercicio("PUSH DOWN", "PUSH_DOWN.png", new TipoMusculo(2)));
+            ejercicios.add(new Ejercicio("SUPINO", "SUPINO.jpg", new TipoMusculo(2)));
+            ejercicios.add(new Ejercicio("PRESS FRANCES", "PRESS_FRANCES.jpg", new TipoMusculo(2)));
+            ejercicios.add(new Ejercicio("PRESS FRANCES CON BANCO INCLINADO", "PRESS_FRANCES_CON_BANCO_INCLINADO.jpg", new TipoMusculo(2)));
+            ejercicios.add(new Ejercicio("EXTENSION DE TRICEPS CON MANCUERNA A UNA MANO", "EXTENSION_DE_TRICEPS_CON_MANCUERNA_A_UNA_MANO.jpg", new TipoMusculo(2)));
+            ejercicios.add(new Ejercicio("PRESS COPA", "EXTENSION_DE_TRICEPS_CON_MANCUERNAS.jpg", new TipoMusculo(2)));
+            ejercicios.add(new Ejercicio("EXTENSION DE TRICEPS CON TRX", "EXTENSION_DE_TRICEPS_EN_TRX.jpg", new TipoMusculo(2)));
+            
+            //ESPALDA
+            ejercicios.add(new Ejercicio("DOMINADAS", "DOMINADAS.png", new TipoMusculo(3)));
+            ejercicios.add(new Ejercicio("REMO BARRA T", "REMO_BARRA_T.jpg", new TipoMusculo(3)));
+            ejercicios.add(new Ejercicio("REMO CON MANCUERNA", "REMO_CON_MANCUERNA.png", new TipoMusculo(3)));
+            ejercicios.add(new Ejercicio("REMO AL PISO", "REMO_AL_PISO.png", new TipoMusculo(3))); 
+            ejercicios.add(new Ejercicio("REMO CON BARRA", "REMO_CON_BARRA.png", new TipoMusculo(3))); 
+            ejercicios.add(new Ejercicio("JALON POLEA ADELANTE", "JALONES_ADELANTE.png", new TipoMusculo(3))); 
+            ejercicios.add(new Ejercicio("JALON POLEA ATRAS", "JALON_POLEA_ATRAS.png", new TipoMusculo(3)));
+            ejercicios.add(new Ejercicio("JALON POLEA ALTA", "JALON_POLEA_ALTA.png", new TipoMusculo(3)));
+            ejercicios.add(new Ejercicio("DORSALES EN MAQUINA HAMMER", "DORSALES_EN_MAQUINA_HAMMER.png", new TipoMusculo(3)));
+            
+            //PECHO
+            ejercicios.add(new Ejercicio("PECHO PLANO", "PECHO_PLANO.png", new TipoMusculo(4)));
+            ejercicios.add(new Ejercicio("PECHO INCLINADO", "PECHO_INCLINADO.png", new TipoMusculo(4)));
+            ejercicios.add(new Ejercicio("PECHO DECLINADO", "PECHO_DECLINADO.png", new TipoMusculo(4)));
+            ejercicios.add(new Ejercicio("APERTURA CON MANCUERNAS BANCO DECLINADO", "APERTURA_CON_MANCUERNAS_BANCO_DECLINADO.jpg", new TipoMusculo(4)));
+            ejercicios.add(new Ejercicio("APERTURA CON MANCUERNAS BANCO PLANO", "APERTURA_CON_MANCUERNAS_BANCO_PLANO.png", new TipoMusculo(4)));
+            ejercicios.add(new Ejercicio("APERTURA CON MANCUERNAS BANCO INCLINADO", "APERTURA_CON_MANCUERNAS_BANCO_INCLINADO.png", new TipoMusculo(4)));
+            ejercicios.add(new Ejercicio("FONDOS", "FONDOS.png", new TipoMusculo(4)));
+            ejercicios.add(new Ejercicio("PECK DECK", "PECK_DECK.png", new TipoMusculo(4))); 
+            ejercicios.add(new Ejercicio("PRESS CON MANCUERNAS BANCO PLANO", "PRESS_CON_MANCUERNAS_PECHO_PLANO.jpg", new TipoMusculo(4)));
+            ejercicios.add(new Ejercicio("PRESS CON MANCUERNAS BANCO INCLINADO", "PRESS_CON_MANCUERNAS_PECHO_INCLINADO.png", new TipoMusculo(4)));
+            ejercicios.add(new Ejercicio("PRESS CON MANCUERNAS BANCO DECLINADO", "PRESS_CON_MANCUERNAS_PECHO_DECLINADO.jpg", new TipoMusculo(4)));
+            ejercicios.add(new Ejercicio("PULL OVER CON MANCUERNA", "PULL_OVER_MANCUERNA.jpg", new TipoMusculo(4))); 
+            ejercicios.add(new Ejercicio("PRESS EN MAQUINA MULTIFUNCIONAL", "PRESS_EN_MAQUINA_MULTIFUNCIONAL.png", new TipoMusculo(4))); 
             
             
-            //ESPALDA 8
-            ejercicios.add(new Ejercicio("DOMINADAS", "DOMINADAS.png", new TipoMusculo(3))); //ESPALDA
-            ejercicios.add(new Ejercicio("REMO BARRA T", "REMO_BARRA_T.jpg", new TipoMusculo(3))); //ESPALDA
-            ejercicios.add(new Ejercicio("REMO CON MANCUERNA", "REMO_CON_MANCUERNA.png", new TipoMusculo(3))); //ESPALDA
-            ejercicios.add(new Ejercicio("REMO AL PISO", "REMO_AL_PISO.png", new TipoMusculo(3))); //ESPALDA
-            ejercicios.add(new Ejercicio("REMO CON BARRA", "REMO_CON_BARRA.png", new TipoMusculo(3))); //ESPALDA
-            ejercicios.add(new Ejercicio("JALONES ADELANTE", "JALONES_ADELANTE.png", new TipoMusculo(3))); //ESPALDA            
-            
-            //PECHO 13
-            ejercicios.add(new Ejercicio("PECHO PLANO", "PECHO_PLANO.png", new TipoMusculo(4))); //PECHO
-            ejercicios.add(new Ejercicio("PECHO INCLINADO", "PECHO_INCLINADO.png", new TipoMusculo(4))); //PECHO
-            ejercicios.add(new Ejercicio("PECHO DECLINADO", "PECHO_DECLINADO.png", new TipoMusculo(4))); //PECHO
-            ejercicios.add(new Ejercicio("APERTURA CON MANCUERNAS BANCO DECLINADO", "APERTURA_CON_MANCUERNAS_BANCO_DECLINADO.jpg", new TipoMusculo(4))); //PECHO
-            ejercicios.add(new Ejercicio("APERTURA CON MANCUERNAS BANCO PLANO", "APERTURA_CON_MANCUERNAS_BANCO_PLANO.png", new TipoMusculo(4))); //PECHO
-            ejercicios.add(new Ejercicio("APERTURA CON MANCUERNAS BANCO INCLINADO", "APERTURA_CON_MANCUERNAS_BANCO_INCLINADO.png", new TipoMusculo(4))); //PECHO
-            ejercicios.add(new Ejercicio("FONDOS", "FONDOS.png", new TipoMusculo(4))); //PECHO
-            ejercicios.add(new Ejercicio("PECK DECK", "PECK_DECK.png", new TipoMusculo(4))); //PECHO
-            ejercicios.add(new Ejercicio("PRESS CON MANCUERNAS PECHO PLANO", "PRESS_CON_MANCUERNAS_PECHO_PLANO.jpg", new TipoMusculo(4))); //PECHO
-            ejercicios.add(new Ejercicio("PRESS CON MANCUERNAS PECHO INCLINADO", "PRESS_CON_MANCUERNAS_PECHO_INCLINADO.png", new TipoMusculo(4))); //PECHO
-            ejercicios.add(new Ejercicio("PRESS CON MANCUERNAS PECHO DECLINADO", "PRESS_CON_MANCUERNAS_PECHO_DECLINADO.jpg", new TipoMusculo(4))); //PECHO
-            ejercicios.add(new Ejercicio("PULL OVER CON MANCUERNA", "PULL_OVER_MANCUERNA.jpg", new TipoMusculo(4))); //PECHO
-            
-            
-            //PIERNA 7
-            ejercicios.add(new Ejercicio("CURL PIERNA", "CURL_PIERNA.png", new TipoMusculo(5))); //PIERNA
-            ejercicios.add(new Ejercicio("CURL PIERNA DECLINADO", "CURL_PIERNA_DECLINADO.png", new TipoMusculo(5))); //PIERNA
-            ejercicios.add(new Ejercicio("CURL UNA PIERNA DECLINADO", "CURL_UNA_PIERNA_DECLINADO.jpg", new TipoMusculo(5))); //PIERNA
-            ejercicios.add(new Ejercicio("CURL UNA PIERNA DE PIE", "CURL_UNA_PIERNA_DE_PIE.png", new TipoMusculo(5))); //PIERNA
-            ejercicios.add(new Ejercicio("PRENSA PIERNAS INCLINADO", "PRENSA_PIERNAS_INCLINADO.png", new TipoMusculo(5))); //PIERNA
-            ejercicios.add(new Ejercicio("PRENSA PIERNAS PLANO", "PRENSA_PIERNAS_PLANO.png", new TipoMusculo(5))); //PIERNA
+            //PIERNA
+            ejercicios.add(new Ejercicio("EXTENSION DE PIERNAS", "EXTENSION_DE_PIERNAS.png", new TipoMusculo(5)));
+            ejercicios.add(new Ejercicio("CURL PIERNA DECLINADO", "CURL_PIERNA_DECLINADO.png", new TipoMusculo(5))); 
+            ejercicios.add(new Ejercicio("CURL UNA PIERNA DECLINADO", "CURL_UNA_PIERNA_DECLINADO.jpg", new TipoMusculo(5))); 
+            ejercicios.add(new Ejercicio("CURL UNA PIERNA DE PIE", "CURL_UNA_PIERNA_DE_PIE.png", new TipoMusculo(5))); 
+            ejercicios.add(new Ejercicio("PRENSA PIERNAS INCLINADO", "PRENSA_PIERNAS_INCLINADO.png", new TipoMusculo(5)));
+            ejercicios.add(new Ejercicio("PRENSA PIERNAS PLANO", "PRENSA_PIERNAS_PLANO.png", new TipoMusculo(5))); 
+            ejercicios.add(new Ejercicio("SENTADILLA LIBRE", "SENTADILLA_LIBRE.png", new TipoMusculo(5)));
+            ejercicios.add(new Ejercicio("SENTADILLA HACK", "SENTADILLA_HACK.png", new TipoMusculo(5)));
+            ejercicios.add(new Ejercicio("SENTADILLAS EN TRX", "SENTADILLAS_EN_TRX.jpg", new TipoMusculo(5)));
+            ejercicios.add(new Ejercicio("SENTADILLA CON BARRA", "SENTADILLA_CON_BARRA.png", new TipoMusculo(9)));
             
             //ABDOMEN
-            
             ejercicios.add(new Ejercicio("ABDOMINALES EN MAQUINA", "ABDOMINALES_EN_MAQUINA.png", new TipoMusculo(6))); 
             ejercicios.add(new Ejercicio("ABDOMINALES EN BANCA INCLINADA", "ABDOMINALES_BANCA_INCLINADA.jpg", new TipoMusculo(6))); 
             ejercicios.add(new Ejercicio("ABDOMINALES CON ELEVACION DE PIERNAS", "ABDOMINALES_CON_ELEVACION_PIERNAS.png", new TipoMusculo(6))); 
@@ -105,7 +117,63 @@ public class EjercicioDatos implements ApplicationRunner {
             ejercicios.add(new Ejercicio("ELEVACIONES LATERALES A UNA MANO", "ELEVACIONES_LATERALES_A_UNA_MANO.png", new TipoMusculo(7)));
             ejercicios.add(new Ejercicio("REMO PARADO", "REMO_PARADO.jpg", new TipoMusculo(7)));
             
-            //TOTAL 39
+            //ANTEBRAZO
+            ejercicios.add(new Ejercicio("CUERDA CON MANCUERNA SUPINACION", "CUERDA_CON_MANCUERNA_SUPINACION.jpg", new TipoMusculo(8)));
+            ejercicios.add(new Ejercicio("CURL DE MUÑECA", "CURL_DE_MUÑECA.png", new TipoMusculo(8)));
+            ejercicios.add(new Ejercicio("CURL DE MUÑECA INVERTIDO", "CURL_MUÑECA_INVERTIDO.jpg", new TipoMusculo(8)));
+            ejercicios.add(new Ejercicio("CURL MUÑECA EN SUPINACION", "CURL_MUÑECA_EN_SUPINACION.jpg", new TipoMusculo(8)));
+            
+            
+            //ADUCTORES
+            ejercicios.add(new Ejercicio("SENTADILLA CON APOYO", "SENTADILLA_CON_APOYO.png", new TipoMusculo(9)));
+            ejercicios.add(new Ejercicio("SENTADILLA ABIERTA", "SENTADILLA_ABIERTA.png", new TipoMusculo(9)));
+            ejercicios.add(new Ejercicio("TIJERA LATERAL", "TIJERA_LATERAL.jpg", new TipoMusculo(9)));
+            ejercicios.add(new Ejercicio("DESPLAZAMIENTO LATERAL CON PESO", "DESPLAZAMIENTO_LATERAL_CON_PESO.png", new TipoMusculo(9)));
+            ejercicios.add(new Ejercicio("PRESS DE PIERNA ABIERTA", "PRESS_DE_PIERNA_ABIERTA.png", new TipoMusculo(9)));
+            
+            //ABDUCTORES
+            ejercicios.add(new Ejercicio("ELEVACIONES LATERALES DE PIERNA EN MAQUINA", "ELEVACIONES_LATERALES_DE_PIERNA_EN_MAQUINA.png", new TipoMusculo(10)));
+            
+            
+            //GLUTEO
+            ejercicios.add(new Ejercicio("SENTADILLA BULGARA", "SENTADILLA_BULGARA.png", new TipoMusculo(11)));
+            ejercicios.add(new Ejercicio("ZANCADAS CON MANCUERNAS", "ZANCADAS_CON_MANCUERNAS.png", new TipoMusculo(11)));
+            ejercicios.add(new Ejercicio("DESPLANTES", "DESPLANTES.png", new TipoMusculo(11)));
+            ejercicios.add(new Ejercicio("ZANCADA LATERAL CON MANCUERNAS", "ZANCADA_LATERAL_CON_MANCUERNAS.png", new TipoMusculo(11)));
+            ejercicios.add(new Ejercicio("ZANCADA LATERAL CON BARRA", "ZANCADA_LATERAL_CON_BARRA.png", new TipoMusculo(11)));
+            ejercicios.add(new Ejercicio("ZANCADA ADELANTE CON BARRA", "ZANCADA_ADELANTE_CON_BARRA.png", new TipoMusculo(11)));
+            ejercicios.add(new Ejercicio("SENTADILLA PROFUNDA", "SENTADILLA_PROFUNDA.png", new TipoMusculo(11)));
+            ejercicios.add(new Ejercicio("HIP THRUST", "HIP_THRUST.png", new TipoMusculo(11)));
+            ejercicios.add(new Ejercicio("HIP THRUST CON BARRA", "HIP_THRUST_CON_BARRA.png", new TipoMusculo(11)));
+            ejercicios.add(new Ejercicio("TIJERA EN MAQUINA HACK", "TIJERA_EN_MAQUINA_HACK.jpg", new TipoMusculo(11)));
+            ejercicios.add(new Ejercicio("TIJERA EN TRX", "TIJERA_EN_TRX.jpg", new TipoMusculo(11)));
+            ejercicios.add(new Ejercicio("PESO MUERTO CON BARRA", "PESO_MUERTO_CON_BARRA.png", new TipoMusculo(11)));
+            ejercicios.add(new Ejercicio("PESO MUERTO RUMANO", "PESO_MUERTO_RUMANO.png", new TipoMusculo(11)));
+            ejercicios.add(new Ejercicio("PESO MUERTO SENTADILLA ABIERTA", "PESO_MUERTO_SENTADILLA_ABIERTA.png", new TipoMusculo(11)));
+            ejercicios.add(new Ejercicio("HIPEREXTENSIONES EN MAQUINA", "HIPEREXTENSIONES_EN_MAQUINA.png", new TipoMusculo(11)));
+            
+            //PANTORILLAS
+            ejercicios.add(new Ejercicio("ELEVACION DE TALONES EN MAQUINA HACK.png", "ELEVACION_DE_TALONES_EN_MAQUINA_HACK.png", new TipoMusculo(12)));
+            ejercicios.add(new Ejercicio("ELEVACION DE TALONES CON BARRA", "ELEVACION_DE_TALONES_CON_BARRA.jpg", new TipoMusculo(12)));
+            ejercicios.add(new Ejercicio("ELEVACION DE TALONES EN MAQUINA DE PANTORRILLA.png", "ELEVACION_DE_TALONES_EN_MAQUINA_DE_PANTORRILLA.png", new TipoMusculo(12)));
+            
+            //FUNCIONAL
+            ejercicios.add(new Ejercicio("BURPEES", "BURPEES.png", new TipoMusculo(13)));
+            ejercicios.add(new Ejercicio("MOUNTAIN CLIMBER", "MOUNTAIN_CLIMBER.png", new TipoMusculo(13)));
+            ejercicios.add(new Ejercicio("JUMPING JACK", "JUMPING_JACK.png", new TipoMusculo(13)));
+            ejercicios.add(new Ejercicio("JUMPING JACK", "JUMPING_JACK.png", new TipoMusculo(13)));
+            ejercicios.add(new Ejercicio("SENTADILLA CON SALTO", "SENTADILLA_CON_SALTO.png", new TipoMusculo(13)));
+            ejercicios.add(new Ejercicio("PUSH UPS", "PUSH_UPS.png", new TipoMusculo(13)));
+            ejercicios.add(new Ejercicio("FLEXIONES EN RODILLAS", "FLEXIONES_EN_RODILLAS.png", new TipoMusculo(13)));
+            ejercicios.add(new Ejercicio("FLEXIONES CON NUDILLOS", "FLEXIONES_CON_NUDILLOS.jpg", new TipoMusculo(13)));
+            ejercicios.add(new Ejercicio("FLEXIONES CON PALMAS", "FLEXIONES_CON_PALMAS.jpg", new TipoMusculo(13)));
+            ejercicios.add(new Ejercicio("FLEXIONES EN BANCO PLANO", "FLEXIONES_EN_BANCO_PLANO.png", new TipoMusculo(13)));
+            ejercicios.add(new Ejercicio("SKIPPING", "SKIPPING.png", new TipoMusculo(13)));
+            ejercicios.add(new Ejercicio("SALTO CON CUERDA", "SALTO_CON_CUERDA.jpg", new TipoMusculo(13)));
+            ejercicios.add(new Ejercicio("TROTAR", "TROTAR.png", new TipoMusculo(13)));
+            ejercicios.add(new Ejercicio("SPRINTS EN TRX", "SPRINTS_EN_TRX.png", new TipoMusculo(13)));
+            
+            //TOTAL
             rep.saveAll(ejercicios);
         }
     }
