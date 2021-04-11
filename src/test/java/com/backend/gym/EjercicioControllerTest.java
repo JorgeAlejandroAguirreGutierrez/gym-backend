@@ -4,17 +4,13 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-
 import com.backend.gym.modelos.Ejercicio;
 import com.backend.gym.repositorios.IEjercicioRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
 import com.google.gson.stream.JsonReader;
-
 import static org.hamcrest.Matchers.*;
-
 import org.junit.AfterClass;
-import org.junit.Before;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -45,6 +41,13 @@ public class EjercicioControllerTest {
 	@Autowired
     private MockMvc mockMvc;
     private static Ejercicio crearEjercicio;
+    
+    private static IEjercicioRepository ejercicioRepository;
+    
+    @Autowired
+    public void setEjercicioRepository (IEjercicioRepository r) {
+    	ejercicioRepository= r;
+    }
 
     private String token;
 
@@ -97,7 +100,7 @@ public class EjercicioControllerTest {
     
     @AfterClass
     public static void after() throws Exception {
-    	//ejercicioRepository.deleteById(crearEjercicio.getId());
+    	ejercicioRepository.deleteById(crearEjercicio.getId());
     }
 
 

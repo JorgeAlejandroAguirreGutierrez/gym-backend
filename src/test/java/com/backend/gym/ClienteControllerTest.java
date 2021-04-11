@@ -4,17 +4,13 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-
 import com.backend.gym.modelos.Usuario;
 import com.backend.gym.repositorios.IUsuarioRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
 import com.google.gson.stream.JsonReader;
-
 import static org.hamcrest.Matchers.*;
-
 import org.junit.AfterClass;
-import org.junit.Before;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -45,14 +41,13 @@ public class ClienteControllerTest {
 	@Autowired
     private MockMvc mockMvc;
 
+    private static Usuario crearUsuario;
     
-    private static Usuario crearCliente;
-    
-    private static IUsuarioRepository clienteRepository;
+    private static IUsuarioRepository usuarioRepository;
     
     @Autowired
-    public void setTypeRemittanceRepository (IUsuarioRepository c) {
-    	clienteRepository= c;
+    public void setUsuarioRepository (IUsuarioRepository r) {
+    	usuarioRepository= r;
     }
 
     private String token;
@@ -68,7 +63,7 @@ public class ClienteControllerTest {
                 .andExpect(status().isOk())
                 .andReturn();
         String json = result.getResponse().getContentAsString();
-    	crearCliente= new ObjectMapper().readValue(json, Usuario.class);
+    	crearUsuario= new ObjectMapper().readValue(json, Usuario.class);
     }
     @Test
     public void test2WhenCreateCustomerFailure() throws Exception {
@@ -91,7 +86,7 @@ public class ClienteControllerTest {
     
     @Test
     public void test4WhenObtenerClienteSuccess() throws Exception {
-    	this.mockMvc.perform(get("/gym/cliente/"+crearCliente.getId()).header("Authorization", "Bearer " + token)
+    	this.mockMvc.perform(get("/gym/cliente/"+crearUsuario.getId()).header("Authorization", "Bearer " + token)
                 .accept(MediaType.parseMediaType("application/json;charset=UTF-8")))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$", is(not(empty()))));
@@ -99,14 +94,14 @@ public class ClienteControllerTest {
     
     @Test
     public void test5WhenObtenerClienteFailure() throws Exception {
-    	this.mockMvc.perform(get("/gym/cliente/"+crearCliente.getId()+"1").header("Authorization", "Bearer " + token)
+    	this.mockMvc.perform(get("/gym/cliente/"+crearUsuario.getId()+"1").header("Authorization", "Bearer " + token)
                 .accept(MediaType.parseMediaType("application/json;charset=UTF-8")))
                 .andExpect(status().isBadRequest());
     }
     
     @AfterClass
     public static void after() throws Exception {
-    	//clienteRepository.deleteById(crearCliente.getId());
+    	usuarioRepository.deleteById(crearUsuario.getId());
     }
 
 

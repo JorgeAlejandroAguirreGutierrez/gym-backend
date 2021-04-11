@@ -3,23 +3,15 @@ package com.backend.gym.servicios;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
-
-import com.backend.gym.modelos.Ejercicio;
 import com.backend.gym.modelos.PlantillaPlan;
 import com.backend.gym.repositorios.IPlantillaPlanRepository;
 import static com.backend.gym.Constantes.LOGCLASS;
 import static com.backend.gym.Constantes.LOGMETHOD;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
-import javax.persistence.criteria.Root;
 
 @Service
 public class PlantillaPlanService {
@@ -54,21 +46,18 @@ public class PlantillaPlanService {
      */
     public List<PlantillaPlan> buscar(String nombre, String somatotipo) {
     	logger.info(LOGMETHOD+Thread.currentThread().getStackTrace()[1].getMethodName()+LOGCLASS+this.getClass().getSimpleName());
-    	return  plantillaPlanRepository.findAll(new Specification<PlantillaPlan>() {
-			@Override
-            public Predicate toPredicate(Root<PlantillaPlan> root, CriteriaQuery<?> criteriaQuery, CriteriaBuilder criteriaBuilder) {
-                List<Predicate> predicates = new ArrayList<>();
-                if (nombre!=null && !nombre.equals("")) {
-                    predicates.add(criteriaBuilder.and(criteriaBuilder.like(root.get("nombre"), "%"+nombre+"%")));
-                    return criteriaBuilder.and(predicates.toArray(new Predicate[predicates.size()]));
-                }
-                if (somatotipo!=null && !somatotipo.equals("")) {
-                    predicates.add(criteriaBuilder.and(criteriaBuilder.like(root.get("somatotipo"), "%"+somatotipo+"%")));
-                    return criteriaBuilder.and(predicates.toArray(new Predicate[predicates.size()]));
-                }
-                return criteriaBuilder.and(predicates.toArray(new Predicate[predicates.size()]));
-            }
-        });
+    	return  plantillaPlanRepository.findAll((root, criteriaQuery, criteriaBuilder) -> {
+		    List<Predicate> predicates = new ArrayList<>();
+		    if (nombre!=null && !nombre.equals("")) {
+		        predicates.add(criteriaBuilder.and(criteriaBuilder.like(root.get("nombre"), "%"+nombre+"%")));
+		        return criteriaBuilder.and(predicates.toArray(new Predicate[predicates.size()]));
+		    }
+		    if (somatotipo!=null && !somatotipo.equals("")) {
+		        predicates.add(criteriaBuilder.and(criteriaBuilder.like(root.get("somatotipo"), "%"+somatotipo+"%")));
+		        return criteriaBuilder.and(predicates.toArray(new Predicate[predicates.size()]));
+		    }
+		    return criteriaBuilder.and(predicates.toArray(new Predicate[predicates.size()]));
+		});
     }
     /**
      * Crea un nuevo cliente

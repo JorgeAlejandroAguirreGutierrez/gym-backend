@@ -3,7 +3,6 @@ package com.backend.gym.servicios;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import com.backend.gym.Constantes;
@@ -24,10 +23,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
-import javax.persistence.criteria.Root;
 
 @Service
 public class UsuarioService {
@@ -92,20 +88,17 @@ public class UsuarioService {
      */
     public List<Usuario> consultarClientesPorNombreIdentificacion(String nombre, String identificacion) {
     	logger.info(LOGMETHOD+Thread.currentThread().getStackTrace()[1].getMethodName()+LOGCLASS+this.getClass().getSimpleName());
-    	return  usuarioRepository.findAll(new Specification<Usuario>() {
-			@Override
-            public Predicate toPredicate(Root<Usuario> root, CriteriaQuery<?> criteriaQuery, CriteriaBuilder criteriaBuilder) {
-                List<Predicate> predicates = new ArrayList<>();
-                if (nombre!=null && !nombre.equals("")) {
-                    predicates.add(criteriaBuilder.and(criteriaBuilder.like(root.get("nombre"), "%"+nombre+"%")));
-                }
-                if (identificacion!=null && !identificacion.equals("")) {
-                    predicates.add(criteriaBuilder.and(criteriaBuilder.like(root.get("identificacion"), "%"+identificacion+"%")));
-                }
-                predicates.add(criteriaBuilder.and(criteriaBuilder.equal(root.get("perfil").get("descripcion"), Constantes.PERFILCLIENTE)));
-                return criteriaBuilder.and(predicates.toArray(new Predicate[predicates.size()]));
-            }
-        });
+    	return  usuarioRepository.findAll((root, criteriaQuery, criteriaBuilder) -> {
+		    List<Predicate> predicates = new ArrayList<>();
+		    if (nombre!=null && !nombre.equals("")) {
+		        predicates.add(criteriaBuilder.and(criteriaBuilder.like(root.get("nombre"), "%"+nombre+"%")));
+		    }
+		    if (identificacion!=null && !identificacion.equals("")) {
+		        predicates.add(criteriaBuilder.and(criteriaBuilder.like(root.get("identificacion"), "%"+identificacion+"%")));
+		    }
+		    predicates.add(criteriaBuilder.and(criteriaBuilder.equal(root.get("perfil").get("descripcion"), Constantes.PERFILCLIENTE)));
+		    return criteriaBuilder.and(predicates.toArray(new Predicate[predicates.size()]));
+		});
     }
     
     /**
@@ -114,14 +107,11 @@ public class UsuarioService {
      */
     public List<Usuario> consultarClientes() {
     	logger.info(LOGMETHOD+Thread.currentThread().getStackTrace()[1].getMethodName()+LOGCLASS+this.getClass().getSimpleName());
-    	return  usuarioRepository.findAll(new Specification<Usuario>() {
-            @Override
-            public Predicate toPredicate(Root<Usuario> root, CriteriaQuery<?> criteriaQuery, CriteriaBuilder criteriaBuilder) {
-                List<Predicate> predicates = new ArrayList<>();
-                predicates.add(criteriaBuilder.and(criteriaBuilder.equal(root.get("perfil").get("descripcion"), Constantes.PERFILCLIENTE)));
-                return criteriaBuilder.and(predicates.toArray(new Predicate[predicates.size()]));
-            }
-        });
+    	return  usuarioRepository.findAll((root, criteriaQuery, criteriaBuilder) -> {
+		    List<Predicate> predicates = new ArrayList<>();
+		    predicates.add(criteriaBuilder.and(criteriaBuilder.equal(root.get("perfil").get("descripcion"), Constantes.PERFILCLIENTE)));
+		    return criteriaBuilder.and(predicates.toArray(new Predicate[predicates.size()]));
+		});
     }
     
     /**
@@ -130,14 +120,11 @@ public class UsuarioService {
      */
     public List<Usuario> consultarAdmins() {
     	logger.info(LOGMETHOD+Thread.currentThread().getStackTrace()[1].getMethodName()+LOGCLASS+this.getClass().getSimpleName());
-    	return  usuarioRepository.findAll(new Specification<Usuario>() {
-            @Override
-            public Predicate toPredicate(Root<Usuario> root, CriteriaQuery<?> criteriaQuery, CriteriaBuilder criteriaBuilder) {
-                List<Predicate> predicates = new ArrayList<>();
-                predicates.add(criteriaBuilder.and(criteriaBuilder.equal(root.get("perfil").get("descripcion"), Constantes.PERFILADMIN)));
-                return criteriaBuilder.and(predicates.toArray(new Predicate[predicates.size()]));
-            }
-        });
+    	return  usuarioRepository.findAll((root, criteriaQuery, criteriaBuilder) -> {
+		    List<Predicate> predicates = new ArrayList<>();
+		    predicates.add(criteriaBuilder.and(criteriaBuilder.equal(root.get("perfil").get("descripcion"), Constantes.PERFILADMIN)));
+		    return criteriaBuilder.and(predicates.toArray(new Predicate[predicates.size()]));
+		});
     }
     
     /**
@@ -146,16 +133,13 @@ public class UsuarioService {
      */
     public Optional<Usuario> obtenerPorIdentificacion(String identificacion) {
     	logger.info(LOGMETHOD+Thread.currentThread().getStackTrace()[1].getMethodName()+LOGCLASS+this.getClass().getSimpleName());
-    	return  usuarioRepository.findOne(new Specification<Usuario>() {
-            @Override
-            public Predicate toPredicate(Root<Usuario> root, CriteriaQuery<?> criteriaQuery, CriteriaBuilder criteriaBuilder) {
-                List<Predicate> predicates = new ArrayList<>();
-                if (identificacion!=null) {
-                    predicates.add(criteriaBuilder.and(criteriaBuilder.equal(root.get("identificacion"), identificacion)));
-                }
-                return criteriaBuilder.and(predicates.toArray(new Predicate[predicates.size()]));
-            }
-        });
+    	return  usuarioRepository.findOne((root, criteriaQuery, criteriaBuilder) -> {
+		    List<Predicate> predicates = new ArrayList<>();
+		    if (identificacion!=null) {
+		        predicates.add(criteriaBuilder.and(criteriaBuilder.equal(root.get("identificacion"), identificacion)));
+		    }
+		    return criteriaBuilder.and(predicates.toArray(new Predicate[predicates.size()]));
+		});
     }
     
     /**
