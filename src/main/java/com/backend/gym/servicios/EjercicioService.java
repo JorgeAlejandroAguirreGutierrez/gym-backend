@@ -96,6 +96,25 @@ public class EjercicioService {
         });
     }
     
+    /**
+     * Consulta los ejercicios por el tipo de musculo
+     * @return List<Ejercicio>
+     */
+    public List<Ejercicio> consultarPorTipoMusculo(String tipoMusculoId) {
+    	logger.info(LOGMETHOD+Thread.currentThread().getStackTrace()[1].getMethodName()+LOGCLASS+this.getClass().getSimpleName());
+    	return  ejercicioRepository.findAll(new Specification<Ejercicio>() {
+			@Override
+            public Predicate toPredicate(Root<Ejercicio> root, CriteriaQuery<?> criteriaQuery, CriteriaBuilder criteriaBuilder) {
+                List<Predicate> predicates = new ArrayList<>();
+                if (tipoMusculoId!=null && !tipoMusculoId.equals("")) {
+                    predicates.add(criteriaBuilder.and(criteriaBuilder.equal(root.get("tipoMusculo").get("id"), tipoMusculoId)));
+                    return criteriaBuilder.and(predicates.toArray(new Predicate[predicates.size()]));
+                }
+                return criteriaBuilder.and(predicates.toArray(new Predicate[predicates.size()]));
+            }
+        });
+    }
+    
     public boolean imagen(MultipartFile archivo, long id) throws Exception {
     	Optional<Ejercicio>ejercicio=ejercicioRepository.findById(id);
     	String ruta=Util.guardarArchivo(archivo, id);

@@ -153,14 +153,13 @@ public class EjercicioDatos implements ApplicationRunner {
             ejercicios.add(new Ejercicio("HIPEREXTENSIONES EN MAQUINA", "HIPEREXTENSIONES_EN_MAQUINA.png", new TipoMusculo(11)));
             
             //PANTORILLAS
-            ejercicios.add(new Ejercicio("ELEVACION DE TALONES EN MAQUINA HACK.png", "ELEVACION_DE_TALONES_EN_MAQUINA_HACK.png", new TipoMusculo(12)));
+            ejercicios.add(new Ejercicio("ELEVACION DE TALONES EN MAQUINA HACK", "ELEVACION_DE_TALONES_EN_MAQUINA_HACK.png", new TipoMusculo(12)));
             ejercicios.add(new Ejercicio("ELEVACION DE TALONES CON BARRA", "ELEVACION_DE_TALONES_CON_BARRA.jpg", new TipoMusculo(12)));
-            ejercicios.add(new Ejercicio("ELEVACION DE TALONES EN MAQUINA DE PANTORRILLA.png", "ELEVACION_DE_TALONES_EN_MAQUINA_DE_PANTORRILLA.png", new TipoMusculo(12)));
+            ejercicios.add(new Ejercicio("ELEVACION DE TALONES EN MAQUINA DE PANTORRILLA", "ELEVACION_DE_TALONES_EN_MAQUINA_DE_PANTORRILLA.png", new TipoMusculo(12)));
             
             //FUNCIONAL
             ejercicios.add(new Ejercicio("BURPEES", "BURPEES.png", new TipoMusculo(13)));
             ejercicios.add(new Ejercicio("MOUNTAIN CLIMBER", "MOUNTAIN_CLIMBER.png", new TipoMusculo(13)));
-            ejercicios.add(new Ejercicio("JUMPING JACK", "JUMPING_JACK.png", new TipoMusculo(13)));
             ejercicios.add(new Ejercicio("JUMPING JACK", "JUMPING_JACK.png", new TipoMusculo(13)));
             ejercicios.add(new Ejercicio("SENTADILLA CON SALTO", "SENTADILLA_CON_SALTO.png", new TipoMusculo(13)));
             ejercicios.add(new Ejercicio("PUSH UPS", "PUSH_UPS.png", new TipoMusculo(13)));

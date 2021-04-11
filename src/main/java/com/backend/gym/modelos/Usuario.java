@@ -43,9 +43,6 @@ public class Usuario {
 	@NotNull
     @Column(name = "edad")
 	private long edad;
-	
-    @Column(name = "imagen")
-	private String imagen;
     
     @Column(name="activo")
     private boolean activo;
@@ -53,6 +50,10 @@ public class Usuario {
     @ManyToOne
     @JoinColumn(name = "perfil_id", nullable = true)
     private Perfil perfil;
+    
+    @ManyToOne(cascade ={CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.MERGE})
+    @JoinColumn(name = "plan_id", nullable = true)
+    private Plan plan;
     
     @OneToMany
     @JoinColumn(name = "usuario_id")
@@ -74,16 +75,12 @@ public class Usuario {
     @JoinColumn(name = "usuario_id")
     private List<Observacion> observaciones;
 	
-	@OneToMany(cascade ={CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.MERGE}, orphanRemoval = true, fetch = FetchType.LAZY)
-    @JoinColumn(name = "usuario_id")
-    private List<PlanEntrenamiento> planesEntrenamiento;
-	
 	public Usuario() {
 		
 	}
 	
 	public Usuario(String nombre, String identificacion, String contrasena, 
-			long talla, long edad, String imagen, 
+			long talla, long edad,
 			Perfil perfil, List<Sesion> sesiones, List<Peso> pesos, List<Observacion> observaciones,
 			List<Objetivo> objetivos, List<Suscripcion>suscripciones ) {
 		this.nombre=nombre;
@@ -91,7 +88,6 @@ public class Usuario {
 		this.contrasena=contrasena;
 		this.talla=talla;
 		this.edad=edad;
-		this.imagen=imagen;
 		this.perfil=perfil;
 		this.sesiones=sesiones;
 		this.pesos=pesos;
@@ -139,8 +135,8 @@ public class Usuario {
 		return observaciones;
 	}
 	
-	public List<PlanEntrenamiento> getPlanesEntrenamiento() {
-		return planesEntrenamiento;
+	public Plan getPlan() {
+		return plan;
 	}
 	
 	public List<Suscripcion> getSuscripciones() {

@@ -28,6 +28,9 @@ public class ParametroDatos implements ApplicationRunner {
             List<Parametro> parametros= new ArrayList<>();
             parametros.add(new Parametro("KILOGRAMOS", "KG", "MEDIDAPESO", true));
             parametros.add(new Parametro("LIBRAS", "LB", "MEDIDAPESO", true));
+            parametros.add(new Parametro("SEGUNDOS", "SEG", "MEDIDATIEMPO", true));
+            parametros.add(new Parametro("MINUTOS", "MIN", "MEDIDATIEMPO", true));
+            parametros.add(new Parametro("HORAS", "HORAS", "MEDIDATIEMPO", true));
             //SLIDERS
             parametros.add(new Parametro("", "slider1.jpeg", "SLIDER", true));
             parametros.add(new Parametro("", "slider2.jpeg", "SLIDER", true));

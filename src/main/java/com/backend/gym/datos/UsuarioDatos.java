@@ -34,10 +34,10 @@ public class UsuarioDatos implements ApplicationRunner {
             List<Usuario> usuarios = new ArrayList<>();
          
             usuarios.add(new Usuario("DIEGO ARCILA", "1053847608", "admin123",
-            		25, 45, "", new Perfil(1), new ArrayList<Sesion>(), new ArrayList<Peso>(),
+            		25, 45, new Perfil(1), new ArrayList<Sesion>(), new ArrayList<Peso>(),
             		new ArrayList<Observacion>(), new ArrayList<Objetivo>(), new ArrayList<Suscripcion>()));
             usuarios.add(new Usuario("JORGE ALEJANDRO AGUIRRRE GUTIERREZ", "1053847607", "cliente123",
-            		32, 25, "", new Perfil(2), new ArrayList<Sesion>(), new ArrayList<Peso>(),
+            		32, 25, new Perfil(2), new ArrayList<Sesion>(), new ArrayList<Peso>(),
             		new ArrayList<Observacion>(), new ArrayList<Objetivo>(), new ArrayList<Suscripcion>()));
             rep.saveAll(usuarios);
         }

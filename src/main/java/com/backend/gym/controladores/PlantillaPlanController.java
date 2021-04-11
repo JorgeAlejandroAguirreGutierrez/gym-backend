@@ -15,14 +15,13 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.multipart.MultipartFile;
 
 import com.backend.gym.modelos.Ejercicio;
-import com.backend.gym.servicios.EjercicioService;
+import com.backend.gym.modelos.PlantillaPlan;
+import com.backend.gym.servicios.PlantillaPlanService;
 
-import static com.backend.gym.Constantes.EJERCICIOCONTROLLER;
+import static com.backend.gym.Constantes.PLANTILLAPLANCONTROLLER;
 import static com.backend.gym.Constantes.LOGCLASS;
 import static com.backend.gym.Constantes.LOGMETHOD;
 
@@ -32,54 +31,47 @@ import java.util.Optional;
 import javax.validation.Valid;
 
 @RestController
-@RequestMapping(EJERCICIOCONTROLLER)
+@RequestMapping(PLANTILLAPLANCONTROLLER)
 @Validated
-public class EjercicioController {
-	private static final Logger logger = LoggerFactory.getLogger(EjercicioController.class);
+public class PlantillaPlanController {
+	private static final Logger logger = LoggerFactory.getLogger(PlantillaPlanController.class);
 	
     @Autowired
-    private EjercicioService servicio;
+    private PlantillaPlanService servicio;
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> consultar() {
     	logger.info(LOGMETHOD+Thread.currentThread().getStackTrace()[1].getMethodName()+LOGCLASS+this.getClass().getSimpleName());
-        List<Ejercicio> ejercicios=servicio.consultar();
-        return new ResponseEntity<>(ejercicios, HttpStatus.OK);
+        List<PlantillaPlan> plantillasPlan=servicio.consultar();
+        return new ResponseEntity<>(plantillasPlan, HttpStatus.OK);
     }
 
     @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> obtener(@PathVariable("id") long id) {
     	logger.info(LOGMETHOD+Thread.currentThread().getStackTrace()[1].getMethodName()+LOGCLASS+this.getClass().getSimpleName());
-        Optional<Ejercicio> ejercicio=servicio.obtener(id);
-        return new ResponseEntity<>(ejercicio, HttpStatus.OK);
+        Optional<PlantillaPlan> plantillaPlan=servicio.obtener(id);
+        return new ResponseEntity<>(plantillaPlan, HttpStatus.OK);
     }
     
-    @GetMapping(value = "/consultarPorDescripcion", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> consultarPorDescripcion(@RequestParam("descripcion") String descripcion) {
+    @GetMapping(value = "/buscar", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<?> buscar(@RequestParam("nombre") String nombre, @RequestParam("somatotipo") String somatotipo) {
     	logger.info(LOGMETHOD+Thread.currentThread().getStackTrace()[1].getMethodName()+LOGCLASS+this.getClass().getSimpleName());
-        List<Ejercicio> ejercicios=servicio.consultarPorDescripcion(descripcion);
-        return new ResponseEntity<>(ejercicios, HttpStatus.OK);
-    }
-    
-    @GetMapping(value = "/consultarPorTipoMusculo", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> consultarPorTipoMusculo(@RequestParam("tipoMusculoId") String tipoMusculoId) {
-    	logger.info(LOGMETHOD+Thread.currentThread().getStackTrace()[1].getMethodName()+LOGCLASS+this.getClass().getSimpleName());
-        List<Ejercicio> ejercicios=servicio.consultarPorTipoMusculo(tipoMusculoId);
-        return new ResponseEntity<>(ejercicios, HttpStatus.OK);
+        List<PlantillaPlan> plantillasPlan=servicio.buscar(nombre, somatotipo);
+        return new ResponseEntity<>(plantillasPlan, HttpStatus.OK);
     }
 
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> crear(@RequestBody @Valid Ejercicio _ejercicio) {
+    public ResponseEntity<?> crear(@RequestBody @Valid PlantillaPlan _plantillaPlan) {
     	logger.info(LOGMETHOD+Thread.currentThread().getStackTrace()[1].getMethodName()+LOGCLASS+this.getClass().getSimpleName());
-        Optional<Ejercicio> ejercicio=servicio.crear(_ejercicio);
-        return new ResponseEntity<>(ejercicio, HttpStatus.OK);
+        Optional<PlantillaPlan> plantillaPlan=servicio.crear(_plantillaPlan);
+        return new ResponseEntity<>(plantillaPlan, HttpStatus.OK);
     }
 
     @PutMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> actualizar(@RequestBody @Valid Ejercicio _ejercicio) {
+    public ResponseEntity<?> actualizar(@RequestBody @Valid PlantillaPlan _plantillaPlan) {
     	logger.info(LOGMETHOD+Thread.currentThread().getStackTrace()[1].getMethodName()+LOGCLASS+this.getClass().getSimpleName());
-        Optional<Ejercicio> ejercicio=servicio.actualizar(_ejercicio);
-        return new ResponseEntity<>(ejercicio, HttpStatus.OK);
+        Optional<PlantillaPlan> plantillaPlan=servicio.actualizar(_plantillaPlan);
+        return new ResponseEntity<>(plantillaPlan, HttpStatus.OK);
     }
 
     @DeleteMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -87,11 +79,5 @@ public class EjercicioController {
     	logger.info(LOGMETHOD+Thread.currentThread().getStackTrace()[1].getMethodName()+LOGCLASS+this.getClass().getSimpleName());
         servicio.eliminar(id);
         return new ResponseEntity<>(HttpStatus.OK);
-    }
-    
-    @PostMapping(value = "/imagen/{id}", headers = "content-type=multipart/*", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> imagen(@RequestPart("imagen") MultipartFile imagen, @PathVariable("productoId") long id ) throws Exception {
-        boolean bandera=servicio.imagen(imagen, id);
-        return new ResponseEntity<>(bandera, HttpStatus.OK);
     }
 }

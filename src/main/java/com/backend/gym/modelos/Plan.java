@@ -3,7 +3,6 @@ package com.backend.gym.modelos;
 import java.util.List;
 
 import javax.persistence.CascadeType;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -12,40 +11,25 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
 
 @Entity
-@Table(name = "plan_entrenamiento")
-public class PlanEntrenamiento {
+@Table(name = "plan")
+public class Plan {
 	
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 	
-	@NotNull
-    @Column(name = "numero")
-	private long numero;
-	
-    @Column(name = "dia")
-	private String dia;
-	
 	@OneToMany(cascade ={CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.MERGE}, orphanRemoval = true, fetch = FetchType.LAZY)
-    @JoinColumn(name = "plan_entrenamiento_id")
-    private List<RutinaEntrenamiento> rutinasEntrenamiento;
+    @JoinColumn(name = "plan_id", nullable = true)
+    private List<Dia> dias;
+	
 	
 	public long getId() {
 		return id;
 	}
 	
-	public long getNumero() {
-		return numero;
-	}
-	
-	public List<RutinaEntrenamiento> getRutinasEntrenamiento() {
-		return rutinasEntrenamiento;
-	}
-	
-	public String getDia() {
-		return dia;
+	public List<Dia> getDias() {
+		return dias;
 	}
 }

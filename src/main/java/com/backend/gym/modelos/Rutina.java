@@ -8,22 +8,18 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
 
 @Entity
-@Table(name = "rutina_entrenamiento")
-public class RutinaEntrenamiento {
+@Table(name = "rutina")
+public class Rutina {
 	
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 	
-	@NotNull
     @Column(name = "repeticiones")
 	private long repeticiones;
 	
-	@NotNull
     @Column(name = "veces")
 	private long veces;
 	
@@ -31,13 +27,11 @@ public class RutinaEntrenamiento {
 	private long valorTiempo;
 	
     @Column(name = "medida_tiempo")
-	private long medidaTiempo;
+	private String medidaTiempo;
 	
-    @NotEmpty
     @Column(name = "valor_peso")
 	private double valorPeso;
 	
-    @NotEmpty
     @Column(name = "medida_peso")
 	private String medidaPeso;
 	
@@ -62,5 +56,13 @@ public class RutinaEntrenamiento {
 	}
 	public String getMedidaPeso() {
 		return medidaPeso;
+	}
+	
+	public long getValorTiempo() {
+		return valorTiempo;
+	}
+	
+	public String getMedidaTiempo() {
+		return medidaTiempo;
 	}
 }

@@ -1,6 +1,7 @@
 package com.backend.gym;
 
 public class Constantes {
+	public static final String PLANTILLAPLANCONTROLLER = "/gym/plantillaplan";
 	public static final String USUARIOCONTROLLER = "/gym/usuario";
 	public static final String EJERCICIOCONTROLLER = "/gym/ejercicio";
 	public static final String PERFILCONTROLLER = "/gym/perfil";
