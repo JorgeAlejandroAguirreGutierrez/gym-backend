@@ -121,7 +121,7 @@ public class EjercicioDatos implements ApplicationRunner {
             ejercicios.add(new Ejercicio("CUERDA CON MANCUERNA SUPINACION", "CUERDA_CON_MANCUERNA_SUPINACION.jpg", new TipoMusculo(8)));
             ejercicios.add(new Ejercicio("CURL DE MUÑECA", "CURL_DE_MUNECA.png", new TipoMusculo(8)));
             ejercicios.add(new Ejercicio("CURL DE MUÑECA INVERTIDO", "CURL_DE_MUNECA_INVERTIDO.jpg", new TipoMusculo(8)));
-            ejercicios.add(new Ejercicio("CURL MUÑECA EN SUPINACION", "CURL_MUÑECA_EN_SUPINACION.jpg", new TipoMusculo(8)));
+            ejercicios.add(new Ejercicio("CURL MUÑECA EN SUPINACION", "CURL_MUNECA_EN_SUPINACION.jpg", new TipoMusculo(8)));
             
             
             //ADUCTORES
