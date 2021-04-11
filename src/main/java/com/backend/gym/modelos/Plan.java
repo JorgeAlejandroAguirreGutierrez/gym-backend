@@ -20,7 +20,7 @@ public class Plan {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 	
-	@OneToMany(cascade ={CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.MERGE}, orphanRemoval = true, fetch = FetchType.LAZY)
+	@OneToMany(cascade ={CascadeType.PERSIST, CascadeType.REFRESH}, orphanRemoval = true, fetch = FetchType.LAZY)
     @JoinColumn(name = "plan_id", nullable = true)
     private List<Dia> dias;
 	
