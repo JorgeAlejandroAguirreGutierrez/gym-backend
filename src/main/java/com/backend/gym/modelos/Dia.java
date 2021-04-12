@@ -29,7 +29,7 @@ public class Dia {
     @Column(name = "nombre")
 	private String nombre;
 	
-	@OneToMany(cascade ={CascadeType.PERSIST, CascadeType.REFRESH}, orphanRemoval = true, fetch = FetchType.LAZY)
+	@OneToMany(cascade ={CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH}, orphanRemoval = true, fetch = FetchType.LAZY)
     @JoinColumn(name = "dia_id", nullable = true)
     private List<Rutina> rutinas;
 	

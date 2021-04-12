@@ -51,7 +51,7 @@ public class Usuario {
     @JoinColumn(name = "perfil_id", nullable = true)
     private Perfil perfil;
     
-    @ManyToOne(cascade ={CascadeType.PERSIST, CascadeType.REFRESH})
+    @ManyToOne(cascade ={CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
     @JoinColumn(name = "plan_id", nullable = true)
     private Plan plan;
     
