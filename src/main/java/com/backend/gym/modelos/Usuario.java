@@ -59,19 +59,19 @@ public class Usuario {
     @JoinColumn(name = "usuario_id")
     private List<Sesion> sesiones;
     
-    @OneToMany(cascade ={CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.MERGE}, fetch = FetchType.LAZY)
+    @OneToMany(cascade ={CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH}, orphanRemoval = true, fetch = FetchType.LAZY)
     @JoinColumn(name = "usuario_id")
     private List<Peso> pesos;
     
-    @OneToMany(cascade ={CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.MERGE}, fetch = FetchType.LAZY)
+    @OneToMany(cascade ={CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH}, orphanRemoval = true, fetch = FetchType.LAZY)
     @JoinColumn(name = "usuario_id")
     private List<Suscripcion> suscripciones;
 	
-	@OneToMany(cascade ={CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.MERGE}, fetch = FetchType.LAZY)
+	@OneToMany(cascade ={CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH}, orphanRemoval = true, fetch = FetchType.LAZY)
     @JoinColumn(name = "usuario_id")
     private List<Objetivo> objetivos;
 	
-	@OneToMany(cascade ={CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.MERGE}, fetch = FetchType.LAZY)
+	@OneToMany(cascade ={CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH}, orphanRemoval = true, fetch = FetchType.LAZY)
     @JoinColumn(name = "usuario_id")
     private List<Observacion> observaciones;
 	
@@ -149,6 +149,10 @@ public class Usuario {
 	
 	public void setContrasena(String contrasena) {
 		this.contrasena = contrasena;
+	}
+	
+	public void setEdad(long edad) {
+		this.edad = edad;
 	}
 	
 	public boolean isActivo() {
