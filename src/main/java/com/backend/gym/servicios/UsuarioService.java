@@ -152,8 +152,7 @@ public class UsuarioService {
     	Optional<Perfil> perfil= perfilRepository.obtenerPorDescripcion(PERFILCLIENTE);
     	if(perfil.isPresent()) {
     		usuario.setPerfil(perfil.get());
-    		long conteo=usuarioRepository.count();
-        	String contrasena=Util.generarContrasena(conteo);
+        	String contrasena=Util.generarContrasena(usuario.getIdentificacion());
         	usuario.setContrasena(contrasena);
         	usuario.setActivo(false);
     		return Optional.of(usuarioRepository.save(usuario));

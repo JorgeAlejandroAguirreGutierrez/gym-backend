@@ -15,7 +15,7 @@ public class Constantes {
 	public static final String PERFILADMIN = "ADMIN";
 	public static final String PERFILCLIENTE = "CLIENTE";
 	
-	public static final String GIMNASIOOLIMPIA = "GIMNASIOOLIMPIA";
+	public static final String GIMNASIO = "GYM";
 	
 	public static final String FORMATOFECHA = "yyyy-MM-dd";
 	

@@ -17,9 +17,8 @@ public class Util {
         return codigo+"-" + rellenoConteo;
     }
 	
-	public static String generarContrasena(long conteo){
-		String fecha=new SimpleDateFormat(Constantes.FORMATOFECHA).format(new Date()); 
-        String codigo = Constantes.GIMNASIOOLIMPIA+fecha+conteo;
+	public static String generarContrasena(String identificacion){
+        String codigo = Constantes.GIMNASIO+identificacion;
         return codigo;
     }
 	

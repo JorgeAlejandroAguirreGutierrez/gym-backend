@@ -7,7 +7,6 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
-import org.springframework.context.annotation.Profile;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
@@ -16,7 +15,6 @@ import com.backend.gym.repositorios.ITipoMusculoRepository;
 
 @Component
 @Order(3)
-@Profile({"dev","prod"})
 public class TipoMusculoDatos implements ApplicationRunner {
 	@Autowired
     private ITipoMusculoRepository rep;
