@@ -20,8 +20,8 @@ public class Rutina {
     @Column(name = "repeticiones")
 	private long repeticiones;
 	
-    @Column(name = "veces")
-	private long veces;
+    @Column(name = "series")
+	private long series;
 	
     @Column(name = "valor_tiempo")
 	private long valorTiempo;
@@ -48,8 +48,8 @@ public class Rutina {
 	public long getRepeticiones() {
 		return repeticiones;
 	}
-	public long getVeces() {
-		return veces;
+	public long getSeries() {
+		return series;
 	}
 	public double getValorPeso() {
 		return valorPeso;
