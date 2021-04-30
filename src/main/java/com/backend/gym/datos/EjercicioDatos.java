@@ -170,6 +170,27 @@ public class EjercicioDatos implements ApplicationRunner {
             ejercicios.add(new Ejercicio("TROTAR", "TROTAR.png", new TipoMusculo(13)));
             ejercicios.add(new Ejercicio("SPRINTS EN TRX", "SPRINTS_EN_TRX.png", new TipoMusculo(13)));
             
+            //FECHA: 29 DE ABRIL DEL 2021
+            //GLUTEO
+            ejercicios.add(new Ejercicio("PATADA DE GLUTEO", "PATADA_DE_GLUTEO.png", new TipoMusculo(11)));
+            ejercicios.add(new Ejercicio("SENTADILLA SUMO", "SENTADILLA_SUMO.png", new TipoMusculo(11)));
+            ejercicios.add(new Ejercicio("PESO MUERTO SUMO", "PESO_MUERTO_SUMO.png", new TipoMusculo(11)));
+            ejercicios.add(new Ejercicio("TIJERA CON DESPLAZAMIENTO", "TIJERA_CON_DESPLZAMIENTO.png", new TipoMusculo(11)));
+            
+            //ABDOMINALES
+            ejercicios.add(new Ejercicio("FLEXION LATERAL CON PESA", "FLEXION_LATERAL_CON_PESA.jpg", new TipoMusculo(6)));
+            ejercicios.add(new Ejercicio("PLANCHAS", "PLANCHAS.png", new TipoMusculo(6)));
+            
+            //TRICEPS
+            ejercicios.add(new Ejercicio("FONDOS EN MAQUINA HAMMER", "FONDOS_MAQUINA_HAMMER.jpg", new TipoMusculo(2)));
+            ejercicios.add(new Ejercicio("KICK BACK", "KICK_BACK.jpg", new TipoMusculo(2)));
+            ejercicios.add(new Ejercicio("PRESS CERRADO", "PRESS_CERRADO.png", new TipoMusculo(2)));
+            
+            //CARDIO
+            ejercicios.add(new Ejercicio("TROTADORA", "TROTADORA.png", new TipoMusculo(14)));
+            ejercicios.add(new Ejercicio("ELIPTICA", "ELIPTICA.png", new TipoMusculo(14)));
+            ejercicios.add(new Ejercicio("BICICLETA", "BICICLETA.png", new TipoMusculo(14)));
+            
             //TOTAL
             rep.saveAll(ejercicios);
         }

@@ -37,6 +37,7 @@ public class TipoMusculoDatos implements ApplicationRunner {
             tiposMusculo.add(new TipoMusculo("GLUTEO")); //11
             tiposMusculo.add(new TipoMusculo("PANTORRILLAS")); //12
             tiposMusculo.add(new TipoMusculo("FUNCIONAL")); //13
+            tiposMusculo.add(new TipoMusculo("CARDIO")); //14
             
             
             rep.saveAll(tiposMusculo);
