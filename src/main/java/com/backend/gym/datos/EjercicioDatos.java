@@ -191,6 +191,14 @@ public class EjercicioDatos implements ApplicationRunner {
             ejercicios.add(new Ejercicio("ELIPTICA", "ELIPTICA.png", new TipoMusculo(14)));
             ejercicios.add(new Ejercicio("BICICLETA", "BICICLETA.png", new TipoMusculo(14)));
             
+            //FUNCIONAL
+            ejercicios.add(new Ejercicio("ESCALERA DE EJERCICIOS", "ESCALERA_DE_EJERCICIOS.jpg", new TipoMusculo(14)));
+            ejercicios.add(new Ejercicio("PRESS DE HOMBROS PESA RUSA", "PRESS_HOMBROS_PESA_RUSA.png", new TipoMusculo(14)));
+            ejercicios.add(new Ejercicio("SWINGS A UNA MANO PESA RUSA", "SWINGS_A_UNA_MANO_PESA_RUSA.png", new TipoMusculo(14)));
+            ejercicios.add(new Ejercicio("SQUAT SUMO", "SQUAT_SUMO.png", new TipoMusculo(14)));
+            ejercicios.add(new Ejercicio("LOUNGES PRESS HOMBRO PESA RUSA", "LOUNGES_PRESS_HOMBRO_PESA_RUSA.png", new TipoMusculo(14)));
+            ejercicios.add(new Ejercicio("SWING HOMBROS PESA RUSA", "SWING_HOMBROS_PESA_RUSA.jpeg", new TipoMusculo(14)));
+            
             //TOTAL
             rep.saveAll(ejercicios);
         }

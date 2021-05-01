@@ -4,7 +4,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.backend.gym.Constantes;
 import com.backend.gym.Util;
 import com.backend.gym.exception.ModeloNoExistenteException;
@@ -12,17 +11,13 @@ import com.backend.gym.modelos.Perfil;
 import com.backend.gym.modelos.Usuario;
 import com.backend.gym.repositorios.IPerfilRepository;
 import com.backend.gym.repositorios.IUsuarioRepository;
-
 import static com.backend.gym.Constantes.PERFILCLIENTE;
 import static com.backend.gym.Constantes.PERFILADMIN;
-
 import static com.backend.gym.Constantes.LOGCLASS;
 import static com.backend.gym.Constantes.LOGMETHOD;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-
 import javax.persistence.criteria.Predicate;
 
 @Service
@@ -170,7 +165,6 @@ public class UsuarioService {
     	Optional<Perfil> perfil= perfilRepository.obtenerPorDescripcion(PERFILADMIN);
     	if(perfil.isPresent()) {
     		usuario.setPerfil(perfil.get());
-    		long conteo=usuarioRepository.count();
         	String contrasena=Util.generarContrasena(usuario.getIdentificacion());
         	usuario.setContrasena(contrasena);
         	usuario.setActivo(true);
