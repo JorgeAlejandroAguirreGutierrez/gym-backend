@@ -11,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.OrderBy;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
@@ -30,7 +31,8 @@ public class Dia {
 	private String nombre;
 	
 	@OneToMany(cascade ={CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH}, orphanRemoval = true, fetch = FetchType.LAZY)
-    @JoinColumn(name = "dia_id", nullable = true)
+	@OrderBy("id ASC")
+	@JoinColumn(name = "dia_id", nullable = true)
     private List<Rutina> rutinas;
 	
 	public long getNumero() {

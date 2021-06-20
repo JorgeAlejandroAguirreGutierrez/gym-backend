@@ -199,6 +199,13 @@ public class EjercicioDatos implements ApplicationRunner {
             ejercicios.add(new Ejercicio("LOUNGES PRESS HOMBRO PESA RUSA", "LOUNGES_PRESS_HOMBRO_PESA_RUSA.png", new TipoMusculo(14)));
             ejercicios.add(new Ejercicio("SWING HOMBROS PESA RUSA", "SWING_HOMBROS_PESA_RUSA.jpeg", new TipoMusculo(14)));
             
+            
+            //FECHA: 12 DE MAYO
+            ejercicios.add(new Ejercicio("ROUND 1", "",null, new TipoMusculo(15)));
+            ejercicios.add(new Ejercicio("ROUND 2", "",null, new TipoMusculo(15)));
+            ejercicios.add(new Ejercicio("ROUND 3", "",null, new TipoMusculo(15)));
+            ejercicios.add(new Ejercicio("ROUND 4", "",null, new TipoMusculo(15)));
+            
             //TOTAL
             rep.saveAll(ejercicios);
         }

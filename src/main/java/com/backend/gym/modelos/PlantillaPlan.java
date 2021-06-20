@@ -22,7 +22,7 @@ public class PlantillaPlan {
 	
 	@NotNull
 	@NotEmpty
-    @Column(name = "nombre")
+    @Column(name = "nombre", unique=true)
 	private String nombre;
 	
 	@NotNull

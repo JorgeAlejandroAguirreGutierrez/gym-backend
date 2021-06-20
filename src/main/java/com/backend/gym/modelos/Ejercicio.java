@@ -25,6 +25,9 @@ public class Ejercicio {
     @Column(name = "descripcion")
 	private String descripcion;
 	
+	@Column(name = "detalle")
+	private String detalle;
+	
 	@Column(name = "imagen")
 	private String imagen;
 	
@@ -39,6 +42,14 @@ public class Ejercicio {
     
     public Ejercicio(String descripcion, String imagen, TipoMusculo tipoMusculo) {
     	this.descripcion=descripcion;
+    	this.detalle=null;
+    	this.imagen=imagen;
+    	this.tipoMusculo=tipoMusculo;
+    }
+    
+    public Ejercicio(String descripcion, String detalle, String imagen, TipoMusculo tipoMusculo) {
+    	this.descripcion=descripcion;
+    	this.detalle=detalle;
     	this.imagen=imagen;
     	this.tipoMusculo=tipoMusculo;
     }
@@ -49,6 +60,10 @@ public class Ejercicio {
 	
 	public String getDescripcion() {
 		return descripcion;
+	}
+	
+	public String getDetalle() {
+		return detalle;
 	}
 	
 	public TipoMusculo getTipoMusculo() {
