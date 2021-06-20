@@ -201,10 +201,13 @@ public class EjercicioDatos implements ApplicationRunner {
             
             
             //FECHA: 12 DE MAYO
-            ejercicios.add(new Ejercicio("ROUND 1", "",null, new TipoMusculo(15)));
-            ejercicios.add(new Ejercicio("ROUND 2", "",null, new TipoMusculo(15)));
-            ejercicios.add(new Ejercicio("ROUND 3", "",null, new TipoMusculo(15)));
-            ejercicios.add(new Ejercicio("ROUND 4", "",null, new TipoMusculo(15)));
+            ejercicios.add(new Ejercicio("ROUND 1", "1. JUMPING JACKS. 2. SENTADILLAS. 3. SKIPING JAB",null, new TipoMusculo(15)));
+            ejercicios.add(new Ejercicio("ROUND 2", "1. SKIPING. 2. BURPEESS - JAB. 3. SALTO LATERAL. 4. CUERDA",null, new TipoMusculo(15)));
+            ejercicios.add(new Ejercicio("ROUND 3", "1. ESCALADAS. 2. SQUAT - LOW KICK. 3. SQUAT - PRESS HOMBRO",null, new TipoMusculo(15)));
+            ejercicios.add(new Ejercicio("ROUND 4", "1. ABDS - BARRA. 2. GIROS RUSOS. 3. SKIPING - JAB",null, new TipoMusculo(15)));
+            ejercicios.add(new Ejercicio("ROUND 5", "1. ESCALERA. 2. SWINGER HOMBROS. 3. MINI BURPEES. 4. LAZO",null, new TipoMusculo(15)));
+            ejercicios.add(new Ejercicio("ROUND 6", "1. STEPS. 2. SENTADILLA TRX. 3. SQUAT. 4. JABS. 5. LAZO",null, new TipoMusculo(15)));
+            ejercicios.add(new Ejercicio("ROUND 7", "1. ELEVEACION RODILLAS TRX. 2. ABDS BARRA DOMINADAS. 3. SQUAT BICEPS. 4. FONDOS. 5. LAZO. 6. ESCALADAS",null, new TipoMusculo(15)));
             
             //TOTAL
             rep.saveAll(ejercicios);
