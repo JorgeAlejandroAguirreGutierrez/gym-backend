@@ -30,9 +30,9 @@ public class ParametroDatos implements ApplicationRunner {
             parametros.add(new Parametro("MINUTOS", "MIN", "MEDIDATIEMPO", true));
             parametros.add(new Parametro("HORAS", "HORAS", "MEDIDATIEMPO", true));
             //SLIDERS
-            parametros.add(new Parametro("", "slider1.jpg", "SLIDER", false));
-            parametros.add(new Parametro("", "slider2.jpg", "SLIDER", false));
-            parametros.add(new Parametro("", "slider3.jpg", "SLIDER", false));
+            parametros.add(new Parametro("", "slider1.jpg", "SLIDER", true));
+            parametros.add(new Parametro("", "slider2.jpg", "SLIDER", true));
+            parametros.add(new Parametro("", "slider3.jpg", "SLIDER", true));
             parametros.add(new Parametro("", "slider4.jpg", "SLIDER", true));
             parametros.add(new Parametro("", "slider5.jpg", "SLIDER", true));
             parametros.add(new Parametro("", "slider6.jpg", "SLIDER", true));
