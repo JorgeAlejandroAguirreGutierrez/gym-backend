@@ -43,11 +43,6 @@ public class ParametroDatos implements ApplicationRunner {
             parametros.add(new Parametro("", "slider11.jpeg", "SLIDER", true));
             parametros.add(new Parametro("", "slider12.jpeg", "SLIDER", true));
             parametros.add(new Parametro("", "slider13.jpeg", "SLIDER", true));
-            parametros.add(new Parametro("", "slider14.jpeg", "SLIDER", true));
-            parametros.add(new Parametro("", "slider15.jpeg", "SLIDER", true));
-            parametros.add(new Parametro("", "slider16.jpeg", "SLIDER", true));
-            parametros.add(new Parametro("", "slider17.jpeg", "SLIDER", true));
-            parametros.add(new Parametro("", "slider18.jpeg", "SLIDER", true));
             //SERVICIOS
             parametros.add(new Parametro("", "servicio1.jpeg", "SERVICIO", true));
             parametros.add(new Parametro("", "servicio2.jpeg", "SERVICIO", true));
