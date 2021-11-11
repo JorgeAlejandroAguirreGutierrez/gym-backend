@@ -35,6 +35,10 @@ public class Dia {
 	@JoinColumn(name = "dia_id", nullable = true)
     private List<Rutina> rutinas;
 	
+	public long getId() {
+		return id;
+	}
+	
 	public long getNumero() {
 		return numero;
 	}

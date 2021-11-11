@@ -9,6 +9,7 @@ public class Constantes {
 	public static final String PARAMETROCONTROLLER = "/gym/parametro";
 	public static final String TIPOMUSCULOCONTROLLER = "/gym/tipomusculo";
 	public static final String RUTINACONTROLLER = "/gym/rutina";
+	public static final String DIACONTROLLER = "/gym/dia";
 	
 	public static final String LOGMETHOD = "Ingresa al método: ";
 	public static final String LOGCLASS = " de la clase: ";
