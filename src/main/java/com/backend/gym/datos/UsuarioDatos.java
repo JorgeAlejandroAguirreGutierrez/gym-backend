@@ -31,7 +31,7 @@ public class UsuarioDatos implements ApplicationRunner {
         if (!ant.isPresent()) {
             List<Usuario> usuarios = new ArrayList<>();
             usuarios.add(new Usuario("DIEGO ARCILA", "15956607", "admin123",
-            		25, 45, new Perfil(1), new ArrayList<Sesion>(), new ArrayList<Peso>(),
+            		25, 45, true, new Perfil(1), new ArrayList<Sesion>(), new ArrayList<Peso>(),
             		new ArrayList<Observacion>(), new ArrayList<Objetivo>(), new ArrayList<Suscripcion>()));
             rep.saveAll(usuarios);
         }

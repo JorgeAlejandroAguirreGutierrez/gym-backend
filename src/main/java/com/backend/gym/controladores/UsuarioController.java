@@ -3,6 +3,8 @@ package com.backend.gym.controladores;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.InputStreamResource;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -24,6 +26,7 @@ import static com.backend.gym.Constantes.USUARIOCONTROLLER;
 import static com.backend.gym.Constantes.LOGCLASS;
 import static com.backend.gym.Constantes.LOGMETHOD;
 
+import java.io.ByteArrayInputStream;
 import java.util.List;
 import java.util.Optional;
 
@@ -112,5 +115,15 @@ public class UsuarioController {
     	logger.info(LOGMETHOD+Thread.currentThread().getStackTrace()[1].getMethodName()+LOGCLASS+this.getClass().getSimpleName());
         Optional<Usuario> usuario=servicio.crearAdmin(_usuario);
         return new ResponseEntity<>(usuario, HttpStatus.OK);
+    }
+    
+    @GetMapping(value="/reporte", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<?> reporte() {
+    	logger.info(LOGMETHOD+Thread.currentThread().getStackTrace()[1].getMethodName()+LOGCLASS+this.getClass().getSimpleName());
+        ByteArrayInputStream pdf = servicio.generarPDF();
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Content-Disposition", "inline; filename=factura.pdf");
+        return ResponseEntity.ok().headers(headers).contentType(MediaType.APPLICATION_PDF)
+                .body(new InputStreamResource(pdf));
     }
 }

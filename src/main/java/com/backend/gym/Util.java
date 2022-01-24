@@ -3,9 +3,6 @@ package com.backend.gym;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 

@@ -1,5 +1,6 @@
 package com.backend.gym.repositorios;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -13,4 +14,8 @@ public interface IUsuarioRepository extends JpaRepository<Usuario, Long>, JpaSpe
 	@Query(value="select u from Usuario u "  
 			+" WHERE u.identificacion=:identificacion AND u.contrasena=:contrasena")
 	public Optional<Usuario> buscarIdentificacionContrasena(String identificacion, String contrasena);
+	
+	@Query(value="select u from Usuario u JOIN u.suscripciones s "  
+			+" WHERE u.activo=true AND EXTRACT(MONTH FROM s.fecha) = EXTRACT(MONTH FROM CURRENT_DATE)")
+	public List<Usuario> generarPDF();
 }

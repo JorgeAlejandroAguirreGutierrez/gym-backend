@@ -3,6 +3,7 @@ package com.backend.gym.servicios;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Service;
 import com.backend.gym.Constantes;
 import com.backend.gym.Util;
@@ -11,11 +12,27 @@ import com.backend.gym.modelos.Perfil;
 import com.backend.gym.modelos.Usuario;
 import com.backend.gym.repositorios.IPerfilRepository;
 import com.backend.gym.repositorios.IUsuarioRepository;
+import com.itextpdf.io.font.constants.StandardFonts;
+import com.itextpdf.kernel.font.PdfFont;
+import com.itextpdf.kernel.font.PdfFontFactory;
+import com.itextpdf.kernel.geom.PageSize;
+import com.itextpdf.kernel.pdf.PdfDocument;
+import com.itextpdf.kernel.pdf.PdfWriter;
+import com.itextpdf.layout.Document;
+import com.itextpdf.layout.borders.SolidBorder;
+import com.itextpdf.layout.element.Paragraph;
+import com.itextpdf.layout.element.Table;
+
 import static com.backend.gym.Constantes.PERFILCLIENTE;
 import static com.backend.gym.Constantes.PERFILADMIN;
 import static com.backend.gym.Constantes.LOGCLASS;
 import static com.backend.gym.Constantes.LOGMETHOD;
+
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import javax.persistence.criteria.Predicate;
@@ -29,6 +46,9 @@ public class UsuarioService {
     
     @Autowired
     private IPerfilRepository perfilRepository;
+    
+    @Autowired 
+    private Environment environment;
 
     /**
      * Consulta el cliente por id
@@ -171,5 +191,50 @@ public class UsuarioService {
     		return Optional.of(usuarioRepository.save(usuario));
     	}
     	throw new ModeloNoExistenteException();
+    }
+    
+    public ByteArrayInputStream generarPDF() {
+    	try {
+    		List<Usuario>usuarios=usuarioRepository.generarPDF();
+        	ByteArrayOutputStream salida = new ByteArrayOutputStream();
+            PdfWriter writer = new PdfWriter(salida);
+            PdfDocument pdf = new PdfDocument(writer);
+            // Initialize document
+            Document documento = new Document(pdf, PageSize.A4);
+            documento.setMargins(20, 20, 20, 20);
+            // Add content
+            PdfFont font = PdfFontFactory.createFont(StandardFonts.TIMES_ROMAN);
+            documento.add(new Paragraph("FACTURA").setFont(font).setFontSize(30));
+            documento.add(new Paragraph(environment.getProperty("gym")).setFont(font).setFontSize(30));
+            documento.add( new Paragraph("\n"));
+            SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+            String fechaFormato = formato.format(new Date());
+            documento.add(new Paragraph("FECHA: "+fechaFormato).setBorder(new SolidBorder(1)));
+            documento.add( new Paragraph("\n"));
+            float [] columnas_tabla = {200F, 200F, 200F};
+            Table tabla = new Table(columnas_tabla);
+            tabla.addCell("IDENTIFICACION");
+            tabla.addCell("NOMBRE");
+            tabla.addCell("SUSCRIPCION");
+            for (Usuario usuario:usuarios)
+            {
+                tabla.addCell(usuario.getIdentificacion());
+                tabla.addCell(usuario.getNombre());
+                String fecha = formato.format(usuario.getSuscripciones().get(usuario.getSuscripciones().size()-1).getFecha());
+                tabla.addCell(fecha);
+            }
+            documento.add(tabla);
+            documento.add( new Paragraph("\n"));
+            int total= usuarios.size()*Integer.parseInt(environment.getProperty("comision"));
+            documento.add(new Paragraph("TOTAL: "+total).setBorder(new SolidBorder(1)));
+            documento.add(new Paragraph(
+                    Constantes.CUENTAAHORROS+environment.getProperty("cuenta")).setBorder(new SolidBorder(1)));
+            // 5. Close document
+            documento.close();
+            return new ByteArrayInputStream(salida.toByteArray());
+    	}catch(Exception e) {
+    		return null;
+    	}
+    	
     }
 }

@@ -1,6 +1,8 @@
 package com.backend.gym;
 
 public class Constantes {
+	public static final String CUENTAAHORROS= "CUENTA DE AHORROS BANCOLOMBIA: ";
+	public static final int COMISION= 2000;
 	public static final String PLANTILLAPLANCONTROLLER = "/gym/plantillaplan";
 	public static final String USUARIOCONTROLLER = "/gym/usuario";
 	public static final String EJERCICIOCONTROLLER = "/gym/ejercicio";

@@ -80,7 +80,7 @@ public class Usuario {
 	}
 	
 	public Usuario(String nombre, String identificacion, String contrasena, 
-			long talla, long edad,
+			long talla, long edad, boolean activo,
 			Perfil perfil, List<Sesion> sesiones, List<Peso> pesos, List<Observacion> observaciones,
 			List<Objetivo> objetivos, List<Suscripcion>suscripciones ) {
 		this.nombre=nombre;
@@ -88,6 +88,7 @@ public class Usuario {
 		this.contrasena=contrasena;
 		this.talla=talla;
 		this.edad=edad;
+		this.activo=activo;
 		this.perfil=perfil;
 		this.sesiones=sesiones;
 		this.pesos=pesos;
