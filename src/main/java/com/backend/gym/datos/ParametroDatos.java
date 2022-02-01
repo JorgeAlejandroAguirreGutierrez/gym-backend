@@ -24,6 +24,19 @@ public class ParametroDatos implements ApplicationRunner {
     	Optional<Parametro> ant=rep.findById((long) 1);
         if (!ant.isPresent()) {
             List<Parametro> parametros= new ArrayList<>();
+            //INICIO
+            parametros.add(new Parametro("", "inicio.jpg", "INICIO", true));
+            //INICIO SLIDE
+            parametros.add(new Parametro("", "inicioslide1.jpg", "INICIOSLIDE", true));
+            parametros.add(new Parametro("", "inicioslide2.jpg", "INICIOSLIDE", true));
+            parametros.add(new Parametro("", "inicioslide3.jpg", "INICIOSLIDE", true));
+            parametros.add(new Parametro("", "inicioslide4.jpg", "INICIOSLIDE", true));
+            //DESCRIPCIONSLIDE
+            parametros.add(new Parametro("", "Bienvenido a Gym-Up!_Gestionar tu gimnasio nunca había sido tan facil", "CONCEPTOSLIDE", true));
+            parametros.add(new Parametro("", "Centralización_de la información de tus usuarios", "CONCEPTOSLIDE", true));
+            parametros.add(new Parametro("", "Muestrale la evolución_del plan de entrenamiento a tus clientes", "CONCEPTOSLIDE", true));
+            parametros.add(new Parametro("", "Reduce los tiempos_en la gestión de tus usuarios", "CONCEPTOSLIDE", true));
+            //MEDIDAS
             parametros.add(new Parametro("KILOGRAMOS", "KG", "MEDIDAPESO", true));
             parametros.add(new Parametro("LIBRAS", "LB", "MEDIDAPESO", true));
             parametros.add(new Parametro("SEGUNDOS", "SEG", "MEDIDATIEMPO", true));
