@@ -31,7 +31,12 @@ public class ParametroDatos implements ApplicationRunner {
             parametros.add(new Parametro("", "inicioslide2.jpg", "INICIOSLIDE", true));
             parametros.add(new Parametro("", "inicioslide3.jpg", "INICIOSLIDE", true));
             parametros.add(new Parametro("", "inicioslide4.jpg", "INICIOSLIDE", true));
-            //DESCRIPCIONSLIDE
+            //FONDO INICIO SESION
+            parametros.add(new Parametro("", "fondoiniciosesion.jpg", "FONDOINICIOSESION", true));
+            //LOGO
+            parametros.add(new Parametro("", "logo1.png", "LOGO1", true));
+            parametros.add(new Parametro("", "logo2.png", "LOGO2", true));
+            //DESCRIPCION SLIDE
             parametros.add(new Parametro("", "Bienvenido a Gym-Up!_Gestionar tu gimnasio nunca había sido tan facil", "CONCEPTOSLIDE", true));
             parametros.add(new Parametro("", "Centralización_de la información de tus usuarios", "CONCEPTOSLIDE", true));
             parametros.add(new Parametro("", "Muestrale la evolución_del plan de entrenamiento a tus clientes", "CONCEPTOSLIDE", true));

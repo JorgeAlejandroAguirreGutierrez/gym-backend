@@ -3,6 +3,8 @@ package com.backend.gym.controladores;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -85,5 +87,18 @@ public class ParametroController {
     	logger.info(LOGMETHOD+Thread.currentThread().getStackTrace()[1].getMethodName()+LOGCLASS+this.getClass().getSimpleName());
         List<Parametro> parametros=servicio.consultarPorTituloTipo(titulo, tipo);
         return new ResponseEntity<>(parametros, HttpStatus.OK);
+    }
+    
+    @RequestMapping(value = "/obtenerImagen")
+    public HttpEntity<?> obtenerImagen(@RequestParam("nombre") String nombre) {
+    	logger.info(LOGMETHOD+Thread.currentThread().getStackTrace()[1].getMethodName()+LOGCLASS+this.getClass().getSimpleName());
+        Optional<byte[]> imagen= servicio.obtenerImagen(nombre);
+        if (!imagen.isEmpty()) {
+        	HttpHeaders headers = new HttpHeaders();
+            headers.setContentType(MediaType.IMAGE_JPEG);
+            headers.setContentLength(imagen.get().length);
+            return new HttpEntity<byte[]>(imagen.get(), headers);
+        }
+        return new HttpEntity<>(null);
     }
 }

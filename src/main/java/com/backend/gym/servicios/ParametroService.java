@@ -3,6 +3,9 @@ package com.backend.gym.servicios;
 import static com.backend.gym.Constantes.LOGCLASS;
 import static com.backend.gym.Constantes.LOGMETHOD;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -12,6 +15,7 @@ import javax.persistence.criteria.Predicate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Service;
 
 import com.backend.gym.modelos.Parametro;
@@ -107,5 +111,24 @@ public class ParametroService {
 		    predicates.add(criteriaBuilder.and(criteriaBuilder.equal(root.get("id"), 0)));
 		    return criteriaBuilder.and(predicates.toArray(new Predicate[predicates.size()]));
 		});
+    }
+    
+    /**
+     * AObtener una imagen
+     * @param String nombre
+     * @return Optional<byte[]>
+     */
+    public Optional<byte[]> obtenerImagen(String nombre) {
+    	logger.info(LOGMETHOD+Thread.currentThread().getStackTrace()[1].getMethodName()+LOGCLASS+this.getClass().getSimpleName());
+    	File resource;
+		try {
+			resource = new ClassPathResource(nombre).getFile();
+			byte[] imagen= Files.readAllBytes(resource.toPath());
+	    	return Optional.of(imagen);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return Optional.empty();
+		}
     }
 }
