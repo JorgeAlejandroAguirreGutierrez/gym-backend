@@ -7,6 +7,7 @@ import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Service;
 import com.backend.gym.Constantes;
 import com.backend.gym.Util;
+import com.backend.gym.exception.ModeloExistenteException;
 import com.backend.gym.exception.ModeloNoExistenteException;
 import com.backend.gym.modelos.Perfil;
 import com.backend.gym.modelos.Usuario;
@@ -72,9 +73,13 @@ public class UsuarioService {
     /**
      * Crea un nuevo cliente
      * @param Usuario
-     * @return Cliente 
+     * @return Usuario 
      */
     public Optional<Usuario> crear(Usuario usuario) {
+    	Optional<Usuario> usuarioExiste=usuarioRepository.buscarIdentificacion(usuario.getIdentificacion());
+    	if (usuarioExiste.isPresent()) {
+    		throw new ModeloExistenteException();
+    	}
     	logger.info(LOGMETHOD+Thread.currentThread().getStackTrace()[1].getMethodName()+LOGCLASS+this.getClass().getSimpleName());
     	return Optional.of(usuarioRepository.save(usuario));
     }

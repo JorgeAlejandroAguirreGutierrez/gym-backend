@@ -15,6 +15,10 @@ public interface IUsuarioRepository extends JpaRepository<Usuario, Long>, JpaSpe
 			+" WHERE u.identificacion=:identificacion AND u.contrasena=:contrasena")
 	public Optional<Usuario> buscarIdentificacionContrasena(String identificacion, String contrasena);
 	
+	@Query(value="select u from Usuario u "  
+			+" WHERE u.identificacion=:identificacion")
+	public Optional<Usuario> buscarIdentificacion(String identificacion);
+	
 	@Query(value="select u from Usuario u JOIN u.suscripciones s "  
 			+" WHERE EXTRACT(MONTH FROM s.fecha) = EXTRACT(MONTH FROM CURRENT_DATE)")
 	public List<Usuario> generarPDF();
