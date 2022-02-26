@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 
 @Entity
@@ -29,6 +30,9 @@ public class Sesion {
     
     @Column(name = "fecha_cierre")
     private Date fechaCierre;
+    
+    @Transient
+    private String empresa;
     
     @ManyToOne
     @JoinColumn(name = "usuario_id", nullable = true)
@@ -55,5 +59,13 @@ public class Sesion {
     
     public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
+	}
+    
+    public String getEmpresa() {
+		return empresa;
+	}
+    
+    public void setEmpresa(String empresa) {
+		this.empresa = empresa;
 	}
 }
