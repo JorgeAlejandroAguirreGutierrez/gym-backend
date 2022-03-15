@@ -230,7 +230,7 @@ public class UsuarioService {
                 tabla.addCell(usuario.getNombre());
                 String fecha="";
                 for(Suscripcion suscripcion: usuario.getSuscripciones()) {
-                	if(suscripcion.getFecha().getMonth()==mes) {
+                	if(suscripcion.getFecha().getMonth()==(mes-1)) {
                 		fecha = formato.format(suscripcion.getFecha());
                 	}
                 }
