@@ -118,9 +118,9 @@ public class UsuarioController {
     }
     
     @GetMapping(value="/reporte", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> reporte() {
+    public ResponseEntity<?> reporte(@RequestParam("mes") int mes) {
     	logger.info(LOGMETHOD+Thread.currentThread().getStackTrace()[1].getMethodName()+LOGCLASS+this.getClass().getSimpleName());
-        ByteArrayInputStream pdf = servicio.generarPDF();
+        ByteArrayInputStream pdf = servicio.generarPDF(mes);
         HttpHeaders headers = new HttpHeaders();
         headers.add("Content-Disposition", "inline; filename=factura.pdf");
         return ResponseEntity.ok().headers(headers).contentType(MediaType.APPLICATION_PDF)

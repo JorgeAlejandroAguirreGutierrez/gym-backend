@@ -198,9 +198,9 @@ public class UsuarioService {
     	throw new ModeloNoExistenteException();
     }
     
-    public ByteArrayInputStream generarPDF() {
+    public ByteArrayInputStream generarPDF(int mes) {
     	try {
-    		List<Usuario>usuarios=usuarioRepository.generarPDF();
+    		List<Usuario>usuarios=usuarioRepository.generarPDF(mes);
         	ByteArrayOutputStream salida = new ByteArrayOutputStream();
             PdfWriter writer = new PdfWriter(salida);
             PdfDocument pdf = new PdfDocument(writer);
@@ -214,7 +214,9 @@ public class UsuarioService {
             documento.add( new Paragraph("\n"));
             SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
             String fechaFormato = formato.format(new Date());
-            documento.add(new Paragraph("FECHA: "+fechaFormato).setBorder(new SolidBorder(1)));
+            documento.add(new Paragraph("FECHA REPORTE: "+fechaFormato).setBorder(new SolidBorder(1)));
+            documento.add( new Paragraph("\n"));
+            documento.add(new Paragraph("MES FACTURADO: "+mes).setBorder(new SolidBorder(1)));
             documento.add( new Paragraph("\n"));
             float [] columnas_tabla = {200F, 200F, 200F};
             Table tabla = new Table(columnas_tabla);
