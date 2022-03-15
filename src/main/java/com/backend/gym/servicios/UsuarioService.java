@@ -10,6 +10,7 @@ import com.backend.gym.Util;
 import com.backend.gym.exception.ModeloExistenteException;
 import com.backend.gym.exception.ModeloNoExistenteException;
 import com.backend.gym.modelos.Perfil;
+import com.backend.gym.modelos.Suscripcion;
 import com.backend.gym.modelos.Usuario;
 import com.backend.gym.repositorios.IPerfilRepository;
 import com.backend.gym.repositorios.IUsuarioRepository;
@@ -227,15 +228,19 @@ public class UsuarioService {
             {
                 tabla.addCell(usuario.getIdentificacion());
                 tabla.addCell(usuario.getNombre());
-                String fecha = formato.format(usuario.getSuscripciones().get(usuario.getSuscripciones().size()-1).getFecha());
+                String fecha="";
+                for(Suscripcion suscripcion: usuario.getSuscripciones()) {
+                	if(suscripcion.getFecha().getMonth()==mes) {
+                		fecha = formato.format(suscripcion.getFecha());
+                	}
+                }
                 tabla.addCell(fecha);
             }
             documento.add(tabla);
             documento.add( new Paragraph("\n"));
             int total= usuarios.size()*Integer.parseInt(environment.getProperty("comision"));
             documento.add(new Paragraph("TOTAL: "+total).setBorder(new SolidBorder(1)));
-            documento.add(new Paragraph(
-                    Constantes.CUENTAAHORROS+environment.getProperty("cuenta")).setBorder(new SolidBorder(1)));
+            documento.add(new Paragraph(Constantes.CUENTAAHORROS+environment.getProperty("cuenta")).setBorder(new SolidBorder(1)));
             // 5. Close document
             documento.close();
             return new ByteArrayInputStream(salida.toByteArray());
