@@ -2,13 +2,8 @@ package com.backend.gym.servicios;
 
 import static com.backend.gym.Constantes.LOGCLASS;
 import static com.backend.gym.Constantes.LOGMETHOD;
-
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-
-import javax.persistence.criteria.Predicate;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -74,35 +69,21 @@ public class EjercicioService {
     }
     
     /**
-     * Consulta los ejercicios por su descripcion
+     * Consulta los ejercicios por su nombre o nombre personalizado
      * @return List<Ejercicio>
      */
-    public List<Ejercicio> consultarPorDescripcion(String descripcion) {
+    public List<Ejercicio> consultarPorNombre(String nombre) {
     	logger.info(LOGMETHOD+Thread.currentThread().getStackTrace()[1].getMethodName()+LOGCLASS+this.getClass().getSimpleName());
-    	return  ejercicioRepository.findAll((root, criteriaQuery, criteriaBuilder) -> {
-		    List<Predicate> predicates = new ArrayList<>();
-		    if (descripcion!=null && !descripcion.equals("")) {
-		        predicates.add(criteriaBuilder.and(criteriaBuilder.like(root.get("descripcion"), "%"+descripcion+"%")));
-		        return criteriaBuilder.and(predicates.toArray(new Predicate[predicates.size()]));
-		    }
-		    return criteriaBuilder.and(predicates.toArray(new Predicate[predicates.size()]));
-		});
+    	return  ejercicioRepository.consultarPorNombre(nombre);
     }
     
     /**
      * Consulta los ejercicios por el tipo de musculo
      * @return List<Ejercicio>
      */
-    public List<Ejercicio> consultarPorTipoMusculo(String tipoMusculoId) {
+    public List<Ejercicio> consultarPorTipoMusculo(long tipoMusculoId) {
     	logger.info(LOGMETHOD+Thread.currentThread().getStackTrace()[1].getMethodName()+LOGCLASS+this.getClass().getSimpleName());
-    	return  ejercicioRepository.findAll((root, criteriaQuery, criteriaBuilder) -> {
-		    List<Predicate> predicates = new ArrayList<>();
-		    if (tipoMusculoId!=null && !tipoMusculoId.equals("")) {
-		        predicates.add(criteriaBuilder.and(criteriaBuilder.equal(root.get("tipoMusculo").get("id"), tipoMusculoId)));
-		        return criteriaBuilder.and(predicates.toArray(new Predicate[predicates.size()]));
-		    }
-		    return criteriaBuilder.and(predicates.toArray(new Predicate[predicates.size()]));
-		});
+    	return  ejercicioRepository.consultarPorTipoMusculo(tipoMusculoId);
     }
     
     public boolean imagen(MultipartFile archivo, long id) throws Exception {

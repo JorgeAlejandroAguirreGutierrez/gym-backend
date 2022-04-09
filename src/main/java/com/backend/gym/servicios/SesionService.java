@@ -109,10 +109,11 @@ public class SesionService {
      * @param id
      * @return Sesion
      */
-    public Optional<Sesion> validar(long id) {
+    public Optional<Sesion> validar(Sesion _sesion) {
     	logger.info(LOGMETHOD+Thread.currentThread().getStackTrace()[1].getMethodName()+LOGCLASS+this.getClass().getSimpleName());
-        final Optional<Sesion> sesion= sesionRepository.findById(id);
+        final Optional<Sesion> sesion= sesionRepository.findById(_sesion.getId());
         if (sesion.isPresent()) {
+        	sesion.get().setEmpresa(_sesion.getEmpresa());
         	long startTime = sesion.get().getFechaApertura().getTime();
 			long endTime = new Date().getTime();
 			long diffTime = endTime - startTime;

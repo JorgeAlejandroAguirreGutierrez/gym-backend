@@ -54,15 +54,15 @@ public class EjercicioController {
         return new ResponseEntity<>(ejercicio, HttpStatus.OK);
     }
     
-    @GetMapping(value = "/consultarPorDescripcion", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> consultarPorDescripcion(@RequestParam("descripcion") String descripcion) {
+    @GetMapping(value = "/consultarPorNombre", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<?> consultarPorNombre(@RequestParam("nombre") String nombre) {
     	logger.info(LOGMETHOD+Thread.currentThread().getStackTrace()[1].getMethodName()+LOGCLASS+this.getClass().getSimpleName());
-        List<Ejercicio> ejercicios=servicio.consultarPorDescripcion(descripcion);
+        List<Ejercicio> ejercicios=servicio.consultarPorNombre(nombre);
         return new ResponseEntity<>(ejercicios, HttpStatus.OK);
     }
     
     @GetMapping(value = "/consultarPorTipoMusculo", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> consultarPorTipoMusculo(@RequestParam("tipoMusculoId") String tipoMusculoId) {
+    public ResponseEntity<?> consultarPorTipoMusculo(@RequestParam("tipoMusculoId") long tipoMusculoId) {
     	logger.info(LOGMETHOD+Thread.currentThread().getStackTrace()[1].getMethodName()+LOGCLASS+this.getClass().getSimpleName());
         List<Ejercicio> ejercicios=servicio.consultarPorTipoMusculo(tipoMusculoId);
         return new ResponseEntity<>(ejercicios, HttpStatus.OK);

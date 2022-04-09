@@ -12,14 +12,18 @@ import com.backend.gym.modelos.Usuario;
 @Repository
 public interface IUsuarioRepository extends JpaRepository<Usuario, Long>, JpaSpecificationExecutor<Usuario> {
 	@Query(value="select u from Usuario u "  
-			+" WHERE u.identificacion=:identificacion AND u.contrasena=:contrasena")
+			+" where u.identificacion=:identificacion and u.contrasena=:contrasena")
 	public Optional<Usuario> buscarIdentificacionContrasena(String identificacion, String contrasena);
 	
 	@Query(value="select u from Usuario u "  
-			+" WHERE u.identificacion=:identificacion")
+			+" where u.identificacion=:identificacion")
 	public Optional<Usuario> buscarIdentificacion(String identificacion);
 	
-	@Query(value="select u from Usuario u JOIN u.suscripciones s "  
-			+" WHERE EXTRACT(MONTH FROM s.fecha) = :mes")
+	@Query(value="select u from Usuario u "  
+			+" where u.perfil.descripcion='CLIENTE' and (u.nombre like %:usuario% or u.identificacion like %:usuario%)")
+	public List<Usuario> consultarClientesPorNombreIdentificacion(String usuario);
+	
+	@Query(value="select u from Usuario u join u.suscripciones s "  
+			+" where EXTRACT(MONTH FROM s.fecha) = :mes")
 	public List<Usuario> generarPDF(int mes);
 }

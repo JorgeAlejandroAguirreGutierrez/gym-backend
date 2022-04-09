@@ -8,8 +8,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
 
 
 @Entity
@@ -20,10 +18,11 @@ public class Ejercicio {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 	
-	@NotNull
-    @NotEmpty
-    @Column(name = "descripcion")
-	private String descripcion;
+    @Column(name = "nombre")
+	private String nombre;
+	
+    @Column(name = "nombre_personalizado")
+	private String nombrePersonalizado;
 	
 	@Column(name = "detalle")
 	private String detalle;
@@ -40,15 +39,17 @@ public class Ejercicio {
     	
     }
     
-    public Ejercicio(String descripcion, String imagen, TipoMusculo tipoMusculo) {
-    	this.descripcion=descripcion;
+    public Ejercicio(String nombre, String nombrePersonalizado, String imagen, TipoMusculo tipoMusculo) {
+    	this.nombre=nombre;
+    	this.nombrePersonalizado=nombrePersonalizado;
     	this.detalle=null;
     	this.imagen=imagen;
     	this.tipoMusculo=tipoMusculo;
     }
     
-    public Ejercicio(String descripcion, String detalle, String imagen, TipoMusculo tipoMusculo) {
-    	this.descripcion=descripcion;
+    public Ejercicio(String nombre, String nombrePersonalizado, String detalle, String imagen, TipoMusculo tipoMusculo) {
+    	this.nombre=nombre;
+    	this.nombrePersonalizado=nombrePersonalizado;
     	this.detalle=detalle;
     	this.imagen=imagen;
     	this.tipoMusculo=tipoMusculo;
@@ -58,8 +59,12 @@ public class Ejercicio {
 		return id;
 	}
 	
-	public String getDescripcion() {
-		return descripcion;
+	public String getNombre() {
+		return nombre;
+	}
+	
+	public String getNombrePersonalizado() {
+		return nombrePersonalizado;
 	}
 	
 	public String getDetalle() {

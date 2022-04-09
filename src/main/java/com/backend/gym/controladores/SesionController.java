@@ -52,10 +52,10 @@ private static final Logger logger = LoggerFactory.getLogger(SesionController.cl
         return new ResponseEntity<>(sesion, HttpStatus.OK);
     }
     
-    @GetMapping(value = "/validar/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> validarSesionAdmin(@PathVariable("id") long id) {
+    @PostMapping(value = "/validar", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<?> validarSesion(@RequestBody @Valid Sesion _sesion) {
     	logger.info(LOGMETHOD+Thread.currentThread().getStackTrace()[1].getMethodName()+LOGCLASS+this.getClass().getSimpleName());
-        Optional<Sesion> sesion=servicio.validar(id);
+        Optional<Sesion> sesion=servicio.validar(_sesion);
         return new ResponseEntity<>(sesion, HttpStatus.OK);
     }
 

@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Service;
 import com.backend.gym.Constantes;
-import com.backend.gym.Util;
 import com.backend.gym.exception.ModeloExistenteException;
 import com.backend.gym.exception.ModeloNoExistenteException;
 import com.backend.gym.modelos.Perfil;
@@ -107,19 +106,9 @@ public class UsuarioService {
      * Consulta los usuarios por nombre o deintificacion
      * @return List<Usuario>
      */
-    public List<Usuario> consultarClientesPorNombreIdentificacion(String nombre, String identificacion) {
+    public List<Usuario> consultarClientesPorNombreIdentificacion(String usuario) {
     	logger.info(LOGMETHOD+Thread.currentThread().getStackTrace()[1].getMethodName()+LOGCLASS+this.getClass().getSimpleName());
-    	return  usuarioRepository.findAll((root, criteriaQuery, criteriaBuilder) -> {
-		    List<Predicate> predicates = new ArrayList<>();
-		    if (nombre!=null && !nombre.equals("")) {
-		        predicates.add(criteriaBuilder.and(criteriaBuilder.like(root.get("nombre"), "%"+nombre+"%")));
-		    }
-		    if (identificacion!=null && !identificacion.equals("")) {
-		        predicates.add(criteriaBuilder.and(criteriaBuilder.like(root.get("identificacion"), "%"+identificacion+"%")));
-		    }
-		    predicates.add(criteriaBuilder.and(criteriaBuilder.equal(root.get("perfil").get("descripcion"), Constantes.PERFILCLIENTE)));
-		    return criteriaBuilder.and(predicates.toArray(new Predicate[predicates.size()]));
-		});
+    	return  usuarioRepository.consultarClientesPorNombreIdentificacion(usuario);
     }
     
     /**
@@ -173,8 +162,6 @@ public class UsuarioService {
     	Optional<Perfil> perfil= perfilRepository.obtenerPorDescripcion(PERFILCLIENTE);
     	if(perfil.isPresent()) {
     		usuario.setPerfil(perfil.get());
-        	String contrasena=Util.generarContrasena(usuario.getIdentificacion());
-        	usuario.setContrasena(contrasena);
         	usuario.setActivo(false);
     		return Optional.of(usuarioRepository.save(usuario));
     	}
@@ -191,8 +178,6 @@ public class UsuarioService {
     	Optional<Perfil> perfil= perfilRepository.obtenerPorDescripcion(PERFILADMIN);
     	if(perfil.isPresent()) {
     		usuario.setPerfil(perfil.get());
-        	String contrasena=Util.generarContrasena(usuario.getIdentificacion());
-        	usuario.setContrasena(contrasena);
         	usuario.setActivo(true);
     		return Optional.of(usuarioRepository.save(usuario));
     	}

@@ -37,8 +37,8 @@ public class Usuario {
 	private String contrasena;
 	
 	@NotNull
-    @Column(name = "talla")
-	private double talla;
+    @Column(name = "estatura")
+	private double estatura;
 	
 	@NotNull
     @Column(name = "edad")
@@ -80,13 +80,13 @@ public class Usuario {
 	}
 	
 	public Usuario(String nombre, String identificacion, String contrasena, 
-			long talla, long edad, boolean activo,
+			long estatura, long edad, boolean activo,
 			Perfil perfil, List<Sesion> sesiones, List<Peso> pesos, List<Observacion> observaciones,
 			List<Objetivo> objetivos, List<Suscripcion>suscripciones ) {
 		this.nombre=nombre;
 		this.identificacion=identificacion;
 		this.contrasena=contrasena;
-		this.talla=talla;
+		this.estatura=estatura;
 		this.edad=edad;
 		this.activo=activo;
 		this.perfil=perfil;
@@ -113,8 +113,8 @@ public class Usuario {
 		return contrasena;
 	}
 	
-	public double getTalla() {
-		return talla;
+	public double getEstatura() {
+		return estatura;
 	}
 	
 	public long getEdad() {
