@@ -113,7 +113,7 @@ public class SesionService {
     	logger.info(LOGMETHOD+Thread.currentThread().getStackTrace()[1].getMethodName()+LOGCLASS+this.getClass().getSimpleName());
         final Optional<Sesion> sesion= sesionRepository.findById(_sesion.getId());
         if (sesion.isPresent()) {
-        	sesion.get().setEmpresa(_sesion.getEmpresa());
+        	sesion.get().setEndpoint(_sesion.getEndpoint());
         	long startTime = sesion.get().getFechaApertura().getTime();
 			long endTime = new Date().getTime();
 			long diffTime = endTime - startTime;
