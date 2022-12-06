@@ -13,4 +13,9 @@ public class WebConfigurer implements WebMvcConfigurer {
     	registry.addResourceHandler("/img/**").addResourceLocations("file:///" + System.getProperty("user.dir") + "/src/main/img/");
     	registry.addResourceHandler("/imgejercicio/**").addResourceLocations("file:///" + System.getProperty("user.dir") + "/src/main/imgejercicio/");
     }
+    
+    /*@Override
+    public void addCorsMappings(CorsRegistry registry) {
+        registry.addMapping("/**");
+    }*/
 }

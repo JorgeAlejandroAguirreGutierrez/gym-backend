@@ -159,6 +159,10 @@ public class UsuarioService {
      */
     public Optional<Usuario> crearCliente(Usuario usuario) {
     	logger.info(LOGMETHOD+Thread.currentThread().getStackTrace()[1].getMethodName()+LOGCLASS+this.getClass().getSimpleName());
+    	Optional<Usuario> usuarioExiste=usuarioRepository.buscarIdentificacion(usuario.getIdentificacion());
+    	if (usuarioExiste.isPresent()) {
+    		throw new ModeloExistenteException();
+    	}
     	Optional<Perfil> perfil= perfilRepository.obtenerPorDescripcion(PERFILCLIENTE);
     	if(perfil.isPresent()) {
     		usuario.setPerfil(perfil.get());
@@ -175,6 +179,10 @@ public class UsuarioService {
      */
     public Optional<Usuario> crearAdmin(Usuario usuario) {
     	logger.info(LOGMETHOD+Thread.currentThread().getStackTrace()[1].getMethodName()+LOGCLASS+this.getClass().getSimpleName());
+    	Optional<Usuario> usuarioExiste=usuarioRepository.buscarIdentificacion(usuario.getIdentificacion());
+    	if (usuarioExiste.isPresent()) {
+    		throw new ModeloExistenteException();
+    	}
     	Optional<Perfil> perfil= perfilRepository.obtenerPorDescripcion(PERFILADMIN);
     	if(perfil.isPresent()) {
     		usuario.setPerfil(perfil.get());

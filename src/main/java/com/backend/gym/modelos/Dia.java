@@ -50,5 +50,4 @@ public class Dia {
 	public List<Rutina> getRutinas() {
 		return rutinas;
 	}
-	
 }
