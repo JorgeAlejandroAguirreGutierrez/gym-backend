@@ -138,7 +138,7 @@ public class SesionService {
 					long endTime = new Date().getTime();
 					long diffTime = endTime - startTime;
 					long diffDays = diffTime / (1000 * 60 * 60 * 24);
-					if(diffDays<1 && diffDays<30) {
+					if(diffDays<1 && diffDaysSuscripcion<30) {
 						return sesion;
 					}
 					throw new SesionInvalidaException();
