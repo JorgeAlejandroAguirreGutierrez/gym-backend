@@ -55,10 +55,6 @@ public class Usuario {
     @JoinColumn(name = "plan_id", nullable = true)
     private Plan plan;
     
-    @OneToMany
-    @JoinColumn(name = "usuario_id")
-    private List<Sesion> sesiones;
-    
     @OneToMany(cascade ={CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH}, orphanRemoval = true, fetch = FetchType.LAZY)
     @JoinColumn(name = "usuario_id")
     private List<Peso> pesos;
@@ -81,7 +77,7 @@ public class Usuario {
 	
 	public Usuario(String nombre, String identificacion, String contrasena, 
 			long estatura, long edad, boolean activo,
-			Perfil perfil, List<Sesion> sesiones, List<Peso> pesos, List<Observacion> observaciones,
+			Perfil perfil, List<Peso> pesos, List<Observacion> observaciones,
 			List<Objetivo> objetivos, List<Suscripcion>suscripciones ) {
 		this.nombre=nombre;
 		this.identificacion=identificacion;
@@ -90,7 +86,6 @@ public class Usuario {
 		this.edad=edad;
 		this.activo=activo;
 		this.perfil=perfil;
-		this.sesiones=sesiones;
 		this.pesos=pesos;
 		this.observaciones=observaciones;
 		this.objetivos=objetivos;
