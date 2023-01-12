@@ -112,15 +112,9 @@ public class SesionService {
      */
     public Optional<Sesion> validar(Sesion _sesion) {
     	logger.info(LOGMETHOD+Thread.currentThread().getStackTrace()[1].getMethodName()+LOGCLASS+this.getClass().getSimpleName());
-        Optional<Sesion> sesion= sesionRepository.findById(_sesion.getId());
-        if (sesion.isPresent()) {
-			Optional<Suscripcion> suscripcion=suscripcionRepository.obtenerUltimaSuscripcionPorUsuario(sesion.get().getUsuario().getIdentificacion());
-			if(suscripcion.isPresent()){
-				long startTimeSuscripcion = suscripcion.get().getFecha().getTime();
-    			long endTimeSuscripcion = new Date().getTime();
-    			long diffTimeSuscripcion = endTimeSuscripcion - startTimeSuscripcion;
-    			long diffDaysSuscripcion = diffTimeSuscripcion / (1000 * 60 * 60 * 24);
-				
+        Optional<Sesion> sesion= sesionRepository.findById(_sesion.getId());		
+		if (sesion.isPresent()) {
+			if (usuario.get().getPerfil().getDescripcion().equals(Constantes.PERFILADMIN)){					
 				sesion.get().setEndpoint(_sesion.getEndpoint());
 				long startTime = sesion.get().getFechaApertura().getTime();
 				long endTime = new Date().getTime();
@@ -128,6 +122,26 @@ public class SesionService {
 				long diffDays = diffTime / (1000 * 60 * 60 * 24);
 				if(diffDays<1 && diffDays<30) {
 					return sesion;
+				}
+				throw new SesionInvalidaException();
+			}
+			if (usuario.get().getPerfil().getDescripcion().equals(Constantes.PERFILCLIENTE)){
+				Optional<Suscripcion> suscripcion=suscripcionRepository.obtenerUltimaSuscripcionPorUsuario(sesion.get().getUsuario().getIdentificacion());
+				if(suscripcion.isPresent()){
+					long startTimeSuscripcion = suscripcion.get().getFecha().getTime();
+					long endTimeSuscripcion = new Date().getTime();
+					long diffTimeSuscripcion = endTimeSuscripcion - startTimeSuscripcion;
+					long diffDaysSuscripcion = diffTimeSuscripcion / (1000 * 60 * 60 * 24);
+					
+					sesion.get().setEndpoint(_sesion.getEndpoint());
+					long startTime = sesion.get().getFechaApertura().getTime();
+					long endTime = new Date().getTime();
+					long diffTime = endTime - startTime;
+					long diffDays = diffTime / (1000 * 60 * 60 * 24);
+					if(diffDays<1 && diffDays<30) {
+						return sesion;
+					}
+					throw new SesionInvalidaException();
 				}
 				throw new SesionInvalidaException();
 			}
