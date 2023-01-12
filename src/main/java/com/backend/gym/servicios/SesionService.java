@@ -114,7 +114,7 @@ public class SesionService {
     	logger.info(LOGMETHOD+Thread.currentThread().getStackTrace()[1].getMethodName()+LOGCLASS+this.getClass().getSimpleName());
         Optional<Sesion> sesion= sesionRepository.findById(_sesion.getId());		
 		if (sesion.isPresent()) {
-			if (usuario.get().getPerfil().getDescripcion().equals(Constantes.PERFILADMIN)){					
+			if (sesion.get().getUsuario().getPerfil().getDescripcion().equals(Constantes.PERFILADMIN)){					
 				sesion.get().setEndpoint(_sesion.getEndpoint());
 				long startTime = sesion.get().getFechaApertura().getTime();
 				long endTime = new Date().getTime();
@@ -125,7 +125,7 @@ public class SesionService {
 				}
 				throw new SesionInvalidaException();
 			}
-			if (usuario.get().getPerfil().getDescripcion().equals(Constantes.PERFILCLIENTE)){
+			if (sesion.get().getUsuario().getPerfil().getDescripcion().equals(Constantes.PERFILCLIENTE)){
 				Optional<Suscripcion> suscripcion=suscripcionRepository.obtenerUltimaSuscripcionPorUsuario(sesion.get().getUsuario().getIdentificacion());
 				if(suscripcion.isPresent()){
 					long startTimeSuscripcion = suscripcion.get().getFecha().getTime();
