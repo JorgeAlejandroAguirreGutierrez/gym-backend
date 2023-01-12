@@ -70,6 +70,7 @@ public class SesionService {
     	}
     	Optional<Suscripcion> suscripcion=suscripcionRepository.obtenerUltimaSuscripcionPorUsuario(sesion.getUsuario().getIdentificacion());
     	if(usuario.isPresent()) {
+			sesion.setUsuario(usuario.get());
     		if (suscripcion.isPresent()) {
     			long startTime = suscripcion.get().getFecha().getTime();
     			long endTime = new Date().getTime();
