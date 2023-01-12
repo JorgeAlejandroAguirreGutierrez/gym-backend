@@ -114,7 +114,7 @@ public class SesionService {
     	logger.info(LOGMETHOD+Thread.currentThread().getStackTrace()[1].getMethodName()+LOGCLASS+this.getClass().getSimpleName());
         Optional<Sesion> sesion= sesionRepository.findById(_sesion.getId());
         if (sesion.isPresent()) {
-			Optional<Suscripcion> suscripcion=suscripcionRepository.obtenerUltimaSuscripcionPorUsuario(sesion.getUsuario().getIdentificacion());
+			Optional<Suscripcion> suscripcion=suscripcionRepository.obtenerUltimaSuscripcionPorUsuario(sesion.get().getUsuario().getIdentificacion());
 			if(suscripcion.isPresent()){
 				long startTimeSuscripcion = suscripcion.get().getFecha().getTime();
     			long endTimeSuscripcion = new Date().getTime();
