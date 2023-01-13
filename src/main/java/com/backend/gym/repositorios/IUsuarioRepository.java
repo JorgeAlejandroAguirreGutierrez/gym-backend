@@ -24,6 +24,6 @@ public interface IUsuarioRepository extends JpaRepository<Usuario, Long>, JpaSpe
 	public List<Usuario> consultarClientesPorNombreIdentificacion(String usuario);
 	
 	@Query(value="select u from Usuario u join u.suscripciones s "  
-			+" where EXTRACT(MONTH FROM s.fecha) = :mes")
-	public List<Usuario> generarPDF(int mes);
+			+" where EXTRACT(MONTH FROM s.fecha) = :mes and EXTRACT(YEAR FROM s.fecha) = :ano")
+	public List<Usuario> generarPDF(int mes, int ano);
 }

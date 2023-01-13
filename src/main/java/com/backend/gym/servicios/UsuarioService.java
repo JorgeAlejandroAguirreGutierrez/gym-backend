@@ -192,9 +192,9 @@ public class UsuarioService {
     	throw new ModeloNoExistenteException();
     }
     
-    public ByteArrayInputStream generarPDF(int mes) {
+    public ByteArrayInputStream generarPDF(int mes, int ano) {
     	try {
-    		List<Usuario>usuarios=usuarioRepository.generarPDF(mes);
+    		List<Usuario>usuarios=usuarioRepository.generarPDF(mes, ano);
         	ByteArrayOutputStream salida = new ByteArrayOutputStream();
             PdfWriter writer = new PdfWriter(salida);
             PdfDocument pdf = new PdfDocument(writer);
